@@ -13,15 +13,20 @@ return new class extends Migration
      */
     public function up()
     {
+
         Schema::create('roles', function (Blueprint $table) {
-            $table->id();
+
+            $table->unsignedBigInteger('id')->autoincrement();
             $table->string('name')->unique();
+            $table->primary('id');
         });
-        Schema::create('users', function (Blueprint $table) {
-            $table->id('role_id')->nullable();
-            $table->foreingId('role_id')->references('id')->on('roles');
+
+        Schema::table('users', function (Blueprint $table) {
+            $table->unsignedBigInteger('role_id')->nullable();
+            $table->foreign('role_id')->references('id')->on('roles');
         });
-    }
+    
+}
 
     /**
      * Reverse the migrations.
@@ -30,11 +35,14 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('roles');
-     
+        
+        
         Schema::table('users', function (Blueprint $table) {
+            
         $table->dropForeign(['role_id']);
         $table->dropColumn('role_id');
         });
+        Schema::dropIfExists('roles');
+     
     }
 };
