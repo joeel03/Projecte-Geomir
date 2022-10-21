@@ -46,6 +46,7 @@ return new class extends Migration
         $table->dropForeign(['role_id']);
         $table->dropColumn('role_id');
         });
+        Schema::dropIfExists('roles');
         
 
     }
