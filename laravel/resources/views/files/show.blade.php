@@ -7,6 +7,9 @@
            <div class="card">
                <div class="card-header">{{ __('Files') }}</div>
                <div class="card-body">
+               <form method="post" action="{{ route('files.destroy',$file) }}" >
+               @csrf     
+               @method('delete')
                    <table class="table">
                        <thead>
                            <tr>
@@ -16,23 +19,31 @@
                                <td scope="col">Created</td>
                                <td scope="col">Updated</td>
                            </tr>
+                           
                        </thead>
                        <tbody>
-                           @foreach ($files as $file)
                            <tr>
-                           <td><a href="{{ route('files.show',$file) }}">{{ $file->id }}</a></td>
+                               <td>{{ $file->id }}</td>
                                <td>{{ $file->filepath }}</td>
                                <td>{{ $file->filesize }}</td>
                                <td>{{ $file->created_at }}</td>
                                <td>{{ $file->updated_at }}</td>
                            </tr>
-                           @endforeach
+                           
                        </tbody>
+
                    </table>
-                   <a class="btn btn-primary" href="{{ route('files.create') }}" role="button">Add new file</a>
+                   <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
+                    <br>
+                    <a class="btn btn-primary" href="{{ route('files.create') }}" role="button" >Edit</a>
+                    
+                    <button type="submit" class="btn btn-primary">Eliminar</button>
+                </form>
+                  
                </div>
            </div>
        </div>
    </div>
 </div>
 @endsection
+
