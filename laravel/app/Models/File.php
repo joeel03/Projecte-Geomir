@@ -13,4 +13,9 @@ class File extends Model
         'filesize',
         
     ];
+    public function place()
+{
+   return $this->belongsTo(Place::class);
+}
+
 }

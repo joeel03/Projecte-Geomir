@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('places', function (Blueprint $table) {
             $table->id();
-            $table->varchar('name',255);
-            $table->varchar('description',255);
+            $table->string('name',255);
+            $table->string('description',255);
             $table->unsignedBigInteger('file_id');
             $table->foreign('file_id')->references('id')->on('files');
             $table->float('latitude', 8, 2);
