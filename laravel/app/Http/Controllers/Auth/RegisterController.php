@@ -71,9 +71,9 @@ class RegisterController extends Controller
             'role_id' => 1,
         ]);
        
-        event(new Illuminate\Auth\Events\Registered($user));
+        event(new \Illuminate\Auth\Events\Registered($user));
        
-        Illuminate\Support\Facades\Auth::login($user);
+        \Illuminate\Support\Facades\Auth::login($user);
        
         $user->sendEmailVerificationNotification();
        

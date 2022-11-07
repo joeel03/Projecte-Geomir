@@ -13,8 +13,14 @@ class File extends Model
         'filepath',
         'filesize',
     ];
+
+    public function place()
+    {
+        return $this->hasOne(Place::class);
+    }
+
     public function post()
     {
-        return $this->belongsTo(Post::class);
+        return $this->hasOne(Post::class);
     }
 }

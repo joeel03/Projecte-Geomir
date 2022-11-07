@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\MailController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\PlacesController;
 use App\Http\Controllers\PostController;
 
 /*
@@ -39,8 +40,14 @@ Route::get('/', function (Request $request) {
     Log::info($message);
     $request->session()->flash('info', $message);
     return view('welcome');
-});
+ });
+  
 
- Route::resource('files', FileController::class);
+Route::resource('files', FileController::class)
+    ->middleware(['auth', 'role:2']);
+    
+Route::resource('places', PlacesController::class)
+    ->middleware(['auth']);
 
-Route::resource('post', PostController::class);
+Route::resource('post', PostController::class)
+    ->middleware(['auth']);

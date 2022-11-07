@@ -18,6 +18,8 @@
         <h2>{{ __('Resources') }}</h2>
         <a href="{{ url('/files') }}">{{ __('Files') }}</a>
         <br>
+        <a href="{{ url('/places') }}">{{ __('Places') }}</a>
+        <br>
         <a href="{{ url('/post') }}">{{ __('Posts') }}</a>
     @endsection
 </x-app-layout>

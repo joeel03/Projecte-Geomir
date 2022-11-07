@@ -2,14 +2,14 @@
  
 @section('content')
 <div class="container">
-   <div class="row justify-content-center">
-       <div class="col-md-8">
-           <div class="card">
-               <div class="card-header">{{ __('Files') }}</div>
-               <div class="card-body">
-               <form method="post" action="{{ route('files.destroy',$file) }}" >
-               @csrf     
-               @method('delete')
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card">
+                <div class="card-header">{{ __('Files') }}</div>
+                <div class="card-body">
+                <form method="post" action="{{ route('files.destroy',$file) }}" >
+                @csrf     
+                @method('delete')
                    <table class="table">
                        <thead>
                            <tr>
@@ -19,31 +19,30 @@
                                <td scope="col">Created</td>
                                <td scope="col">Updated</td>
                            </tr>
-                           
-                       </thead>
-                       <tbody>
-                           <tr>
+                        </thead>
+                        <tbody>
+                            <tr>
                                <td>{{ $file->id }}</td>
                                <td>{{ $file->filepath }}</td>
                                <td>{{ $file->filesize }}</td>
                                <td>{{ $file->created_at }}</td>
                                <td>{{ $file->updated_at }}</td>
-                           </tr>
-                           
-                       </tbody>
+                            </tr>
+                            
+                        </tbody>
 
-                   </table>
-                   <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
+                    </table>
+                    <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
                     <br>
-                    <a class="btn btn-primary" href="{{ route('files.create') }}" role="button" >Edit</a>
+                    <a class="btn btn-primary" href="{{ route('files.edit',$file) }}" role="button" >Edit</a>
                     
                     <button type="submit" class="btn btn-primary">Eliminar</button>
                 </form>
-                  
-               </div>
-           </div>
-       </div>
-   </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 
