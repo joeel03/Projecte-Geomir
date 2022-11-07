@@ -42,7 +42,13 @@ class PlacesController extends Controller
     {
         // Validar fitxer
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
+            'name' => 'required',
+            'description' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'category_id' => 'required',
+            'visibility_id' => 'required',
         ]);
        
         // Obtenir dades del fitxer
@@ -82,12 +88,12 @@ class PlacesController extends Controller
             ]);
             // Patró PRG amb missatge d'èxit
             return redirect()->route('places.show', $place)
-                ->with('success', 'Place successfully saved');
+                ->with('success', 'correcto');
         } else {
             \Log::debug("Local storage FAILS");
             // Patró PRG amb missatge d'error
-            return redirect()->route("places.create")
-                ->with('error', 'ERROR uploading file');
+            return redirect()->route("places.index")
+                ->with('error', 'error');
         }
     }
 
@@ -99,7 +105,7 @@ class PlacesController extends Controller
      */
     public function show(Place $place)
     {
-        $file=File::find($place->file_id);
+        $file = $place->file;
         return view("places.show", [
             "place" => $place,
             "file" => $file
@@ -129,7 +135,13 @@ class PlacesController extends Controller
     public function update(Request $request, File $file)
     {// Validar fitxer
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
+            'name' => 'required',
+            'description' => 'required',
+            'latitude' => 'required',
+            'longitude' => 'required',
+            'category_id' => 'required',
+            'visibility_id' => 'required',
         ]);
        
         // Obtenir dades del fitxer
@@ -189,22 +201,22 @@ class PlacesController extends Controller
      * @param  \App\Models\File  $file
      * @return \Illuminate\Http\Response
      */
-    public function destroy(File $file)
+    public function destroy(Place $place)
     {
-        $file=File::find($place->file_id);
-        if (\Storage::disk('public')->exists($file->file_id->filepath)){
-            \Storage::disk('public')->delete($file->file_id->filepath);           
-            File::destroy($file->id);
+        $file = $place->file;
+        //if (\Storage::disk('public')->exists($file->file_id->filepath)){
+            \Storage::disk('public')->delete($file->filepath);           
+            Place::destroy($file->id);
                 
             return redirect()->route("places.index", ["places" => File::all()])
             ->with('alert', 'eliminado');
      
-        }else{
-            \Log::debug("Local storage FAILS");
-            // Patró PRG amb missatge d'error
-            return redirect()->route("files.index")
-                ->with('error', 'ERROR uploading file');
+    //    }else{
+            // \Log::debug("Local storage FAILS");
+            // // Patró PRG amb missatge d'error
+            // return redirect()->route("files.index")
+            //     ->with('error', 'ERROR uploading file');
 
-        }
+      //  }
     }
 }
