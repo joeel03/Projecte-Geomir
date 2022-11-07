@@ -46,4 +46,5 @@ Route::get('/', function (Request $request) {
 Route::resource('files', FileController::class)
     ->middleware(['auth', 'role:2']);
     
-Route::resource('places', PlacesController::class);
+Route::resource('places', PlacesController::class)
+    ->middleware(['auth']);
