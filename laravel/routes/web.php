@@ -40,8 +40,8 @@ Route::get('/', function (Request $request) {
     Log::info($message);
     $request->session()->flash('info', $message);
     return view('welcome');
-});
-
+ });
+  
 
 Route::resource('files', FileController::class)
     ->middleware(['auth', 'role:2']);

@@ -8,7 +8,18 @@ use Illuminate\Database\Eloquent\Model;
 class Place extends Model
 {
     use HasFactory;
-    
+    protected $fillable = [
+      'name',
+      'description',
+      'file_id',
+      'latitude',
+      'longitude',
+      'category_id',
+      'visibility_id',
+      'author_id',
+      'created_at',
+      'updated_at',
+  ];
 public function file()
 {
    return $this->hasOne(File::class);

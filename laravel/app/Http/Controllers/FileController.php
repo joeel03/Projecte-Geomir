@@ -173,9 +173,13 @@ class FileController extends Controller
             File::destroy($file->id);
                 
             return redirect()->route("files.index", ["files" => File::all()])
-            ->with('alert', 'eliminao');
+            ->with('alert', 'eliminado');
      
         }else{
+            \Log::debug("Local storage FAILS");
+            // Patró PRG amb missatge d'error
+            return redirect()->route("files.index")
+                ->with('error', 'ERROR uploading file');
 
         }
         
