@@ -173,7 +173,7 @@ class FileController extends Controller
             File::destroy($file->id);
                 
             return redirect()->route("files.index", ["files" => File::all()])
-            ->with('alert', 'eliminao');
+            ->with('alert', 'archivo eliminado');
      
         }else{
 
