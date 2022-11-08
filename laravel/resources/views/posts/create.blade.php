@@ -1,19 +1,15 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-    {{ __('Add place') }}
+    {{ __('Add post') }}
 @endsection
 
 @section('box-content')
-    <form method="post" action="{{ route('places.store') }}" enctype="multipart/form-data">
+    <form method="post" action="{{ route('posts.store') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="name">{{ _('Name') }}</label>
-            <input type="text" id="name" name="name" class="form-control" />
-        </div>
-        <div class="form-group">
-            <label for="description">{{ _('Description') }}</label>
-            <textarea id="description" name="description" class="form-control"></textarea>
+            <label for="body">{{ _('Body') }}</label>
+            <textarea id="body" name="body" class="form-control"></textarea>
         </div>
         <div class="form-group">
             <label for="upload">{{ _('File') }}</label>

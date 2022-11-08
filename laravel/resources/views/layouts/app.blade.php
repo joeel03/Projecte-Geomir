@@ -15,7 +15,6 @@
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
-    @include('flash')
 </head>
 <body>
     <div id="app">
@@ -74,6 +73,7 @@
         </nav>
 
         <main class="py-4">
+            @include('flash')
             @yield('content')
         </main>
     </div>

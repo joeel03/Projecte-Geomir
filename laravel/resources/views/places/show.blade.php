@@ -1,61 +1,78 @@
-@extends('layouts.app')
- 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">Places</div>
-                <div class="card-body">
-                <form method="post" action="{{ route('places.destroy',$place) }}" enctype="multipart/form-data" >
-                @csrf     
-                @method('delete')
-                   <table class="table">
-                       <thead>
-                           <tr>
-                                <td scope="col">ID</td>
-                                <td scope="col">name</td>
-                                <td scope="col">description</td>
-                                <td scope="col">file_id</td>
-                                <td scope="col">latitude</td>
-                                <td scope="col">longitude</td>
-                                <td scope="col">category_id</td>
-                                <td scope="col">visibility_id</td>
-                                <td scope="col">author_id</td>
-                                <td scope="col">created_at</td>
-                                <td scope="col">updated_at</td>
-                           </tr>
-                        </thead>
-                        <tbody>
+@extends('layouts.box-app')
 
-                            <tr>
-                                <td>{{ $place->id }}</td>
-                                <td>{{ $place->name }}</td>
-                                <td>{{ $place->description }}</td>
-                                <td>{{ $place->file_id }}</td>
-                                <td>{{ $place->latitude }}</td>
-                                <td>{{ $place->longitude }}</td>
-                                <td>{{ $place->category_id }}</td>
-                                <td>{{ $place->visibility_id }}</td>
-                                <td>{{ $place->author_id }}</td>
-                                <td>{{ $place->created_at }}</td>
-                                <td>{{ $place->updated_at }}</td>
-                            </tr>
-                            
-                        </tbody>
+@section('box-title')
+    {{ __('Place') . " " . $place->id }}
+@endsection
 
-                    </table>
-                    <img class="img-fluid" src="{{ asset("storage/{$file->filepath}") }}" />
-                    <br>
-                    <a class="btn btn-primary" href="{{ route('places.edit',$place) }}" role="button" >Edit</a>
-                    
-                    <button type="submit" class="btn btn-primary">Eliminar</button>
-                </form>
-                    
+@section('box-content')
+    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview"/>
+    <table class="table">
+            <tr>
+                <td><strong>ID<strong></td>
+                <td>{{ $place->id }}</td>
+            </tr>
+            <tr>
+                <td><strong>Name</strong></td>
+                <td>{{ $place->name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Description</strong></td>
+                <td>{{ $place->description }}</td>
+            </tr>
+            <tr>
+                <td><strong>Lat</strong></td>
+                <td>{{ $place->latitude }}</td>
+            </tr>
+            <tr>
+                <td><strong>Lng</strong></td>
+                <td>{{ $place->longitude }}</td>
+            </tr>
+            <tr>
+                <td><strong>Author</strong></td>
+                <td>{{ $author->name }}</td>
+            </tr>
+            <tr>
+                <td><strong>Created</strong></td>
+                <td>{{ $place->created_at }}</td>
+            </tr>
+            <tr>
+                <td><strong>Updated</strong></td>
+                <td>{{ $place->updated_at }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Buttons -->
+    <div class="container" style="margin-bottom:20px">
+        <a class="btn btn-warning" href="{{ route('places.edit', $place) }}" role="button">📝 {{ _('Edit') }}</a>
+        <form id="form" method="POST" action="{{ route('places.destroy', $place) }}" style="display: inline-block;">
+            @csrf
+            @method("DELETE")
+            <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ _('Delete') }}</button>
+        </form>
+        <a class="btn" href="{{ route('places.index') }}" role="button">⬅️ {{ _('Back to list') }}</a>
+    </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">{{ _('Are you sure?') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <p>{{ _('You are gonna delete post ') . $place->id }}</p>
+                    <p>{{ _('This action cannot be undone!') }}</p>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button id="confirm" type="button" class="btn btn-primary">{{ _('Confirm') }}</button>
                 </div>
             </div>
         </div>
     </div>
-</div>
-@endsection
 
+    @vite('resources/js/delete-modal.js')
+
+@endsection

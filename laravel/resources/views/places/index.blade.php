@@ -1,50 +1,45 @@
-@extends('layouts.app')
- 
-@section('content')
-<div class="container">
-   <div class="row justify-content-center">
-       <div class="col-md-8">
-           <div class="card">
-               <div class="card-header">{{ __('Places') }}</div>
-               <div class="card-body">
-                   <table class="table">
-                       <thead>
-                           <tr>
-                                <td scope="col">ID</td>
-                                <td scope="col">name</td>
-                                <td scope="col">description</td>
-                                <td scope="col">file_id</td>
-                                <td scope="col">latitude</td>
-                                <td scope="col">longitude</td>
-                                <td scope="col">category_id</td>
-                                <td scope="col">visibility_id</td>
-                                <td scope="col">author_id</td>
-                                <td scope="col">created_at</td>
-                                <td scope="col">updated_at</td>
-                           </tr>
-                       </thead>
-                       <tbody>
-                           @foreach ($places as $place)
-                           <tr>
-                           <td><a href="{{ route('places.show',$place) }}">{{ $place->id }}</a></td>
-                                <td>{{ $place->id }}</td>
-                               <td>{{ $place->name }}</td>
-                               <td>{{ $place->description }}</td>
-                               <td>{{ $place->file_id }}</td>
-                               <td>{{ $place->latitude }}</td>
-                               <td>{{ $place->category_id }}</td>
-                               <td>{{ $place->visibility_id }}</td>
-                               <td>{{ $place->author_id }}</td>
-                               <td>{{ $place->created_at }}</td>
-                               <td>{{ $place->updated_at }}</td>
-                           </tr>
-                           @endforeach
-                       </tbody>
-                   </table>
-                   <a class="btn btn-primary" href="{{ route('places.create') }}" role="button">Add new file</a>
-               </div>
-           </div>
-       </div>
-   </div>
-</div>
+@extends('layouts.box-app')
+
+@section('box-title')
+    {{ __('Places') }}
+@endsection
+
+@section('box-content')
+    <div class="table-responsive">
+        <table class="table table-striped table-hover">
+            <thead>
+                <tr>
+                    <td scope="col">ID</td>
+                    <td scope="col">Name</td>
+                    <td scope="col">Description</td>
+                    <td scope="col">File</td>
+                    <td scope="col">Lat</td>
+                    <td scope="col">Lng</td>
+                    <td scope="col">Created</td>
+                    <td scope="col">Updated</td>
+                    <td scope="col"></td>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach ($places as $place)
+                <tr>
+                    <td>{{ $place->id }}</td>
+                    <td>{{ $place->name }}</td>
+                    <td>{{ substr($place->description,0,10) . "..." }}</td>
+                    <td>{{ $place->file_id }}</td>
+                    <td>{{ $place->latitude }}</td>
+                    <td>{{ $place->longitude }}</td>
+                    <td>{{ $place->created_at }}</td>
+                    <td>{{ $place->updated_at }}</td>
+                    <td>
+                        <a title="{{ _('View') }}" href="{{ route('places.show', $place) }}">👁️</a>
+                        <a title="{{ _('Edit') }}" href="{{ route('places.edit', $place) }}">📝</a>
+                        <a title="{{ _('Delete') }}" href="{{ route('places.show', [$place, 'delete' => 1]) }}">🗑️</a>
+                    </td>
+                </tr>
+                @endforeach
+            </tbody>
+        </table>
+    </div>
+    <a class="btn btn-primary" href="{{ route('places.create') }}" role="button">➕ {{ _('Add new place') }}</a>
 @endsection

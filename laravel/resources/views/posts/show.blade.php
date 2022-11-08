@@ -1,7 +1,7 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-    {{ __('File') . " " . $file->id }}
+    {{ __('Post') . " " . $post->id }}
 @endsection
 
 @section('box-content')
@@ -9,36 +9,44 @@
     <table class="table">
             <tr>
                 <td><strong>ID<strong></td>
-                <td>{{ $file->id }}</td>
+                <td>{{ $post->id }}</td>
             </tr>
             <tr>
-                <td><strong>Filepath</strong></td>
-                <td>{{ $file->filepath }}</td>
+                <td><strong>Body</strong></td>
+                <td>{{ $post->body }}</td>
             </tr>
             <tr>
-                <td><strong>Filesize</strong></td>
-                <td>{{ $file->filesize }}</td>
+                <td><strong>Lat</strong></td>
+                <td>{{ $post->latitude }}</td>
+            </tr>
+            <tr>
+                <td><strong>Lng</strong></td>
+                <td>{{ $post->longitude }}</td>
+            </tr>
+            <tr>
+                <td><strong>Author</strong></td>
+                <td>{{ $author->name }}</td>
             </tr>
             <tr>
                 <td><strong>Created</strong></td>
-                <td>{{ $file->created_at }}</td>
+                <td>{{ $post->created_at }}</td>
             </tr>
             <tr>
                 <td><strong>Updated</strong></td>
-                <td>{{ $file->updated_at }}</td>
+                <td>{{ $post->updated_at }}</td>
             </tr>
         </tbody>
     </table>
 
     <!-- Buttons -->
     <div class="container" style="margin-bottom:20px">
-        <a class="btn btn-warning" href="{{ route('files.edit', $file) }}" role="button">📝 {{ _('Edit') }}</a>
-        <form id="form" method="POST" action="{{ route('files.destroy', $file) }}" style="display: inline-block;">
+        <a class="btn btn-warning" href="{{ route('posts.edit', $post) }}" role="button">📝 {{ _('Edit') }}</a>
+        <form id="form" method="POST" action="{{ route('posts.destroy', $post) }}" style="display: inline-block;">
             @csrf
             @method("DELETE")
             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ _('Delete') }}</button>
         </form>
-        <a class="btn" href="{{ route('files.index') }}" role="button">⬅️ {{ _('Back to list') }}</a>
+        <a class="btn" href="{{ route('posts.index') }}" role="button">⬅️ {{ _('Back to list') }}</a>
     </div>
 
     <!-- Modal -->
@@ -50,7 +58,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>{{ _('You are gonna delete file ') . $file->id }}</p>
+                    <p>{{ _('You are gonna delete post ') . $post->id }}</p>
                     <p>{{ _('This action cannot be undone!') }}</p>
                 </div>
                 <div class="modal-footer">
@@ -60,7 +68,7 @@
             </div>
         </div>
     </div>
-    
+
     @vite('resources/js/delete-modal.js')
 
 @endsection

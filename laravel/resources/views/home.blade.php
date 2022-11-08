@@ -1,23 +1,19 @@
-@extends('layouts.app')
+@extends('layouts.box-app')
 
-@section('content')
-<div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
+@section('box-title')
+    {{ __('Dashboard') }}
+@endsection
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
-
-                    {{ __('You are logged in!') }}
-                </div>
-            </div>
+@section('box-content')
+    @if (session('status'))
+        <div class="alert alert-success" role="alert">
+            {{ session('status') }}
         </div>
-    </div>
-</div>
+    @endif
+    <h2>{{ __('Resources') }}</h2>
+    <ul>
+        <li><a href="{{ url('/files') }}">{{ __('Files') }}</a></li>
+        <li><a href="{{ url('/posts') }}">{{ __('Posts') }}</a></li>
+        <li><a href="{{ url('/places') }}">{{ __('Places') }}</a></li>
+    </ul>
 @endsection

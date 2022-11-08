@@ -9,18 +9,18 @@ use Illuminate\Support\Facades\DB;
 
 class DbTest extends TestCase
 {
-   public function test_admin_v1()
-   {
-      $count = DB::table('users')
-              ->where('name', '=', '2daw05')
-              ->count();
-      $this->assertEquals($count, 1);
-   }
- 
-   public function test_admin_v2()
-   {
-       $this->assertDatabaseHas('users', [
-           'name' => '2daw05',
-       ]);
-   }
+    public function test_admin_v1()
+    {
+       $count = DB::table('users')
+               ->where('name', '=', 'admin')
+               ->count();
+       $this->assertEquals($count, 1);
+    }
+  
+    public function test_admin_v2()
+    {
+        $this->assertDatabaseHas('users', [
+            'name' => 'admin',
+        ]);
+    } 
 }
