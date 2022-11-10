@@ -61,7 +61,7 @@ class PlaceController extends Controller
 
         if ($fileOk) {
             // Desar dades a BD
-            Log::debug("Saving place at DB...");
+            \Log::debug("Saving place at DB...");
             $place = Place::create([
                 'name'        => $name,
                 'description' => $description,
@@ -140,12 +140,13 @@ class PlaceController extends Controller
         // Desar fitxer (opcional)
         if (is_null($upload) || $place->file->diskSave($upload)) {
             // Actualitzar dades a BD
-            Log::debug("Updating DB...");
+            \Log::debug("Updating DB...");
             $place->name        = $name;
             $place->description = $description;
             $place->latitude    = $latitude;
             $place->longitude   = $longitude;
             \Log::debug("DB storage OK");
+            $place->save();
             // Patró PRG amb missatge d'èxit
             return redirect()->route('places.show', $place)
                 ->with('success', __('Place successfully saved'));
