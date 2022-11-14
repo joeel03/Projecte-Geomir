@@ -14,6 +14,8 @@ class VisibilitySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Visibility::create(['id' => 1, 'name' => 'public']);
+        Visibility::create(['id' => 2, 'name' => 'contacts']);
+        Visibility::create(['id' => 3, 'name' => 'private']);
     }
 }
