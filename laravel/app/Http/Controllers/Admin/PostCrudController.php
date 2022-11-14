@@ -2,16 +2,16 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Http\Requests\VisibilityRequest;
+use App\Http\Requests\PostRequest;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
 
 /**
- * Class VisibilityCrudController
+ * Class PostCrudController
  * @package App\Http\Controllers\Admin
  * @property-read \Backpack\CRUD\app\Library\CrudPanel\CrudPanel $crud
  */
-class VisibilityCrudController extends CrudController
+class PostCrudController extends CrudController
 {
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     // use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -26,9 +26,9 @@ class VisibilityCrudController extends CrudController
      */
     public function setup()
     {
-        CRUD::setModel(\App\Models\Visibility::class);
-        CRUD::setRoute(config('backpack.base.route_prefix') . '/visibility');
-        CRUD::setEntityNameStrings('visibility', 'visibilities');
+        CRUD::setModel(\App\Models\Post::class);
+        CRUD::setRoute(config('backpack.base.route_prefix') . '/post');
+        CRUD::setEntityNameStrings('post', 'posts');
     }
 
     /**
@@ -39,7 +39,11 @@ class VisibilityCrudController extends CrudController
      */
     protected function setupListOperation()
     {
-        
+        CRUD::column('body');
+        CRUD::column('file_id');
+        CRUD::column('latitude');
+        CRUD::column('longitude');
+        CRUD::column('author_id');
 
         /**
          * Columns can be defined using the fluent syntax or array syntax:
@@ -56,9 +60,13 @@ class VisibilityCrudController extends CrudController
      */
     protected function setupCreateOperation()
     {
-        CRUD::setValidation(VisibilityRequest::class);
+        CRUD::setValidation(PostRequest::class);
 
-        
+        CRUD::field('body');
+        CRUD::field('file_id');
+        CRUD::field('latitude');
+        CRUD::field('longitude');
+        CRUD::field('author_id');
 
         /**
          * Fields can be defined using the fluent syntax or array syntax:

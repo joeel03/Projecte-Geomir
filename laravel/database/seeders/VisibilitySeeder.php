@@ -14,6 +14,8 @@ class VisibilitySeeder extends Seeder
      */
     public function run()
     {
-        //
+        Role::create(['id' => 1, 'name' => 'public']);
+        Role::create(['id' => 2, 'name' => 'contacts']);
+        Role::create(['id' => 3,  'name' => 'private']);
     }
 }
