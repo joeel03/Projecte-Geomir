@@ -26,6 +26,7 @@ class PlaceCrudController extends CrudController
      */
     public function setup()
     {
+         
         CRUD::setModel(\App\Models\Place::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/place');
         CRUD::setEntityNameStrings('place', 'places');
