@@ -4,7 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card">
+            <div class="row card">
                 <div class="card-header">{{ __('Login') }}</div>
 
                 <div class="card-body">
@@ -66,7 +66,11 @@
                         </div>
                     </form>
                 </div>
+                
             </div>
+            <div>
+                    <img src="img/img_login.png" width="500px"></img>
+                </div>
         </div>
     </div>
 </div>
