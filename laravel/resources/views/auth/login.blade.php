@@ -3,7 +3,7 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-<img class="row justify-content-center" src="/img/paisajes-de-Canada.jpg"></img>
+<img src="/img/paisajes-de-Canada.jpg"></img>
         <div class="col-md-8">
 
 
