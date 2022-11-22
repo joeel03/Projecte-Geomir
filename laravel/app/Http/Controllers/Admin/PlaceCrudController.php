@@ -45,7 +45,6 @@ class PlaceCrudController extends CrudController
         CRUD::column('file_id');
         CRUD::column('latitude');
         CRUD::column('longitude');
-        CRUD::column('author_id');
         CRUD::column('created_at');
         CRUD::column('updated_at');
 
