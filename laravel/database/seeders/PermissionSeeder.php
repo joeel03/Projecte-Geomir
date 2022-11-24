@@ -46,8 +46,8 @@ class PermissionSeeder extends Seeder
         
         //Assignar permisos
         $adminRole->givePermissionTo(['places.*','files.*','posts.*']);
-        $authorRole->givePermissionTo(['places.*','files.*','posts.*']);
-        $editorRole->givePermissionTo(['places.*','files.*','posts.*']);
+        $authorRole->givePermissionTo(['places.*','posts.*']);
+        $editorRole->givePermissionTo(['places.list','places.read','files.list','files.read','posts.list','posts.read']);
         
         //Assignar rol “admin” a l’usuari/a administrador/a ja creat a BD
         $name  = config('admin.name');

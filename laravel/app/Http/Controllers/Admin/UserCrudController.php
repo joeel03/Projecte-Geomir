@@ -12,9 +12,6 @@ class UserCrudController extends PM_UserCrudController
    {
        parent::setup();
        
-       if (!backpack_user()->hasPermissionTo('files.*','post.*','places.*')) {
-           CRUD::denyAccess('list');
-       }
        if (!backpack_user()->hasRole('admin')) {
            CRUD::denyAccess(['list','create','read','update','delete']);
        }
