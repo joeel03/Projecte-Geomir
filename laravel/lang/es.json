@@ -1,6 +1,8 @@
 {
     "File successfully saved": "Archivo guardado correctamente",
-    "ERROR uploading file": "ERROR subiendo el archivo"
- }
+    "ERROR uploading file": "ERROR subiendo el archivo",
+    "Place successfully saved": "El sitio se ha guardado correctamente",
+    "Place successfully deleted": "El sitio ha sido eliminado con éxito"
+}
  
  
