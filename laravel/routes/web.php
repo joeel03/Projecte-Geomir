@@ -32,11 +32,15 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('mail/test', [MailController::class, 'test']);
 
+
+/////////////////////
 Route::resource('files', FileController::class)
-    ->middleware(['auth', 'role.any:1,2,3']);
+->middleware(['auth', 'permission:files']);
 
 Route::resource('posts', PostController::class)
-    ->middleware(['auth', 'role:1']);
+   ->middleware(['auth', 'permission:posts']);
 
 Route::resource('places', PlaceController::class)
-    ->middleware(['auth', 'role:1']);
+->middleware(['auth', 'permission:places']);
+
+Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);

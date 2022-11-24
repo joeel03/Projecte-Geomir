@@ -15,6 +15,8 @@ class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
+    public $guard_name = 'web';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -47,11 +49,11 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function posts()
     {
-       return $this->hasMany(Post::class);
+       return $this->hasMany(Post::class,'author_id');
     }
 
     public function places()
     {
-       return $this->hasMany(Place::class);
+       return $this->hasMany(Place::clas,'author_id');
     }    
 }

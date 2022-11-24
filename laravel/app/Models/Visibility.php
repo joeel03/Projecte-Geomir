@@ -9,4 +9,9 @@ class Visibility extends Model
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasFactory;
+    
+    protected $fillable = [
+        'id',
+        'name',
+    ];
 }

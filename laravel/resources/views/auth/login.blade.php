@@ -2,9 +2,9 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
-<img src="/img/paisajes-de-Canada.jpg"></img>
         <div class="col-md-8">
+            <div class="row card">
+                <div class="card-header">{{ __('Login') }}</div>
 
 
 
@@ -73,7 +73,11 @@
                             </div>
                         </form>
                 </div>
-            </div>  
+                
+            </div>
+            <div>
+                    <img src="img/img_login.png" width="500px"></img>
+                </div>
         </div>
     </div>
 </div>
