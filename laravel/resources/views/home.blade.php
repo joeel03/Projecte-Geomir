@@ -24,7 +24,7 @@
         </form>    
     </div>
     <div class="col-md-4 text-center" >
-        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-camera"></i></a>
+        <a href="{{route('posts.create')}}" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-camera"></i></a>
         <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-magnifying-glass"></i></a>
         <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-house"></i></a>
         <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-bell"></i></a>
@@ -49,7 +49,18 @@
             </div>
         </div>
         <div class="border col-md-4">
-            medio
+            <div> IMG PERFIL AJUSTES </div>
+            <div> 
+                @foreach ($_FILES as $file)
+                    @if($_FILES->id == $_POST->file_id)
+                        <div class="div-foto-post">
+                                <img class="foto-post" src='{{ asset("storage/{$file->filepath}") }}'/>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+            <div class="border row text-center h1"> <i class="fa-regular fa-heart"></i> COMENTARIOS <i class="fa-solid fa-square-share-nodes"></i> </div>
+            <div> DESCRIPCIÓN DE IMAGEN </div>
         </div>
         <div class="border col-md-4">
             <img src="img/mapa.png" width="100%" height="100%"></img>
