@@ -24,24 +24,24 @@
         </form>    
     </div>
     <div class="col-md-4 text-center" >
-        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-camera"></i></a>
-        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-magnifying-glass"></i></a>
-        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-house"></i></a>
-        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-bell"></i></a>
-        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-user"></i></a>
+        <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"><i class="fa-solid fa-camera"></i></a>
+        <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"><i class="fa-solid fa-magnifying-glass"></i></a>
+        <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"><i class="fa-solid fa-house"></i></a>
+        <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"><i class="fa-solid fa-bell"></i></a>
+        <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"><i class="fa-solid fa-user"></i></a>
 
     </div>
 </div>
     <div class="border row text-center h1">
         <div class="border col-md-4 letra">
             Lista de contactos
-            <div>
+            <div class="lista-contactos" >
                 <img class="rounded-circle" src="img/foto_hombre.jpg" width="20%"></img>
                 Mario Gomez
                 <i class="fa-brands fa-whatsapp h1 border-emoji" ></i>
                 <i class="fa-solid fa-phone h1 border-emoji" ></i>
             </div>
-            <div>
+            <div class="lista-contactos">
                 <img class="rounded-circle" src="img/foto_mujer.jpg" width="20%"></img>
                 Andrea Perruna
                 <i class="fa-brands fa-whatsapp h1 border-emoji" ></i>
@@ -53,6 +53,9 @@
         </div>
         <div class="border col-md-4">
             <img src="img/mapa.png" width="100%" height="100%"></img>
+            <div class="position-fixed bottom-0 end-1">            <a href="{{ route('places.create') }}" class="btn btn-primary" style="font-size:25px;"><i class="fa-solid fa-plus"></i></a>
+</div>
+            <div ><a href="{{ route('places.index') }}" class="btn btn-primary" style="font-size:25px;"><i class="fa-solid fa-list"></i></a></div>
         </div>
     </div>
 </div>
