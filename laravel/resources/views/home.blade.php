@@ -11,8 +11,11 @@
 </div>
 @endif
 <head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/></head>
-<div class="border row ">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+<link href = "https://fonts.googleapis.com/css?family=Montserrat" rel = "stylesheet" >  
+</head>
+
+<div class="border row letra">
     <div class="col-md-4"></div>
     <div class="col-md-4 text-center"">
         <form >
@@ -30,19 +33,19 @@
     </div>
 </div>
     <div class="border row text-center h1">
-        <div class="border col-md-4 ">
+        <div class="border col-md-4 letra">
             Lista de contactos
-            <div class="h2">
+            <div>
                 <img class="rounded-circle" src="img/foto_hombre.jpg" width="20%"></img>
                 Mario Gomez
-                <i class="fa-brands fa-whatsapp h1 contactos" ></i>
-                <i class="fa-solid fa-phone h1" ></i>
+                <i class="fa-brands fa-whatsapp h1 border-emoji" ></i>
+                <i class="fa-solid fa-phone h1 border-emoji" ></i>
             </div>
             <div>
                 <img class="rounded-circle" src="img/foto_mujer.jpg" width="20%"></img>
                 Andrea Perruna
-                <i class="fa-brands fa-whatsapp h1" ></i>
-                <i class="fa-solid fa-phone h1" ></i>
+                <i class="fa-brands fa-whatsapp h1 border-emoji" ></i>
+                <i class="fa-solid fa-phone h1 border-emoji" ></i>
             </div>
         </div>
         <div class="border col-md-4">
