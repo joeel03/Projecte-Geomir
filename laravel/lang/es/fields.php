@@ -10,4 +10,13 @@ return [
    'created_at'=>'Creado',
    'updated_at'=>'Actualizado',
    'body'=>'Descripción',
+   'Register'=>'Registrarse',
+   'Email Address'=>'Correo Electronico',
+   'Password'=>'Contraseña',
+   'Confirm Password'=>'Confirmar Contraseña',
+   'Name'=>'Nombre',
+   'Remember Me'=>'Recordarme',
+   'Login'=>'Iniciar Sesión',
+   'Forgot Your Password?'=>'Recuperar Contraseña'
+
 ];

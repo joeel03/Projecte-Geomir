@@ -23,12 +23,7 @@ class PermissionSeeder extends Seeder
         $editorRole = Role::create(['name' => 'editor']);
 
         //Crear permisos
-        Permission::create(['name' => 'users.*']);
-        Permission::create(['name' => 'users.list']);
-        Permission::create(['name' => 'users.create']);
-        Permission::create(['name' => 'users.update']);
-        Permission::create(['name' => 'users.read']);
-        Permission::create(['name' => 'users.delete']);
+
 
         Permission::create(['name' => 'files.*']);
         Permission::create(['name' => 'files.list']);
@@ -52,8 +47,8 @@ class PermissionSeeder extends Seeder
         Permission::create(['name' => 'places.delete']);
         
         //Assignar permisos
-        $adminRole->givePermissionTo(['users.*','places.*','files.*','posts.*']);
-        $authorRole->givePermissionTo(['places.*','files.*','posts.*']);
+        $adminRole->givePermissionTo(['places.*','files.*','posts.*']);
+        $authorRole->givePermissionTo(['places.*','posts.*']);
         $editorRole->givePermissionTo(['places.list','places.read','files.list','files.read','posts.list','posts.read']);
         
         //Assignar rol “admin” a l’usuari/a administrador/a ja creat a BD

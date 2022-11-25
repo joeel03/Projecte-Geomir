@@ -1,6 +1,8 @@
 {
     "File successfully saved": "Archivo guardado correctamente",
-    "ERROR uploading file": "ERROR subiendo el archivo"
+    "ERROR uploading file": "ERROR subiendo el archivo",
+    "Post successfully saved":"La pulbicación ha sido guardada correctamente",
+    "Post successfully deleted":"La publiacció ha sido eliminada correctamente"
  }
  
  

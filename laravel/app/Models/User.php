@@ -13,6 +13,7 @@ use \Backpack\CRUD\app\Models\Traits\CrudTrait;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
+    use \Backpack\CRUD\app\Models\Traits\CrudTrait;
     use HasApiTokens, HasFactory, Notifiable, HasRoles;
 
     public $guard_name = 'web';
