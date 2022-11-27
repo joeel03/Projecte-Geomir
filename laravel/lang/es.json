@@ -2,7 +2,25 @@
     "File successfully saved": "Archivo guardado correctamente",
     "ERROR uploading file": "ERROR subiendo el archivo",
     "Place successfully saved": "El sitio se ha guardado correctamente",
-    "Place successfully deleted": "El sitio ha sido eliminado con éxito"
+    "Place successfully deleted": "El sitio ha sido eliminado con éxito",
+    "Name":"Nombre",
+    "Description":"Descripcion",
+    "File":"Archivo",
+    "Latitude":"Latitud",
+    "Longitude":"Longitud",
+    "Create":"Crear",
+    "Reset":"Resetear",
+    "Add place":"Añadir sitio",
+    "Edit":"Editar",
+    "Delete":"Eliminar",
+    "Back to list":"Ir hacia la lista",
+    "Update":"Actualizar",
+    "Are you sure?":"Estas seguro?",
+    "You are gonna delete post ":"Vas a borrar la publicación ",
+    "This action cannot be undone!":"¡Esta acción no se puede deshacer!",
+    "Confirm":"Confirmar",
+    "Close":"Cerrar"
+    
 }
  
  

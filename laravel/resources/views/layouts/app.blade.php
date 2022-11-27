@@ -20,7 +20,7 @@
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-            @include('partials.language-switcher')
+            
 
                 <img src="img/logo_notext.png" width="75px"></img>
                 <a class="navbar-brand text-primary " href="{{ url('/') }}">
@@ -57,7 +57,6 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }}
                                 </a>
-
                                 <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
@@ -70,6 +69,8 @@
                                     </form>
                                 </div>
                             </li>
+                            @include('partials.language-switcher')
+
                         @endguest
                     </ul>
                 </div>

@@ -2,12 +2,11 @@
 $body-bg: #f8fafc;
 
 // Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
+//$font-family-sans-serif: 'Nunito', sans-serif;
 
-//$font-family-sans-serif: 'Montserrat';
+$font-family-sans-serif: 'Montserrat', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
-
 
 .border-emoji{
     border:black solid 2px;
@@ -15,19 +14,77 @@ $line-height-base: 1.6;
     padding: 10px;
 }
 .lista-contactos{
-    border-top:1px solid black;
+    font-size: 0.7em;
+}
+.linea-inferior{
     border-bottom: 1px solid black;
-    font-size: 1em;
-
 }
 .img{
-    padding: 1em;
+    padding: 2%;
 }
 .boton-mas{
-    position:relative;
+    position: absolute;
+    bottom: 35%;
+    left: 70%;
 
 }
 .boton-menu{
+    position: absolute;
+    bottom: 35%;
+    left: 73%;
+}
+
+.izq{
+    text-align: end;
+}
+.separar{
+    position: relative;
+    bottom: 10px;
+    right: 10px;
+}
+.reseñas{
+    width: 50%;
+    margin:10px;
+}
+.bajar{
+    display: flex;
+    align-items:flex-end;
+    justify-content: end;
+    height: 100px;
+}
+.color{
+    background-color: #b8b8b8;
+}
+
+.nombre{
+    font-size: 2em;
+}
+.caja-text{
+    height: 10%;
+    padding: 5px;
+}
+.a{
+    text-decoration: none;
+    color:black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background-color:#b8b8b8;
+    font-size: 20px;  
+}
+
+.map-container{
+    overflow:hidden;
+    padding-bottom:56.25%;
     position:relative;
+    height:0;
+}
+.map-container iframe{
+left:0;
+top:0;
+height:100%;
+width:100%;
+position:absolute;
 
 }
