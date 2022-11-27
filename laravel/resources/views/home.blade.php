@@ -17,7 +17,7 @@
 
 <div class="border row letra">
     <div class="col-md-4"></div>
-    <div class="col-md-4 text-center"">
+    <div class="col-md-4 text-center">
         <form >
         <input class=" mr-sm-2 align-middle" style="font-size:20px;" type="search" placeholder="Search" aria-label="Search">
         <button class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
@@ -49,18 +49,18 @@
             </div>
         </div>
         <div class="border col-md-4">
-            <div> IMG PERFIL AJUSTES </div>
-            <div> 
-                @foreach ($_FILES as $file)
-                    @if($_FILES->id == $_POST->file_id)
-                        <div class="div-foto-post">
-                                <img class="foto-post" src='{{ asset("storage/{$file->filepath}") }}'/>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-            <div class="border row text-center h1"> <i class="fa-regular fa-heart"></i> COMENTARIOS <i class="fa-solid fa-square-share-nodes"></i> </div>
-            <div> DESCRIPCIÓN DE IMAGEN </div>
+                <div> IMG PERFIL AJUSTES </div>
+                <div> 
+                    @foreach ($_FILES as $file)
+                        @if($_FILES->id == $_POST->file_id)
+                            <div class="div-foto-post">
+                                    <img class="foto-post" src='{{ asset("storage/{$file->filepath}") }}'/>
+                            </div>
+                        @endif
+                    @endforeach
+                </div>
+                <div class="border row text-center h1"> <i class="fa-regular fa-heart"></i> COMENTARIOS <i class="fa-solid fa-square-share-nodes"></i> </div>
+                <div> DESCRIPCIÓN DE IMAGEN </div>
         </div>
         <div class="border col-md-4">
             <img src="img/mapa.png" width="100%" height="100%"></img>

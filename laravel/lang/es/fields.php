@@ -17,6 +17,8 @@ return [
    'Name'=>'Nombre',
    'Remember Me'=>'Recordarme',
    'Login'=>'Iniciar Sesión',
-   'Forgot Your Password?'=>'Recuperar Contraseña'
-
+   'Forgot Your Password?'=>'Recuperar Contraseña',
+   'Create'=>'Crear nova publicació',
+   'Reset'=>'Reiniciar',
+   'Update'=>'Actualizar'
 ];

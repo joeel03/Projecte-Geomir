@@ -41,8 +41,15 @@ Route::resource('files', FileController::class)
 
 Route::resource('posts', PostController::class)
    ->middleware(['auth', 'permission:posts']);
-
+/*   
+Route::resource('likes', LikesController::class)
+    ->middleware(['auth']);
+*/
 Route::resource('places', PlaceController::class)
 ->middleware(['auth', 'permission:places']);
+
+
+Route::post('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'likes']);
+Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'likes']);
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);

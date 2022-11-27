@@ -23,7 +23,7 @@
             @include('partials.language-switcher')
 
                 <img src="img/logo_notext.png" width="75px"></img>
-                <a class="navbar-brand text-primary " href="{{ url('/') }}">
+                <a class="navbar-brand text-primary" href="{{ url('/') }}">
                     JOVIGAM
                 </a>
 
@@ -79,6 +79,7 @@
         <main class="py-4">
             @include('flash')
             @yield('content')
+            @yield('posts')
         </main>
     </div>
 </body>

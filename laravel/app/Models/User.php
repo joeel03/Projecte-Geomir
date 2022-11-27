@@ -57,4 +57,8 @@ class User extends Authenticatable implements MustVerifyEmail
     {
        return $this->hasMany(Place::clas,'author_id');
     }    
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class, 'likes');
+    }	
 }

@@ -167,4 +167,18 @@ class PostController extends Controller
         return redirect()->route("posts.index")
             ->with('success', __('Post successfully deleted'));
     }
+    public function addlike (Post $post){
+        $post->likes();
+        $place->save();
+
+        return redirect()->route("posts.index")
+            ->with('success', __('Post successfully deleted'));
+    }
+    public function likeds (Post $post){
+        $post->liked();
+        $place->save();
+
+        return redirect()->route("posts.index")
+            ->with('success', __('Post successfully deleted'));
+    }
 }
