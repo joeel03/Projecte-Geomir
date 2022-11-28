@@ -11,12 +11,8 @@ class Likes extends Model
     use HasFactory;
     
     protected $fillable = [
-        'name',
-        'description',
-        'file_id',
-        'latitude',
-        'longitude',
-        'author_id',
+        'id_post',
+        'id_user',
     ];
 
     public function file()

@@ -49,7 +49,7 @@ Route::resource('places', PlaceController::class)
 ->middleware(['auth', 'permission:places']);
 
 
-Route::post('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'likes']);
-Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'likes']);
+Route::post('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'likes'])->name('posts.likes');
+Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'unlikes']);
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);

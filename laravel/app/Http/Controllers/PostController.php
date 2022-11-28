@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Post;
 use App\Models\File;
 use Illuminate\Http\Request;
@@ -167,16 +167,17 @@ class PostController extends Controller
         return redirect()->route("posts.index")
             ->with('success', __('Post successfully deleted'));
     }
-    public function addlike (Post $post){
+    public function addlike (Post $post)
+    {
         $post->likes();
-        $place->save();
+        $post->save();
 
         return redirect()->route("posts.index")
             ->with('success', __('Post successfully deleted'));
     }
-    public function likeds (Post $post){
+    public function unlike (Post $post){
         $post->liked();
-        $place->save();
+        $post->save();
 
         return redirect()->route("posts.index")
             ->with('success', __('Post successfully deleted'));
