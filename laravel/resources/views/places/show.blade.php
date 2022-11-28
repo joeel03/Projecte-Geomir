@@ -3,7 +3,10 @@
 @section('box-title')
 {{ __('Place') . " " . $place->id }}
 @endsection
-
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
 @section('box-content')
 <div class="container">
     <div class="row justify-content-center">
@@ -59,6 +62,21 @@
                                 data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
                         </form>
                         <a class="btn" href="{{ route('places.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
+                        
+                        @if($place->comprovarfavorite())                       
+                        <form method="post" style="display: inline-block;" action="{{ route('places.favorite',$place) }}" enctype="multipart/form-data">
+                            @csrf
+                            <button  id="quitar" type="submit"><i class="fa-regular fa-star"></i></button>
+                        </form>
+                        @else
+                        <form method="post" style="display: inline-block;" action="{{ route('places.unfavorite',$place) }}" enctype="multipart/form-data">
+                            @csrf 
+                            @method('DELETE')                          
+                                <button class="btn btn-primary"><i class="fa-solid fa-star"></i></button>                           
+                            </form>
+                        @endif
+
+
                     </div>
 
                     <!-- Modal -->

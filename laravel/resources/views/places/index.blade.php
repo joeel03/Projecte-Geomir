@@ -17,14 +17,10 @@
                <h1 class=" text-center fw-bold ">Sitios</h1>
                     @foreach ($places as $place)
                     <div class="border separar-left ">
-                        
-                        <div  class=" fw-bold h3 ">{{ $place->name }}<br>
-                        <form method="post" action="{{ route('places.favorite',$place) }}" enctype="multipart/form-data">
-                            @csrf
-                            <button type="submit"><i class="fa-regular fa-star"></i></button>
-                        </form>
-                        <div  class=" row">
-                            <div  class=" col-md-5">
+                        <div  class="fw-bold h3 ">{{ $place->name }}<br>
+                       
+                        <div  class="row">
+                            <div  class="col-md-5">
                                 @foreach ($files as $file)
                                 @if($file->id == $place->file_id)
                                     <div class="">
@@ -33,7 +29,7 @@
                                 @endif
                                 @endforeach
                             </div>
-                            <div class="border col-md-6 descrip "><span class="text-decoration-underline ">Descripción<br></span>{{ $place->description }}<div>
+                            <div class="border col-md-6  h3"><span class="text-decoration-underline fw-bold ">Descripción<br></span>{{ $place->description }}<div>
                             <div class="bajar ">
                                 <div  class=" izq lista-contactos "> 
                                     <div >{{ $place->user->name }}</div>

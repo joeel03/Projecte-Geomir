@@ -5,6 +5,8 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
+
+
 class Favorite extends Model
 {
     use HasFactory;
@@ -13,5 +15,6 @@ class Favorite extends Model
         'id_place',
         'id_user',
     ];
+    
 
 }

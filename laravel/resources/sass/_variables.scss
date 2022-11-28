@@ -7,7 +7,21 @@ $body-bg: #f8fafc;
 $font-family-sans-serif: 'Montserrat', sans-serif;
 $font-size-base: 0.9rem;
 $line-height-base: 1.6;
-
+.minicajas{
+    height: 20%;
+}
+.post{
+    position:relative
+}
+button, #quitar{
+	background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	cursor: pointer;
+	outline: inherit;
+}
 .border-emoji{
     border:black solid 2px;
     border-radius: 25px;
@@ -32,13 +46,13 @@ $line-height-base: 1.6;
 }
 .boton-mas{
     position: absolute;
-    bottom: 35%;
+    top: 11%;
     left: 70%;
 
 }
 .boton-menu{
     position: absolute;
-    bottom: 35%;
+    top: 11%;
     left: 73%;
 }
 
@@ -104,7 +118,6 @@ margin-top: 10px;
 .boton-black{
     display: flex;
     flex-direction: row;
-    background-color: white;
     border: white 2px solid;
     justify-content: space-between;
     align-items: center;

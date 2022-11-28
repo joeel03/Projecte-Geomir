@@ -36,7 +36,7 @@
 
     </div>
 </div>
-<div class="border row text-center h1">
+<div class="border row text-center h1 post">
     <div class="border col-md-4 ">
         <h1 class="linea-inferior">Lista de contactos</h1>
         <div class="lista-contactos linea-inferior">
@@ -52,8 +52,8 @@
             <i class="fa-solid fa-phone  border-emoji"></i>
         </div>
     </div>
-    <div class="border col-md-4">
-        posts
+    <div class="border col-md-4 post">
+        @include('partials.posts')
     </div>
     <div class=" border col-md-4">
         <div>
@@ -67,9 +67,9 @@
                     style="font-size:0.6em;"><i class="fa-solid fa-list"></i></a></div>
         </div>
         <div class="row caja-text">
-            <a class="border colores-minicajas col-md-4 a " href="">Marcar com a favorit</a>
-            <a class="border colores-minicajas col-md-4 a" href="">Desar categoria</a>
-            <a class="border colores-minicajas col-md-4 a" href="{{ url('/resenas') }}">Reseñas</a>
+            <a class="border minicajas col-md-4 a " href="">Marcar com a favorit</a>
+            <a class="border minicajas col-md-4 a" href="">Desar categoria</a>
+            <a class="border minicajas col-md-4 a" href="{{ url('/resenas') }}">Reseñas</a>
         </div>
         <div>
         </div>

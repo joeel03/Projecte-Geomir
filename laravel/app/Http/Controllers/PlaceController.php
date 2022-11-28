@@ -4,9 +4,10 @@ namespace App\Http\Controllers;
 
 
 use App\Models\Place;
-use App\Models\User;
 use App\Models\File;
 use App\Models\Favorite;
+use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -185,4 +186,11 @@ class PlaceController extends Controller
         return redirect()->back();
         
     }
+    public function unfavorite(Place $place)
+    {
+        DB::table('favorites')->where(['id_user'=>Auth::id(),'id_place'=>$place->id])->delete();
+        return redirect()->back();
+    }
+
+
 }

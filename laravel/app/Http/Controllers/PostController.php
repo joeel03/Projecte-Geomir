@@ -176,4 +176,11 @@ class PostController extends Controller
         ]);
         return redirect()->back();
     }
+    public function unlikes (Post $post)
+    {
+        Likes::where('id_user',auth()->user()->id,)
+        ->where ('id_post',$post->id)->delete();
+        return redirect()->back();
+    }
+    
 }
