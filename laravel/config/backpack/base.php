@@ -41,11 +41,7 @@ return [
     // ---------
 
     // Show "Getting Started with Backpack" info block?
-<<<<<<< HEAD
-    'show_getting_started' => env('APP_ENV') == 'local',
-=======
     'show_getting_started' => env('APP_ENV') == 'false',
->>>>>>> b0.2salvar
 
     // ------
     // STYLES
@@ -266,11 +262,7 @@ return [
     'middleware_class' => [
         App\Http\Middleware\CheckIfAdmin::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
-<<<<<<< HEAD
-        // \Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
-=======
         Backpack\CRUD\app\Http\Middleware\UseBackpackAuthGuardInsteadOfDefaultAuthGuard::class,
->>>>>>> b0.2salvar
     ],
 
     // Alias for that middleware
