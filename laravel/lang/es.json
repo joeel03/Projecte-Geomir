@@ -19,7 +19,10 @@
     "You are gonna delete post ":"Vas a borrar la publicación ",
     "This action cannot be undone!":"¡Esta acción no se puede deshacer!",
     "Confirm":"Confirmar",
-    "Close":"Cerrar"
+    "Close":"Cerrar",
+    "Author":"Autor",
+    "Created":"Creado",
+    "Updated":"Actualitzado"
     
 }
  

@@ -19,7 +19,10 @@
     "You are gonna delete post ":"Esborraràs la publicació ",
     "This action cannot be undone!":"Aquesta acció no es pot desfer!",
     "Confirm":"Confirmar",
-    "Close":"Tancar"
+    "Close":"Tancar",
+    "Author":"Autor",
+    "Created":"Creat",
+    "Updated":"Actualitzat"
     
 
 }

@@ -17,31 +17,31 @@
                 <td>{{ $place->id }}</td>
             </tr>
             <tr>
-                <td><strong>Name</strong></td>
+                <td><strong>{{__('fields.Name')}}</strong></td>
                 <td>{{ $place->name }}</td>
             </tr>
             <tr>
-                <td><strong>Description</strong></td>
+                <td><strong>{{ __('fields.Description')}}</strong></td>
                 <td>{{ $place->description }}</td>
             </tr>
             <tr>
-                <td><strong>Lat</strong></td>
+                <td><strong>{{__('fields.Lat')}}</strong></td>
                 <td>{{ $place->latitude }}</td>
             </tr>
             <tr>
-                <td><strong>Lng</strong></td>
+                <td><strong>{{__('fields.Lng')}}</strong></td>
                 <td>{{ $place->longitude }}</td>
             </tr>
             <tr>
-                <td><strong>Author</strong></td>
+                <td><strong>{{__('fields.Author')}}</strong></td>
                 <td>{{ $author->name }}</td>
             </tr>
             <tr>
-                <td><strong>Created</strong></td>
+                <td><strong>{{__('fields.Created')}}</strong></td>
                 <td>{{ $place->created_at }}</td>
             </tr>
             <tr>
-                <td><strong>Updated</strong></td>
+                <td><strong>{{__('fields.Updated')}}</strong></td>
                 <td>{{ $place->updated_at }}</td>
             </tr>
         </tbody>
