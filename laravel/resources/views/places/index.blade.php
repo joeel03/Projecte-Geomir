@@ -1,45 +1,55 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-    {{ __('Places') }}
+    {{ __('Llocs favorits') }}
 @endsection
 
 @section('box-content')
-    <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <td scope="col">ID</td>
-                    <td scope="col">Name</td>
-                    <td scope="col">Description</td>
-                    <td scope="col">File</td>
-                    <td scope="col">Lat</td>
-                    <td scope="col">Lng</td>
-                    <td scope="col">Created</td>
-                    <td scope="col">Updated</td>
-                    <td scope="col"></td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($places as $place)
-                <tr>
-                    <td>{{ $place->id }}</td>
-                    <td>{{ $place->name }}</td>
-                    <td>{{ substr($place->description,0,10) . "..." }}</td>
-                    <td>{{ $place->file_id }}</td>
-                    <td>{{ $place->latitude }}</td>
-                    <td>{{ $place->longitude }}</td>
-                    <td>{{ $place->created_at }}</td>
-                    <td>{{ $place->updated_at }}</td>
-                    <td>
-                        <a title="{{ _('View') }}" href="{{ route('places.show', $place) }}">👁️</a>
-                        <a title="{{ _('Edit') }}" href="{{ route('places.edit', $place) }}">📝</a>
-                        <a title="{{ _('Delete') }}" href="{{ route('places.show', [$place, 'delete' => 1]) }}">🗑️</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+</head>
+<div class="container">
+   <div class="row justify-content-center">
+       <div class="col-md-8">
+           <div class="card">
+               <div class="card-header ">
+               <h1 class=" text-center fw-bold ">Sitios</h1>
+                    @foreach ($places as $place)
+                    <div class="border separar-left ">
+                        
+                        <div  class=" fw-bold h3 ">{{ $place->name }}<br>
+                        <form method="post" action="{{ route('places.favorite',$place) }}" enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit"><i class="fa-regular fa-star"></i></button>
+                        </form>
+                        <div  class=" row">
+                            <div  class=" col-md-5">
+                                @foreach ($files as $file)
+                                @if($file->id == $place->file_id)
+                                    <div class="">
+                                            <img class="caja-foto " width="100%" src='{{ asset("storage/{$file->filepath}") }}'/>
+                                    </div>
+                                @endif
+                                @endforeach
+                            </div>
+                            <div class="border col-md-6 descrip "><span class="text-decoration-underline ">Descripción<br></span>{{ $place->description }}<div>
+                            <div class="bajar ">
+                                <div  class=" izq lista-contactos "> 
+                                    <div >{{ $place->user->name }}</div>
+                                    <div >{{ $place->created_at }}</div>
+                                </div>
+                            </div>    
+                            
+                        </div>
+                    </div>
+                    @endforeach
+                    <div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-    <a class="btn btn-primary" href="{{ route('places.create') }}" role="button">➕ {{ _('Add new place') }}</a>
+</div>
 @endsection

@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Place;
+use App\Models\User;
 use App\Models\File;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -17,7 +20,8 @@ class PlaceController extends Controller
     public function index()
     {
         return view("places.index", [
-            "places" => Place::all()
+            "places" => Place::all(),
+            "files" => File::all()
         ]);
     }
 
@@ -61,7 +65,7 @@ class PlaceController extends Controller
 
         if ($fileOk) {
             // Desar dades a BD
-            \Log::debug("Saving place at DB...");
+            Log::debug("Saving place at DB...");
             $place = Place::create([
                 'name'        => $name,
                 'description' => $description,
@@ -70,12 +74,12 @@ class PlaceController extends Controller
                 'longitude'   => $longitude,
                 'author_id'   => auth()->user()->id,
             ]);
-            \Log::debug("DB storage OK");
+            Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
             return redirect()->route('places.show', $place)
                 ->with('success', __('Place successfully saved'));
         } else {
-            \Log::debug("Disk storage FAILS");
+            Log::debug("Disk storage FAILS");
             // Patró PRG amb missatge d'error
             return redirect()->route("places.create")
                 ->with('error', __('ERROR Uploading file'));
@@ -140,12 +144,12 @@ class PlaceController extends Controller
         // Desar fitxer (opcional)
         if (is_null($upload) || $place->file->diskSave($upload)) {
             // Actualitzar dades a BD
-            \Log::debug("Updating DB...");
+            Log::debug("Updating DB...");
             $place->name        = $name;
             $place->description = $description;
             $place->latitude    = $latitude;
             $place->longitude   = $longitude;
-            \Log::debug("DB storage OK");
+            Log::debug("DB storage OK");
             $place->save();
             // Patró PRG amb missatge d'èxit
             return redirect()->route('places.show', $place)
@@ -172,5 +176,13 @@ class PlaceController extends Controller
         // Patró PRG amb missatge d'èxit
         return redirect()->route("places.index")
             ->with('success', 'Place successfully deleted');
+    }
+    public function favorite(Place $place){
+        $favorite=Favorite::create([
+            'id_user'=>auth()->user()->id,
+            'id_place'=>$place->id,
+        ]);
+        return redirect()->back();
+        
     }
 }

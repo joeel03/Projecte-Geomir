@@ -7,11 +7,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Spatie\Permission\Traits\HasRoles;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
     use \Backpack\CRUD\app\Models\Traits\CrudTrait;
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, Notifiable, HasRoles;
+
+    public $guard_name = 'web';
 
     /**
      * The attributes that are mass assignable.
@@ -45,11 +48,20 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function posts()
     {
-       return $this->hasMany(Post::class);
+        return $this->hasMany(Post::class, 'author_id');
     }
 
     public function places()
     {
-       return $this->hasMany(Place::class);
-    }    
+        return $this->hasMany(Place::clas, 'author_id');
+    }
+    public function favorites()
+    {
+        return $this->belongsToMany(Place::class, 'favorites');
+    }
+
+    public function likes()
+    {
+        return $this->belongsToMany(Post::class, 'likes');
+    }
 }

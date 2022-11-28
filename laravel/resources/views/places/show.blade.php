@@ -5,6 +5,11 @@
 @endsection
 
 @section('box-content')
+<div class="container">
+   <div class="row justify-content-center">
+       <div class="col-md-8">
+           <div class="card">
+               <div class="card-header">
     <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview"/>
     <table class="table">
             <tr>
@@ -44,13 +49,13 @@
 
     <!-- Buttons -->
     <div class="container" style="margin-bottom:20px">
-        <a class="btn btn-warning" href="{{ route('places.edit', $place) }}" role="button">📝 {{ _('Edit') }}</a>
+        <a class="btn btn-warning" href="{{ route('places.edit', $place) }}" role="button">📝 {{ __('Edit') }}</a>
         <form id="form" method="POST" action="{{ route('places.destroy', $place) }}" style="display: inline-block;">
             @csrf
             @method("DELETE")
-            <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ _('Delete') }}</button>
+            <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
         </form>
-        <a class="btn" href="{{ route('places.index') }}" role="button">⬅️ {{ _('Back to list') }}</a>
+        <a class="btn" href="{{ route('places.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
     </div>
 
     <!-- Modal -->
@@ -58,21 +63,26 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ _('Are you sure?') }}</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Are you sure?') }}</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>{{ _('You are gonna delete post ') . $place->id }}</p>
-                    <p>{{ _('This action cannot be undone!') }}</p>
+                    <p>{{ __('You are gonna delete post ') . $place->id }}</p>
+                    <p>{{ __('This action cannot be undone!') }}</p>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button id="confirm" type="button" class="btn btn-primary">{{ _('Confirm') }}</button>
+                    <button id="confirm" type="button" class="btn btn-primary">{{ __('Confirm') }}</button>
                 </div>
             </div>
         </div>
     </div>
 
     @vite('resources/js/delete-modal.js')
-
+    </div>
+</div>
+</div>
+</div>
+</div>
+</div>
 @endsection

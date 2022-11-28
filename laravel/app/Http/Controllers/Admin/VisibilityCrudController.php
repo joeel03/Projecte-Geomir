@@ -26,6 +26,7 @@ class VisibilityCrudController extends CrudController
      */
     public function setup()
     {
+         
         CRUD::setModel(\App\Models\Visibility::class);
         CRUD::setRoute(config('backpack.base.route_prefix') . '/visibility');
         CRUD::setEntityNameStrings('visibility', 'visibilities');
