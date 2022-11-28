@@ -31,9 +31,12 @@
 
             <div class="boton-posts"> 
                 <div>
-                    <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-regular fa-heart"></i></a>
-                    <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit">COMENTARIOS </a>
-                    <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-square-share-nodes"></i> </a>
+                    <form method="post" action="{{ route('posts.likes',$post) }}" enctype="multipart/form-data">
+                        @csrf
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fa-regular fa-heart"></i></button>
+                        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit">COMENTARIOS </a>
+                        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-square-share-nodes"></i> </a>
+                    </form>
                 </div>
             </div>
             <div class="texto">
