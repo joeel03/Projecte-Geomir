@@ -10,13 +10,13 @@
             <thead>
                 <tr>
                     <td scope="col">ID</td>
-                    <td scope="col">Name</td>
-                    <td scope="col">Description</td>
-                    <td scope="col">File</td>
-                    <td scope="col">Lat</td>
-                    <td scope="col">Lng</td>
-                    <td scope="col">Created</td>
-                    <td scope="col">Updated</td>
+                    <td scope="col">{{__('fields.name')}}</td>
+                    <td scope="col">{{__('fields.description')}}</td>
+                    <td scope="col">{{__('fields.file_id')}}</td>
+                    <td scope="col">{{__('fields.latitude')}}</td>
+                    <td scope="col">{{__('fields.longitude')}}</td>
+                    <td scope="col">{{__('fields.created_at')}}</td>
+                    <td scope="col">{{__('fields.updated_at')}}</td>
                     <td scope="col"></td>
                 </tr>
             </thead>

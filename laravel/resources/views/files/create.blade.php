@@ -1,3 +1,4 @@
+
 @extends('layouts.box-app')
 
 @section('box-title')
@@ -5,13 +6,16 @@
 @endsection
 
 @section('box-content')
-    <form method="post" action="{{ route('files.store') }}" enctype="multipart/form-data">
+    <form id="create" method="post" action="{{ route('files.store') }}" enctype="multipart/form-data">
         @csrf
+        @vite('resources/js/files/create.js')
+
         <div class="form-group">
             <label for="upload">{{ _('File') }}:</label>
             <input type="file" class="form-control" name="upload"/>
         </div>
-        <button type="submit" class="btn btn-primary">{{ _('Create') }}</button>
+        <p id="err"></p>
+        <button type="submit"  class="btn btn-primary">{{ _('Create') }}</button>
         <button type="reset" class="btn btn-secondary">{{ _('Reset') }}</button>
     </form>
 @endsection
