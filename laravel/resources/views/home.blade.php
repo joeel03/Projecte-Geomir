@@ -17,9 +17,8 @@
 </head>
 
 <div class="border row letra">
-    <div class="col-md-4">
-    </div>
-    <div class="col-md-4 text-center"">
+    <div class="col-md-4"></div>
+    <div class="col-md-4 text-center">
         <form >
         <input class=" mr-sm-2 align-middle" style="font-size:1.4em;" type="search" placeholder="Search"
         aria-label="Search">
@@ -27,7 +26,7 @@
                 class="fa-solid fa-magnifying-glass"></i></button>
         </form>
     </div>
-    <div class="col-md-4 text-center">
+    <div class="col-md-4 text-center espacio">
         <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:1.5em;"><i class="fa-solid fa-camera"></i></a>
         <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:1.5em;"><i
                 class="fa-solid fa-magnifying-glass"></i></a>

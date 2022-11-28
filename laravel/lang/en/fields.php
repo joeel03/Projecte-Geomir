@@ -1,0 +1,27 @@
+<?php
+ 
+return [
+    'name'=>'name',
+    'description'=>'description',
+    'file_id'=>'file_id',
+    'latitude'=>'latitude',
+    'longitude'=>'longitude',
+    'created_at'=>'created_at',
+    'updated_at'=>'updated_at',
+    'body'=>'body',
+    'Register'=>'Register',
+    'Email Address'=>'Email Address',
+    'Password'=>'Password',
+    'Confirm Password'=>'Confirm Password',
+    'Name'=>'Name',
+    'Remember Me'=>'Remember Me',
+    'Login'=>'Login',
+    'Forgot Your Password?'=>'Forgot Your Password?',
+    'Create'=>'Create',
+    'Reset'=>'Reset',
+    'Update'=>'Update',
+    'Author'=>'Author',
+    'Updated'=>'Updated',
+    'Created'=>'Created',
+    'Description'=>'Description',
+];

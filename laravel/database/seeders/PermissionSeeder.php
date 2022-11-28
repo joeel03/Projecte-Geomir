@@ -23,6 +23,8 @@ class PermissionSeeder extends Seeder
         $editorRole = Role::create(['name' => 'editor']);
 
         //Crear permisos
+
+
         Permission::create(['name' => 'files.*']);
         Permission::create(['name' => 'files.list']);
         Permission::create(['name' => 'files.create']);

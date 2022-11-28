@@ -1,7 +1,6 @@
 <?php
 
 return [
-
    'name'=>'Nom',
    'description'=>'Descripció',
    'file_id'=>'Fitxer',
@@ -9,6 +8,7 @@ return [
    'longitude'=>'Longitud',
    'created_at'=>'Creat',
    'updated_at'=>'Actualitzat',
+   'body'=>'Descripció',
    'Register'=>'Registrarse',
    'Email Address'=>'Correu Electronic',
    'Password'=>'Contrasenya',
@@ -16,7 +16,15 @@ return [
    'Name'=>'Nom',
    'Remember Me'=>'Recordarme',
    'Login'=>'Iniciar Sessió',
-   'Forgot Your Password?'=>'Has oblidat la teva contrasenya?'
+   'Forgot Your Password?'=>'Has oblidat la teva contrasenya?',
+   'Create'=>'Crear nova publicació',
+   'Reset'=>'Reiniciar',
+   'Update'=>'Actualitzar',
+   'Author'=>'Autor',
+   'Updated'=>'Actualitzat',
+   "Created"=>"Creat",
+   'Description'=>'Descripció',
 
+  
 
 ];

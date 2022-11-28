@@ -1,43 +1,47 @@
 @extends('layouts.box-app')
 
-@section('box-title')
-    {{ __('Files') }}
-@endsection
+@section('posts')
+<div class="container">
+   <div class="row justify-content-center">
+       <div class="col-md-8">
+           <div class="card">
+               <div class="card-header borde">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+<link href = "https://fonts.googleapis.com/css?family=Montserrat" rel = "stylesheet" >  
 
-@section('box-content')
-    <div class="table-responsive">
-        <table class="table table-striped table-hover">
-            <thead>
-                <tr>
-                    <td scope="col">ID</td>
-                    <td scope="col">Body</td>
-                    <td scope="col">File</td>
-                    <td scope="col">Lat</td>
-                    <td scope="col">Lng</td>
-                    <td scope="col">Created</td>
-                    <td scope="col">Updated</td>
-                    <td scope="col"></td>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach ($posts as $post)
-                <tr>
-                    <td>{{ $post->id }}</td>
-                    <td>{{ substr($post->body,0,10) . "..." }}</td>
-                    <td>{{ $post->file_id }}</td>
-                    <td>{{ $post->latitude }}</td>
-                    <td>{{ $post->longitude }}</td>
-                    <td>{{ $post->created_at }}</td>
-                    <td>{{ $post->updated_at }}</td>
-                    <td>
-                        <a title="{{ _('View') }}" href="{{ route('posts.show', $post) }}">👁️</a>
-                        <a title="{{ _('Edit') }}" href="{{ route('posts.edit', $post) }}">📝</a>
-                        <a title="{{ _('Delete') }}" href="{{ route('posts.show', [$post, 'delete' => 1]) }}">🗑️</a>
-                    </td>
-                </tr>
-                @endforeach
-            </tbody>
-        </table>
-    </div>
-    <a class="btn btn-primary" href="{{ route('posts.create') }}" role="button">➕ {{ _('Add new post') }}</a>
+        @foreach ($posts as $post)
+        <div class="border posts">
+            <div class="boton-black"> 
+                <div>
+                    <i class="fa-solid fa-user"></i> {{$post->user->name }}
+                </div>
+                <div>
+                    <a href="{{ route('posts.edit', $post) }}" class="boton-black" style="font-size:25px;"type="submit"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                </div>
+            </div>
+            <div class="imagen-posts"> 
+                    @foreach ($files as $file)
+                        @if($file->id == $post->file_id)
+                            <div class="div-foto-post">
+                                    <img class="img-posts" src='{{ asset("storage/{$file->filepath}") }}'/>
+                            </div>
+                        @endif
+                    @endforeach
+            </div>
+
+            <div class="boton-posts"> 
+                <div>
+                    <form method="post" action="{{ route('posts.likes',$post) }}" enctype="multipart/form-data">
+                        @csrf
+                        <button class="btn btn-primary my-2 my-sm-0" type="submit"><i class="fa-regular fa-heart"></i></button>
+                        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit">COMENTARIOS </a>
+                        <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-square-share-nodes"></i> </a>
+                    </form>
+                </div>
+            </div>
+            <div class="texto">
+                 {{ $post->body }} 
+            </div>
+        </div>
+        @endforeach
 @endsection

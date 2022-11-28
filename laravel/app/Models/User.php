@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Spatie\Permission\Traits\HasRoles;
+use \Backpack\CRUD\app\Models\Traits\CrudTrait;
+
 
 class User extends Authenticatable implements MustVerifyEmail
 {
@@ -53,7 +55,7 @@ class User extends Authenticatable implements MustVerifyEmail
 
     public function places()
     {
-        return $this->hasMany(Place::clas, 'author_id');
+        return $this->hasMany(Place::class, 'author_id');
     }
     public function favorites()
     {
@@ -64,4 +66,5 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         return $this->belongsToMany(Post::class, 'likes');
     }
+
 }

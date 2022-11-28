@@ -1,6 +1,8 @@
 {
     "File successfully saved": "Archivo guardado correctamente",
     "ERROR uploading file": "ERROR subiendo el archivo",
+    "Post successfully saved":"La pulbicación ha sido guardada correctamente",
+    "Post successfully deleted":"La publiacció ha sido eliminada correctamente",
     "Place successfully saved": "El sitio se ha guardado correctamente",
     "Place successfully deleted": "El sitio ha sido eliminado con éxito",
     "Name":"Nombre",
@@ -22,8 +24,9 @@
     "Close":"Cerrar",
     "Author":"Autor",
     "Created":"Creado",
-    "Updated":"Actualitzado"
-    
+    "Updated":"Actualitzado",
+    "Loading welcome page":"Bienvenido a la página cargando..."
+
 }
  
  
