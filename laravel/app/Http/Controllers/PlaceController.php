@@ -2,8 +2,11 @@
 
 namespace App\Http\Controllers;
 
+
 use App\Models\Place;
+use App\Models\User;
 use App\Models\File;
+use App\Models\Favorite;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -173,5 +176,13 @@ class PlaceController extends Controller
         // Patró PRG amb missatge d'èxit
         return redirect()->route("places.index")
             ->with('success', 'Place successfully deleted');
+    }
+    public function favorite(Place $place){
+        $favorite=Favorite::create([
+            'id_user'=>auth()->user()->id,
+            'id_place'=>$place->id,
+        ]);
+        return redirect()->back();
+        
     }
 }

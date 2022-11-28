@@ -13,27 +13,29 @@
    <div class="row justify-content-center">
        <div class="col-md-8">
            <div class="card">
-               <div class="card-header">
-                    <div class="card-header">
-                        @yield('box-title')
-                    </div>
+               <div class="card-header ">
+               <h1 class=" text-center fw-bold ">Sitios</h1>
                     @foreach ($places as $place)
-                    <div class="border ">
+                    <div class="border separar-left ">
                         
-                        <div  class=" h3">{{ $place->name }}</div>
+                        <div  class=" fw-bold h3 ">{{ $place->name }}<br>
+                        <form method="post" action="{{ route('places.favorite',$place) }}" enctype="multipart/form-data">
+                            @csrf
+                            <button type="submit"><i class="fa-regular fa-star"></i></button>
+                        </form>
                         <div  class=" row">
-                            <div  class=" col-md-6">
+                            <div  class=" col-md-5">
                                 @foreach ($files as $file)
                                 @if($file->id == $place->file_id)
-                                    <div class="border">
-                                            <img class="caja-foto " src='{{ asset("storage/{$file->filepath}") }}'/>
+                                    <div class="">
+                                            <img class="caja-foto " width="100%" src='{{ asset("storage/{$file->filepath}") }}'/>
                                     </div>
                                 @endif
                                 @endforeach
                             </div>
                             <div class="border col-md-6 descrip "><span class="text-decoration-underline ">Descripción<br></span>{{ $place->description }}<div>
                             <div class="bajar ">
-                                <div  class=" izq "> 
+                                <div  class=" izq lista-contactos "> 
                                     <div >{{ $place->user->name }}</div>
                                     <div >{{ $place->created_at }}</div>
                                 </div>

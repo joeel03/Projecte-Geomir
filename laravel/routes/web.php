@@ -8,6 +8,7 @@ use App\Http\Controllers\MailController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\ResenasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -45,4 +46,12 @@ Route::resource('posts', PostController::class)
 Route::resource('places', PlaceController::class)
 ->middleware(['auth', 'permission:places']);
 
+Route::resource('resenas', ResenasController::class)
+->middleware(['auth']);
+
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
+
+Route::post('/places/{place}/favorites', [App\Http\Controllers\PlaceController::class, 'favorite'])->name('places.favorite');
+
+Route::delete('/places/{place}/favorites', [App\Http\Controllers\PlaceController::class, 'unfavorite']);
+
