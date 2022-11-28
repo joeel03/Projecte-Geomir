@@ -1,0 +1,30 @@
+{
+    "File successfully saved": "Fitxer desat correctament",
+    "ERROR uploading file": "ERROR pujant el fitxer",
+    "Post successfully saved":"La pulbicació s'ha guardat correctament",
+    "Post successfully deleted":"La publiacció s'ha eliminat correctament",
+    "Place successfully saved": "El lloc s'ha desat correctament",
+    "Place successfully deleted":"El lloc s'ha suprimit correctament",
+    "Name":"Nom",
+    "Description":"Descripció",
+    "File":"Fitxer",
+    "Latitude":"Latitud",
+    "Longitude":"Longitud",
+    "Create":"Crear",
+    "Reset":"Resetejar",
+    "Add place":"Afegir lloc",
+    "Edit":"Editar",
+    "Delete":"Esborrar",
+    "Back to list":"Ir a la llista",
+    "Update":"Actualitzar",
+    "Are you sure?":"Estàs segur?",
+    "You are gonna delete post ":"Esborraràs la publicació ",
+    "This action cannot be undone!":"Aquesta acció no es pot desfer!",
+    "Confirm":"Confirmar",
+    "Close":"Tancar",
+    "Loading welcome page":"Benvingut a la pàgina carregant..."
+}
+ 
+ 
+ 
+ 

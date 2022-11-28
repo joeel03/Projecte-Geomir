@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Models\User;
 use App\Models\Post;
 use App\Models\File;
+use App\Models\Likes;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
 
@@ -17,7 +18,8 @@ class PostController extends Controller
     public function index()
     {
         return view("posts.index", [
-            "posts" => Post::all()
+            "posts" => Post::all(),
+            "files" => File::all()
         ]);
     }
 
@@ -166,4 +168,19 @@ class PostController extends Controller
         return redirect()->route("posts.index")
             ->with('success', __('Post successfully deleted'));
     }
+    public function addlikes (Post $post)
+    {
+        $likes=Likes::create([
+            'id_user'=>auth()->user()->id,
+            'id_post'=>$post->id,
+        ]);
+        return redirect()->back();
+    }
+    public function unlikes (Post $post)
+    {
+        Likes::where('id_user',auth()->user()->id,)
+        ->where ('id_post',$post->id)->delete();
+        return redirect()->back();
+    }
+    
 }

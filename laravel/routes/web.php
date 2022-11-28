@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Http\Controllers\MailController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\PlaceController;
+use App\Http\Controllers\ResenasController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,11 +35,30 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 Route::get('mail/test', [MailController::class, 'test']);
 
+
+/////////////////////
 Route::resource('files', FileController::class)
-    ->middleware(['auth', 'role.any:1,2,3']);
+->middleware(['auth', 'permission:files']);
 
 Route::resource('posts', PostController::class)
-    ->middleware(['auth', 'role:1']);
-
+   ->middleware(['auth', 'permission:posts']);
+/*   
+Route::resource('likes', LikesController::class)
+    ->middleware(['auth']);
+*/
 Route::resource('places', PlaceController::class)
-    ->middleware(['auth', 'role:1']);
+->middleware(['auth', 'permission:places']);
+
+Route::resource('resenas', ResenasController::class)
+->middleware(['auth']);
+
+Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
+
+Route::post('/places/{place}/favorites', [App\Http\Controllers\PlaceController::class, 'favorite'])->name('places.favorite');
+Route::delete('/places/{place}/favorites', [App\Http\Controllers\PlaceController::class, 'unfavorite'])->name('places.unfavorite');
+
+
+Route::post('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'addlikes'])->name('posts.likes');
+Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'unlikes'])->name('posts.unlikes');
+
+
