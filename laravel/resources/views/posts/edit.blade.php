@@ -33,6 +33,11 @@
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('fields.Update') }}</button>
                     <button type="reset" class="btn btn-secondary">{{ __('fields.Reset') }}</button>
+                    <form id="form" method="POST" action="{{ route('posts.destroy', $post) }}" style="display: inline-block;">
+                        @csrf
+                        @method("DELETE")
+                        <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
+                    </form>
                 </form>
             </div>
         </div>

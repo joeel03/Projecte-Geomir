@@ -50,7 +50,7 @@
             @method("DELETE")
             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
         </form>
-        <a class="btn" href="{{ route('posts.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
+        <a class="btn" href="{{ route('home') }}" role="button">⬅️ {{ __('Back to list') }}</a>
     </div>
 
     <!-- Modal -->

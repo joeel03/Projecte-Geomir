@@ -21,12 +21,12 @@
             <div class="boton-posts"> 
                 <div>
                 @if($post->comprovarlike())                       
-                    <form action="{{ route('posts.likes',$post) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('posts.likes',$post) }}" method="post" enctype="multipart/form-data" style="display: inline-block;">
                     @csrf                            
                         <button class="btn btn-primary"><i class="fa-regular fa-heart h3"></i></button>                           
                     </form>
                 @else
-                    <form action="{{ route('posts.unlikes',$post) }}" method="post" enctype="multipart/form-data">
+                    <form action="{{ route('posts.unlikes',$post) }}" method="post" enctype="multipart/form-data"style="display: inline-block;">
                     @csrf 
                     @method('DELETE')                          
                         <button class="btn btn-primary"><i class="fa-solid fa-heart"></i></button>                           
@@ -34,7 +34,6 @@
                 @endif
                 <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit">COMENTARIOS </a>
                 <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-square-share-nodes"></i> </a>
-            
                 </div>
             </div>
             <div class="texto">
