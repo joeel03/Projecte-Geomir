@@ -48,7 +48,7 @@ class FileController extends Controller
             return response()->json([
                 'success'  => false,
                 'message' => 'Error uploading file'
-            ], 500);
+            ], 421);
         }
     }
 
@@ -60,7 +60,19 @@ class FileController extends Controller
      */
     public function show($id)
     {
-        //
+        $file=File::find($id);
+        if ($file){
+            return response()->json([
+                'success' => true,
+                'data'    => $file
+            ], 200);
+         }else{
+             return response()->json([
+                 'success' => false,
+                 'message'=> "not found"
+             ], 404);
+         }
+       
     }
 
     /**
@@ -72,7 +84,34 @@ class FileController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        
+        $file=File::find($id);
+        if (empty ($file)) {
+            return response()->json([
+                'success'  => false,
+                'message' => 'Error not found'
+            ], 404);
+        }
+        // Validar fitxer
+        $validatedData = $request->validate([
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+        ]);
+        // Desar fitxer al disc i inserir dades a BD
+        $upload = $request->file('upload');
+
+        $ok = $file->diskSave($upload);
+
+        if ($ok) {
+            return response()->json([
+                'success' => true,
+                'data'    => $file
+            ], 200);
+        } else {
+            return response()->json([
+                'success'  => false,
+                'message' => 'Error uploading file'
+            ], 421);
+        }
     }
 
     /**
@@ -83,6 +122,26 @@ class FileController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $file = File::find($id);
+        if (empty ($file)) {
+            return response()->json([
+                'success'  => false,
+                'message' => 'not found'
+            ], 404);
+        }
+        $ok =  $file->diskDelete();
+
+        if ($ok) {
+            return response()->json([
+                'success' => true,
+                'data'    => $file
+            ], 200);
+        } else {
+            return response()->json([
+                'success'  => false,
+                'message' => 'Error deleting file'
+            ], 500);
+        }
     }
 }
+    
