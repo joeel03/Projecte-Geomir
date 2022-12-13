@@ -212,3 +212,50 @@ width:100%;
 position:absolute;
 
 }
+.about-us{
+border: 2px solid black;
+height:65vh;
+width:100%;
+text-align: center;
+align-items: center;
+justify-content: center;
+
+}
+.about-titulo{
+    padding-top:5px;
+    font-weight: bold;
+    
+}
+.about-text1{
+    padding-top:5px;
+    padding-left: 10px; 
+    text-align: justify;
+    font-weight: bold;
+}
+
+.about-text2{
+    padding-left: 10px;
+    text-align: justify;
+    font-size:x-large;
+}
+.about-prueba{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+
+}
+.about-imgR{
+    height: 95%;
+    width: 95%;
+    align-items: center;
+    vertical-align:middle;
+    padding-top: 5px;
+}
+
+.about-imgL{
+    height: 95%;
+    width: 95%;
+    align-items: center;
+    vertical-align:middle;
+    padding-top: 5px;
+}

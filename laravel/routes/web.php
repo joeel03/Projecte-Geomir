@@ -63,4 +63,7 @@ Route::post('/posts/{post}/likes',[App\Http\Controllers\PostController::class, '
 Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'unlikes'])->name('posts.unlikes');
 
 
+Route::get('about', function(){
+    return view ('about');
 
+});
