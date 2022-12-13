@@ -128,4 +128,6 @@ class FileController extends Controller
         return redirect()->route("files.index")
             ->with('success', __("File succesfully deleted."));
     }
+   
+ 
 }
