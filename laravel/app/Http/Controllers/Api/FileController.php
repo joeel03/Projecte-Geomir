@@ -143,5 +143,17 @@ class FileController extends Controller
             ], 500);
         }
     }
+    public function update_post(Request $request, $id)
+    {
+        return $this->update($request, $id);
+    }
+    public function delete_post(Request $request, $id)
+    {
+        return $this->destroy($request, $id);
+    }
+    public function show_post(Request $request, $id)
+    {
+        return $this->show($request, $id);
+    }
 }
     

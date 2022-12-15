@@ -60,7 +60,7 @@
                             </div>
 
                         <div class="row mb-0">
-                            <div class="col-md-10  offset-md-4">
+                            <div class="col-md-7  offset-md-4">
                                 <button type="submit" class="btn btn-primary">
                                     {{ __('fields.Login') }}
                                 </button>
