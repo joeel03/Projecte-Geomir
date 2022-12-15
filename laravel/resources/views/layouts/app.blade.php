@@ -23,7 +23,7 @@
             
 
                 <img src="img/logo_notext.png" width="75px"></img>
-                <a class="navbar-brand text-primary" href="{{ url('/') }}">
+                <a class="navbar-brand text-primary" href="{{ url('home') }}">
                     JOVIGAM
                 </a>
 

@@ -27,7 +27,7 @@
         </form>
     </div>
     <div class="col-md-4 text-center espacio">
-        <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:1.5em;"><i class="fa-solid fa-camera"></i></a>
+        <a href="{{ route('posts.create') }}" class="btn btn-primary my-2 my-sm-0" style="font-size:1.5em;"><i class="fa-solid fa-camera"></i></a>
         <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:1.5em;"><i
                 class="fa-solid fa-magnifying-glass"></i></a>
         <a href="" class="btn btn-primary my-2 my-sm-0" style="font-size:1.5em;"><i class="fa-solid fa-house"></i></a>
