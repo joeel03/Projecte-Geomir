@@ -130,21 +130,14 @@ class TokenController extends Controller
     }
     public function logout(Request $request)
     {
-        
-            $user = User::where('email', $request->user()->email)->first();
-            // Revoke all old tokens
-            $ok=$user->tokens()->delete();
-            if($ok){
+            $request->user()->currentAccessToken()->delete();
+           
+    
                 return response()->json([
                     "success" => true,
                     "message" => "Log Out"
                 ], 200);
            
-        } else {
-            return response()->json([
-                "success" => false,
-                "message" => "Invalid login credentials"
-            ], 401);
-        }    
+      
     }
 }

@@ -23,5 +23,5 @@ Route::post('files/{file}', [FileController::class, 'delete_post']);
 
 Route::post('/register', [TokenController::class, 'register']);
 Route::post('/login', [TokenController::class, 'login']);
-Route::post('/logout', [TokenController::class, 'logout']);
-Route::post('/user', [TokenController::class, 'user'])->middleware(['auth']);
+Route::post('/logout', [TokenController::class, 'logout'])->middleware(['auth:sanctum']);
+Route::get('/user', [TokenController::class, 'user'])->middleware(['auth:sanctum']);
