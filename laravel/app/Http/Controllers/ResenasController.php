@@ -14,9 +14,8 @@ class ResenasController extends Controller
      */
     public function index()
     {
-        return view("resenas.index", [
-            "resenas" => Resenas::all()
-        ]);
+        return view("resenas.index" 
+        );
     }
 
     /**
