@@ -17,7 +17,7 @@
                <h1 class=" text-center fw-bold ">Sitios</h1>
                     @foreach ($places as $place)
                     <div class="border separar-left ">
-                        <div  class="fw-bold h3 ">{{ $place->name }}<br>
+                         <a href="{{ route('places.show', $place) }}" class="fw-bold h3 " >{{ $place->name }}</a><br>
                        
                         <div  class="row">
                             <div  class="col-md-5">
