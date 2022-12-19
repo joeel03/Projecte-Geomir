@@ -41,6 +41,14 @@
   </div>
 </div>
 
+<ul id= "navlist">
+  <li><img id="home" src="img/xavi-serio.jpg" width="100" height="100"></li>
+  <li><img id="home" src="img/joel-serio.jpg" width="100" height="100"></li>
+</ul>
+<ul id= "navlist">
+  <li><img id="next" src="img/xavi-feliz.jpg" width="100" height="100"></li>
+  <li><img id="next" src="img/joel-feliz.jpg" width="100" height="100"></li>
+</ul>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
@@ -61,7 +69,7 @@
             <div class="carousel-item">
 
               <video id="video1" width="100%" height="100%" controls>
-                <source src="img/Joker.mp4" type="video/mp4">
+                <source src="img/anuncio.mp4" type="video/mp4">
               </video>
             </div>
           </div>
@@ -145,8 +153,6 @@
   function drop(ev) {
     ev.preventDefault();
     var data = ev.dataTransfer.getData("text");
-    //document.getElementById(data)
-    //document.getElementById(data).parentNode;
     let xxx = ev.target.src  
     console.log(xxx)
     ev.target.src = document.getElementById(data).src;
@@ -155,7 +161,6 @@
 
 
   }
-  //dragula([document.getElementById(imgL), document.getElementById(imgR)]);
 
 
   imgL.addEventListener("mouseover", function (event) {

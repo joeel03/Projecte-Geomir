@@ -349,3 +349,10 @@ main {
     box-shadow: 0px 0px 15px 15px #0634ff;
     -webkit-box-shadow: 0px 0px 15px 15px #00fad9;
 }
+
+#navlist {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
