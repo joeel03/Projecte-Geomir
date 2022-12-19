@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="div-perfil" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <img id="foto2" draggable="true" ondragstart="drag(event)" class="about-imgR" src="img/joel-serio.jpg"></img>
+          <img id="foto2" draggable="true" data-bs-toggle="modal" data-bs-target="#exampleModal2" ondragstart="drag(event)" class="about-imgR" src="img/joel-serio.jpg"></img>
           <audio>
             <source src="img/cancion.mp3">
           </audio>
@@ -85,6 +85,44 @@
   </div>
 </div>
 
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Video </h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <video width="100%" height="100%" autoplay muted>
+                <source src="img/messi.mp4" type="video/mp4">
+              </video>
+            </div>
+            <div class="carousel-item">
+              <video width="100%" height="100%" controls>
+                <source src="img/suu.mp4" type="video/mp4">
+              </video>
+            </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
