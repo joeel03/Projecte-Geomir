@@ -52,26 +52,30 @@ class PlaceTest extends TestCase
    }
    public function test_places_crete()
    {
-       // Create fake file
-       $name  = "avatar.png";
-       $size = 500; /*KB*/
-       $upload = UploadedFile::fake()->image($name)->size($size);
-       // Upload fake file using API web service
-       $response = $this->postJson("/api/files", [
-           "upload" => $upload,
-       ]);
-       // Check OK response
-       $this->_test_ok($response, 201);
-       // Check validation errors
-       $response->assertValid(["upload"]);
-       // Check JSON exact values
-       $response->assertJsonPath("data.filesize", $size*1024);
-       // Check JSON dynamic values
-       $response->assertJsonPath("data.id",
-           fn ($id) => !empty($id)
-       );
-       $response->assertJsonPath("data.filepath",
-           fn ($filepath) => str_contains($filepath, $name)
+        // Create fake file
+        $name  = "avatar.png";
+        $size = 500; /*KB*/
+        $upload = UploadedFile::fake()->image($name)->size($size);
+        // Create place
+        $description="descripcion de prueba";
+        $latitude=41.2310371;
+        $longitude=1.7282036;
+        // Upload fake file using API web service
+        $response = $this->postJson("/api/places", [
+            "upload" => $upload,
+        ]);
+        // Check OK response
+        $this->_test_ok($response, 201);
+        // Check validation errors
+        $response->assertValid(["upload"]);
+        // Check JSON exact values
+        $response->assertJsonPath("data.filesize", $size*1024);
+        // Check JSON dynamic values
+        $response->assertJsonPath("data.id",
+            fn ($id) => !empty($id)
+        );
+        $response->assertJsonPath("data.filepath",
+            fn ($filepath) => str_contains($filepath, $name)
         );
         // Read, update and delete dependency!!!
         $json = $response->getData();
@@ -87,6 +91,7 @@ class PlaceTest extends TestCase
         "data"    => true // any value
     ]);
 }
+
    /*
    public function test_myresource_auth_operation()
    {
