@@ -15,6 +15,7 @@
         "vite": "^3.0.0"
     },
     "dependencies": {
+        "dragula": "^3.7.3",
         "validatorjs": "^3.22.1"
     }
 }
