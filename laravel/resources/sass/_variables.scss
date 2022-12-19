@@ -324,7 +324,6 @@ main {
     filter: saturate(150%);
     transition: width 2s, height 2s, transform 6s;
     transform: rotate(1080deg);
-
     border-radius: 50%;
     -webkit-border-radius: 50%;
     box-shadow: 0px 0px 15px 15px #0634ff;
@@ -338,14 +337,15 @@ main {
     vertical-align: middle;
     padding-top: 5px;
     filter: grayscale(80);
+    transition: 2s;
 }
+
 
 .about-imgL:hover {
     filter: saturate(150%);
+    transform: translateX(-30%);
     border-radius: 50%;
     -webkit-border-radius: 50%;
-    box-shadow: 0px 0px 15px 15px #ec731e;
-    -webkit-box-shadow: 0px 0px 15px 15px #ec731e;
-    transition: width 2s, height 2s, transform 6s;
-    transform: rotate(-1080deg);
+    box-shadow: 0px 0px 15px 15px #0634ff;
+    -webkit-box-shadow: 0px 0px 15px 15px #00fad9;
 }
