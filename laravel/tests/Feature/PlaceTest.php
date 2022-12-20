@@ -47,7 +47,6 @@ class PlaceTest extends TestCase
    public function test_places_list()
    {
        $response = $this->get('api/places');
-
        $response->assertStatus(200);
    }
    public function test_places_crete()
@@ -92,7 +91,7 @@ class PlaceTest extends TestCase
     ]);
 }
 
-   /*
+   
    public function test_myresource_auth_operation()
    {
        Sanctum::actingAs(self::$testUser);
@@ -125,7 +124,7 @@ class PlaceTest extends TestCase
        $response->assertInvalid($params);
        // TODO Revisar més errors
    }
- */
+ 
    // TODO Sub-tests de totes les operacions CRUD
  
    public function test_myresource_last()
