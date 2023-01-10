@@ -130,19 +130,19 @@ class PlaceController extends Controller
      */
     public function destroy($id)
     {
-        $file = File::find($id);
-        if (empty ($file)) {
+        $place = Place::find($id);
+        if (empty ($place)) {
             return response()->json([
                 'success'  => false,
                 'message' => 'not found'
             ], 404);
         }
-        $ok =  $file->diskDelete();
+        $ok =  $place->diskDelete();
 
         if ($ok) {
             return response()->json([
                 'success' => true,
-                'data'    => $file
+                'data'    => $place
             ], 200);
         } else {
             return response()->json([

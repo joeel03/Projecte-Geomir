@@ -55,7 +55,7 @@ class FileTest extends TestCase
         $name  = "avatar.png";
         $size = 5000; /*KB*/
         $upload = UploadedFile::fake()->image($name)->size($size);
-        // Upload fake file using API web service
+        // Upload fake file using API web service_
         $response = $this->postJson("/api/files", [
             "upload" => $upload,
         ]);
