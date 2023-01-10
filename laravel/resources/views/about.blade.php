@@ -170,14 +170,12 @@
   imgR.addEventListener("mouseover", function(event) {
     imgR.src = "img/joel-feliz.jpg";
     audio1.play();
-
     document.querySelector("#text2").innerHTML = "Mecanico"
   });
 
   imgR.addEventListener("mouseout", function(event) {
     imgR.src = "img/joel-serio.jpg";
     audio1.pause();
-
     document.querySelector("#text2").innerHTML = "Programador d'elite"
 
   });
