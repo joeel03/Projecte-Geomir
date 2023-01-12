@@ -2,17 +2,12 @@
 
 namespace App\Http\Controllers\Api;
 
+
 use App\Models\Post;
-use App\Models\User;
-
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-
 use App\Models\File;
 use App\Http\Controllers\Controller;
-use App\Http\Controllers\api\Posts;
-
 use Illuminate\Http\Request;
+
 
 class PostController extends Controller
 {
@@ -39,17 +34,27 @@ class PostController extends Controller
     {
         // Validar fitxer
         $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+            'body' => 'required',
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
+            'latitude' => 'required',
+            'longitude' => 'required|'
         ]);
         // Desar fitxer al disc i inserir dades a BD
         $upload = $request->file('upload');
         $file = new File();
         $ok = $file->diskSave($upload);
-
+        
         if ($ok) {
+            $post = Post::create([
+                'body'      => $body,
+                'file_id'   => $file->id,
+                'latitude'  => $latitude,
+                'longitude' => $longitude,
+                'author_id' => auth()->user()->id,
+            ]);
             return response()->json([
                 'success' => true,
-                'data'    => $file
+                'data'    => $post
             ], 201);
         } else {
             return response()->json([
