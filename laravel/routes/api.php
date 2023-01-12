@@ -27,3 +27,5 @@ Route::post('/logout', [TokenController::class, 'logout'])->middleware(['auth:sa
 Route::get('/user', [TokenController::class, 'user'])->middleware(['auth:sanctum']);
 
 Route::apiResource('places', PlaceController::class);
+
+//Route::post('places/{place}', [PlaceController::class,'update']);

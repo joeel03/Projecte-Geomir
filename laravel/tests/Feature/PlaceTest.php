@@ -45,7 +45,7 @@ class PlaceTest extends TestCase
             "name" => "",
             "description" => "descripcion de prueba",
             "upload" => $upload,
-            "latitude" => "error",
+            "latitude" => "",
             "longitude" => 1.7282036
         ];
     }
@@ -67,6 +67,8 @@ class PlaceTest extends TestCase
     }
     public function test_places_create()
     {
+        Sanctum::actingAs(self::$testUser);
+
         // Upload fake file using API web service
         $response = $this->postJson("/api/places", self::$validData);
         // Check OK response
@@ -85,25 +87,32 @@ class PlaceTest extends TestCase
     }
     public function test_places_create_error()
     {
+                Sanctum::actingAs(self::$testUser);
+
         // Upload fake file using API web service
         $response = $this->postJson("/api/places", self::$invalidData);
         // Check ERROR response
         $this->_test_error($response);
     }
+    /**
+     * @depends test_places_create
+     */
     public function test_places_read(object $place)
     {
+        Sanctum::actingAs(self::$testUser);
         // Read one file
         $response = $this->getJson("/api/places/{$place->id}");
         // Check OK response
         $this->_test_ok($response);
-        // Check JSON exact values
-        $response->assertJsonPath(
-            "data.filepath",
-            fn ($filepath) => !empty($filepath)
+        $response->assertJsonPath("data.name",
+        fn($name)=>!empty($name)
         );
+        
     }
     public function test_places_read_notfound()
     {
+             Sanctum::actingAs(self::$testUser);
+
         $id = "not_exists";
         $response = $this->getJson("/api/places/{$id}");
         $this->_test_notfound($response);
@@ -113,6 +122,7 @@ class PlaceTest extends TestCase
      */
     public function test_places_update(object $place)
     {
+        
         // Upload fake file using API web service
         $response = $this->putJson("/api/places/{$place->id}", self::$validData);
         // Check OK response
@@ -126,6 +136,9 @@ class PlaceTest extends TestCase
             fn ($id) => !empty($id)
         );
     }
+    /**
+ * @depends test_places_create
+ */
     public function test_places_update_error(object $place)
     {
         // Upload fake file using API web service
@@ -139,9 +152,13 @@ class PlaceTest extends TestCase
      $response = $this->putJson("/api/places/{$id}", []);
      $this->_test_notfound($response);
     }
-
+/**
+ * @depends test_places_create
+ */
     public function test_places_delete(object $place)
     {
+              Sanctum::actingAs(self::$testUser);
+
         // Delete one file using API web service
         $response = $this->deleteJson("/api/places/{$place->id}");
         // Check OK response
@@ -161,7 +178,7 @@ class PlaceTest extends TestCase
         // Check response
         $response->assertStatus(422);
         // Check validation errors
-        $response->assertInvalid(["upload"]);
+        $response->assertInvalid(["name","latitude"]);
         // Check JSON properties
         $response->assertJson([
             "message" => true, // any value
