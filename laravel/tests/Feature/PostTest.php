@@ -16,6 +16,45 @@ class PostTest extends TestCase
     public static User $testUser;
     public static array $validData = [];
     public static array $invalidData = [];
+   
+    public static function setUpBeforeClass(): void
+    {
+        parent::setUpBeforeClass();
+        // Creem usuari/a de prova
+        $name = "test_" . time();
+        self::$testUser = new User([
+            "name" => "{$name}",
+            "email" => "{$name}@mailinator.com",
+            "password" => "12345678"
+        ]);
+        $name = "avatar.png";
+        $size = 500; /*KB*/
+        $upload = UploadedFile::fake()->image($name)->size($size);
+        // TODO Omplir amb dades vàlides
+        self::$validData = [
+            "body" => "Cos de prova",
+            "upload" => $upload,
+            "latitude" => 41.2,
+            "longitude" => 23.4
+        ];
+        // TODO Omplir amb dades incorrectes
+        self::$invalidData = [
+            "body" => "",
+            "upload" => $upload,
+            "latitude" => "error",
+            "longitude" => "error"
+        ];
+    }
+    public function test_post_first()
+    {
+        // Desem l'usuari al primer test
+        self::$testUser->save();
+        // Comprovem que s'ha creat
+        $this->assertDatabaseHas('users', [
+            'email' => self::$testUser->email,
+        ]);
+    }
+
     public function test_post_list()
     {
         // List all files using API web service
@@ -44,17 +83,18 @@ class PostTest extends TestCase
 
     public function test_post_create_error()
     {
-        // Create fake file with invalid max size
-        $name = "avatar.png";
-        $size = 5000; /*KB*/
-        $upload = UploadedFile::fake()->image($name)->size($size);
         // Upload fake file using API web service
-        $response = $this->postJson("/api/posts", [
-            "upload" => $upload,
-        ]);
+        $response = $this->postJson("/api/posts", self::$invalidData);
         // Check ERROR response
         $this->_test_error($response);
+        // Check validation errors
+        $response->assertInvalid(["body","latitude","longitude"]);
+
     }
+
+    /**
+     * @depends test_post_create
+     */
     public function test_post_read(object $post)
     {
         // Read one file
@@ -63,16 +103,21 @@ class PostTest extends TestCase
         $this->_test_ok($response);
         // Check JSON exact values
         $response->assertJsonPath(
-            "data.filepath",
-            fn($filepath) => !empty($filepath)
+            "data.body",
+            fn($body) => !empty($body)
         );
     }
+    
     public function test_post_read_notfound()
     {
         $id = "not_exists";
         $response = $this->getJson("/api/posts/{$id}");
         $this->_test_notfound($response);
     }
+
+    /**
+     * @depends test_post_create
+     */
     public function test_post_update(object $post)
     {
         // Create fake file
@@ -114,7 +159,9 @@ class PostTest extends TestCase
         $response = $this->putJson("/api/posts/{$id}", []);
         $this->_test_notfound($response);
     }
-
+    /**
+     * @depends test_post_create
+     */
     public function test_post_delete(object $post)
     {
         // Delete one file using API web service
@@ -143,8 +190,6 @@ class PostTest extends TestCase
     {
         // Check response
         $response->assertStatus(404);
-        // Check validation errors
-        $response->assertInvalid(["upload"]);
         // Check JSON properties
         $response->assertJson([
             "message" => true,
@@ -175,44 +220,6 @@ class PostTest extends TestCase
             "message",
             fn($message) => !empty($message) && is_string($message)
         );
-    }
-
-    public static function setUpBeforeClass(): void
-    {
-        parent::setUpBeforeClass();
-        // Creem usuari/a de prova
-        $name = "test_" . time();
-        self::$testUser = new User([
-            "name" => "{$name}",
-            "email" => "{$name}@mailinator.com",
-            "password" => "12345678"
-        ]);
-        $name = "avatar.png";
-        $size = 500; /*KB*/
-        $upload = UploadedFile::fake()->image($name)->size($size);
-        // TODO Omplir amb dades vàlides
-        self::$validData = [
-            "body" => "Cos de prova",
-            "upload" => $upload,
-            "latitude" => 41.2,
-            "longitude" => 23.4
-        ];
-        // TODO Omplir amb dades incorrectes
-        self::$invalidData = [
-            "body" => "",
-            "upload" => $upload,
-            "latitude" => "error",
-            "longitude" => "error"
-        ];
-    }
-    public function test_post_first()
-    {
-        // Desem l'usuari al primer test
-        self::$testUser->save();
-        // Comprovem que s'ha creat
-        $this->assertDatabaseHas('users', [
-            'email' => self::$testUser->email,
-        ]);
     }
 
     public function test_post_last()
