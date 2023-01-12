@@ -37,7 +37,6 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-
         // Validar fitxer
         $validatedData = $request->validate([
             'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
