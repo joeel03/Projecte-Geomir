@@ -246,18 +246,26 @@ main {
     position: absolute;
 
 }
+#navlist {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+  }
+// .about-us {
+//     border: 2px solid black;
+//     height: 100%;
+//     width: 100%;
+//     text-align: center;
+//     align-items: center;
+//     justify-content: center;
+// }
+
 //////////////////////////////////////////////////////////
         //A PARTIR DE AQUI ES ABOUT DE M09//
 //////////////////////////////////////////////////////////
-.about-us {
-    border: 2px solid black;
-    height: 100%;
-    width: 100%;
-    text-align: center;
-    align-items: center;
-    justify-content: center;
-}
 
+//Es el div principal que dentro tiene el titulo y las imagenes
 .quadrado-us {
     border: 2px solid black;
     height: 100%;
@@ -267,17 +275,19 @@ main {
     justify-content: center;
 }
 
+//Es una caja que deja ocupar el tamaño maximo a las imagenes y el texto
 .div-perfil {
     height: 100%;
     width: 100%;
 }
 
+//Es un h1 con la letra en negrito y un margen superior
 .about-titulo {
     padding-top: 5px;
     font-weight: bold;
-
 }
 
+//Es el formato del nombre de la izquierda
 .about-text1-imgL {
     padding-top: 5px;
     margin-left: 30px;
@@ -285,7 +295,7 @@ main {
     font-weight: bold;
 }
 
-
+//Es el formato del nombre de la derecha
 .about-text1-imgR {
     padding-top: 5px;
     margin-left: 30px;
@@ -293,25 +303,29 @@ main {
     font-weight: bold;
 }
 
+//Es el formato del texto de la izquierda
 .about-text2-imgL {
     margin-left: 30px;
     text-align: justify;
     font-size: x-large;
 }
 
+//Es el formato del texto de la derecha
 .about-text2-imgR {
     margin-left: 30px;
     text-align: justify;
     font-size: x-large;
 }
 
+//Contiene las 2 cajas de las personas, le indica la direccion de las cajas y le deja espacio entre si
 .about-prueba {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-
 }
 
+//Le definimos el tamaño que sera cada imagen,  la centramos vertical y horizontalmente
+//le ponemos el filtro de la escala de grises y le definimos en que parte de la imagen empieza
 .about-imgR {
     height: 452px;
     width: 325px;
@@ -321,6 +335,8 @@ main {
     background: url("/public/img/seriofeliz.png") 340px 0px;
 }
 
+//Le decimos que cuando pase por encima ponemos un filtro de color saturado, creamos una animacion 
+//y definimos en que parte empieza la imagen
 .about-imgR:hover {
     filter: saturate(150%);
     transition: width 2s, height 2s, transform 6s;
@@ -332,19 +348,20 @@ main {
     background: url("/public/img/seriofeliz.png") 340px 450px;
 
 }
-
+//Es similar al about-imgR pero para la foto de la izquierda, 
+//aparte le añadimos que la transicion de la animacion dure 1s y con otra parte de la foto
 .about-imgL {
     height: 452px;
     width: 325px;
     align-items: center;
     vertical-align: middle;
     filter: grayscale(80);
-    transition: 2s;
+    transition: 1s;
     background: url("/public/img/seriofeliz.png") 0 0;
 
 }
 
-
+//Es similar al about-imgR pero con una animacion difernte y con otra parte de la foto
 .about-imgL:hover {
     filter: saturate(150%);
     transform: translateX(-30%);
@@ -356,9 +373,3 @@ main {
 
 }
 
-#navlist {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-    list-style: none;
-  }

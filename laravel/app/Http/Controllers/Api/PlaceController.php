@@ -15,6 +15,14 @@ use Illuminate\Http\Request;
 
 class PlaceController extends Controller
 {
+    public function __construct(){
+        $this->middleware('auth:sanctum')->only('store');
+        $this->middleware('auth:sanctum')->only('update');
+        $this->middleware('auth:sanctum')->only('destroy');
+        $this->middleware('auth:sanctum')->only('favorite');
+        $this->middleware('auth:sanctum')->only('unfavorite');
+
+    }
     /**
      * Display a listing of the resource.
      *
@@ -186,13 +194,34 @@ class PlaceController extends Controller
             'id_user'=>auth()->user()->id,
             'id_place'=>$place->id,
         ]);
-        return redirect()->back();
-        
+        if ($favorite){
+            return response()->json([
+                'success' => true,
+                'data'    => $favorite
+            ], 200);
+        } else {
+            return response()->json([
+                'success'  => false,
+                'message' => 'Error deleting file'
+            ], 500);
+        }        
     }
+
+
     public function unfavorite(Place $place)
     {
-        DB::table('favorites')->where(['id_user'=>Auth::id(),'id_place'=>$place->id])->delete();
-        return redirect()->back();
+        $favorite=DB::table('favorites')->where(['id_user'=>Auth::id(),'id_place'=>$place->id])->delete();
+        if ($favorite){
+            return response()->json([
+                'success' => true,
+                'data'    => $favorite
+            ], 200);
+        } else {
+            return response()->json([
+                'success'  => false,
+                'message' => 'Error deleting file'
+            ], 500);
+        }     
     }
     public function update_post(Request $request, $id)
     {

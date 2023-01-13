@@ -28,4 +28,7 @@ Route::get('/user', [TokenController::class, 'user'])->middleware(['auth:sanctum
 
 Route::apiResource('places', PlaceController::class);
 
+Route::post('/places/{place}/favorites', [PlaceController::class,'favorite']);
+Route::delete('/places/{place}/favorites', [PlaceController::class,'unfavorite']);
+
 //Route::post('places/{place}', [PlaceController::class,'update']);
