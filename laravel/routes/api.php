@@ -29,4 +29,7 @@ Route::post('/logout', [TokenController::class, 'logout'])->middleware(['auth:sa
 Route::get('/user', [TokenController::class, 'user'])->middleware(['auth:sanctum']);
 
 Route::apiResource('places', PlaceController::class);
-Route::apiResource('posts', PostController::class);
+Route::apiResource('post', PostController::class);
+Route::post('/post/{post}/likes',[PostController::class, 'addlikes']);
+Route::delete('/post/{post}/likes',[PostController::class, 'unlikes']);
+

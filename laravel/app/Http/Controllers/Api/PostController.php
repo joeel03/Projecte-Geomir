@@ -2,15 +2,21 @@
 
 namespace App\Http\Controllers\Api;
 
-
 use App\Models\Post;
-use App\Models\File;
+use Illuminate\Support\Facades\Storage;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\DB;
+use App\Models\File;
+use App\Models\Likes;
+use App\Models\User;
 
 class PostController extends Controller
 {
+
     /**
      * Display a listing of the resource.
      *
@@ -20,7 +26,7 @@ class PostController extends Controller
     {
         return response()->json([
             'success' => true,
-            'data'    => Post::all()
+            'data' => Post::all(),
         ], 200);
     }
 
@@ -34,36 +40,65 @@ class PostController extends Controller
     {
         // Validar fitxer
         $validatedData = $request->validate([
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024',
             'body' => 'required',
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
             'latitude' => 'required',
-            'longitude' => 'required|'
+            'longitude' => 'required',
         ]);
-        // Desar fitxer al disc i inserir dades a BD
+
+        // Obtenir dades del fitxer
         $upload = $request->file('upload');
-        $file = new File();
-        $ok = $file->diskSave($upload);
-        
-        if ($ok) {
+        $fileName = $upload->getClientOriginalName();
+        $fileSize = $upload->getSize();
+        $body = $request->get('body');
+        $latitude = $request->get('latitude');
+        $longitude = $request->get('longitude');
+        $author_id = $request->get('author_id');
+        \Log::debug("Storing file '{$fileName}' ($fileSize)...");
+
+        // Pujar fitxer al disc dur
+        $uploadName = time() . '_' . $fileName;
+        $filePath = $upload->storeAs(
+            'uploads',
+            // Path
+            $uploadName,
+            // Filename
+            'public' // Disk
+        );
+
+        if (\Storage::disk('public')->exists($filePath)) {
+            \Log::debug("Local storage OK");
+            $fullPath = \Storage::disk('public')->path($filePath);
+            \Log::debug("File saved at {$fullPath}");
+            // Desar dades a BD
+            $file = File::create([
+                'filepath' => $filePath,
+                'filesize' => $fileSize,
+            ]);
+
             $post = Post::create([
-                'body'      => $body,
-                'file_id'   => $file->id,
-                'latitude'  => $latitude,
+                'body' => $body,
+                'file_id' => $file->id,
+                'latitude' => $latitude,
                 'longitude' => $longitude,
                 'author_id' => auth()->user()->id,
             ]);
+
+            \Log::debug("DB storage OK");
+            // Patró PRG amb missatge d'èxit
             return response()->json([
                 'success' => true,
-                'data'    => $post
+                'data' => $post
             ], 201);
         } else {
+            \Log::debug("Local storage FAILS");
+            // Patró PRG amb missatge d'error
             return response()->json([
-                'success'  => false,
-                'message' => 'Error uploading file'
-            ], 421);
+                'success' => false,
+                'message' => 'Error creating post'
+            ], 500);
         }
     }
-
     /**
      * Display the specified resource.
      *
@@ -72,21 +107,27 @@ class PostController extends Controller
      */
     public function show($id)
     {
-        $file=File::find($id);
-        if ($file){
-            return response()->json([
-                'success' => true,
-                'data'    => $file
-            ], 200);
-         }else{
-             return response()->json([
-                 'success' => false,
-                 'message'=> "not found"
-             ], 404);
-         }
-       
-    }
 
+        $post = Post::find($id);
+        if ($post) {
+            if ($id) {
+                return response()->json([
+                    'success' => true,
+                    'data' => $post,
+                ], 200);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => "Post doesen't exist",
+                ], 500);
+            }
+        } else {
+            return response()->json([
+                'success' => false,
+                'message' => 'Error'
+            ], 404);
+        }
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -96,33 +137,62 @@ class PostController extends Controller
      */
     public function update(Request $request, $id)
     {
-        
-        $file=File::find($id);
-        if (empty ($file)) {
-            return response()->json([
-                'success'  => false,
-                'message' => 'Error not found'
-            ], 404);
-        }
         // Validar fitxer
-        $validatedData = $request->validate([
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
-        ]);
-        // Desar fitxer al disc i inserir dades a BD
-        $upload = $request->file('upload');
+        $post = Post::find($id);
+        if ($post) {
+            $file = File::find($post->file_id);
+            $validatedData = $request->validate([
+                'upload' => 'required|mimes:gif,jpeg,jpg,png|max:1024'
+            ]);
 
-        $ok = $file->diskSave($upload);
+            // Obtenir dades del fitxer
+            $upload = $request->file('upload');
+            $fileName = $upload->getClientOriginalName();
+            $fileSize = $upload->getSize();
+            \Log::debug("Storing file '{$fileName}' ($fileSize)...");
 
-        if ($ok) {
-            return response()->json([
-                'success' => true,
-                'data'    => $file
-            ], 200);
+            // Pujar fitxer al disc dur
+            $uploadName = time() . '_' . $fileName;
+            $filePath = $upload->storeAs(
+                'uploads',
+                // Path
+                $uploadName,
+                // Filename
+                'public' // Disk
+            );
+
+            if (\Storage::disk('public')->exists($filePath)) {
+                \Log::debug("Local storage OK");
+                $fullPath = \Storage::disk('public')->path($filePath);
+                \Log::debug("File saved at {$fullPath}");
+                // Desar dades a BD
+
+                $file->filepath = $filePath;
+                $file->filesize = $fileSize;
+                $file->save();
+                \Log::debug("DB storage OK");
+                $post->body = $request->input('body');
+                $post->latitude = $request->input('latitude');
+                $post->longitude = $request->input('longitude');
+                $post->save();
+                // Patró PRG amb missatge d'èxit
+                return response()->json([
+                    'success' => true,
+                    'data' => $post
+                ], 200);
+            } else {
+                \Log::debug("Local storage FAILS");
+                // Patró PRG amb missatge d'error
+                return response()->json([
+                    'success' => false,
+                    'message' => 'Error updating file'
+                ], 421);
+            }
         } else {
             return response()->json([
-                'success'  => false,
-                'message' => 'Error uploading file'
-            ], 421);
+                'success' => false,
+                'message' => 'Error'
+            ], 404);
         }
     }
 
@@ -134,38 +204,59 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        $file = File::find($id);
-        if (empty ($file)) {
-            return response()->json([
-                'success'  => false,
-                'message' => 'not found'
-            ], 404);
-        }
-        $ok =  $file->diskDelete();
+        $post = Post::find($id);
 
-        if ($ok) {
+        if ($post) {
+            $post->delete();
             return response()->json([
                 'success' => true,
-                'data'    => $file
+                'data' => $post
             ], 200);
         } else {
             return response()->json([
-                'success'  => false,
+                'success' => false,
+                'message' => 'Error'
+            ], 404);
+        }
+    }
+
+    public function update_workaround(Request $request, $id)
+    {
+        return $this->update($request, $id);
+    }
+    public function addlikes(Post $post)
+    {
+        $likes = Likes::create([
+            'id_user' => auth()->user()->id,
+            'id_post' => $post->id,
+        ]);
+        if ($likes) {
+            return response()->json([
+                'success' => true,
+                'data' => $likes
+            ], 200);
+        } else {
+            return response()->json([
+                'succes' => false,
                 'message' => 'Error deleting file'
             ], 500);
         }
     }
-    public function update_post(Request $request, $id)
+    public function unlikes(Post $post)
     {
-        return $this->update($request, $id);
+        $likes=DB::table('likes')->where('id_user', auth()->user()->id, )
+            ->where('id_post', $post->id)->delete();
+        if ($likes) {
+            return response()->json([
+                'success' => true,
+                'data' => $likes
+            ], 200);
+        } else {
+            return response()->json([
+                'succes' => false,
+                'message' => 'Error deleting file'
+            ], 500);
+        }
     }
-    public function delete_post(Request $request, $id)
-    {
-        return $this->destroy($request, $id);
-    }
-    public function show_post(Request $request, $id)
-    {
-        return $this->show($request, $id);
-    }
+
 }
-    
