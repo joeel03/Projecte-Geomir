@@ -4,15 +4,13 @@ namespace App\Http\Controllers\Api;
 
 use App\Models\Place;
 use App\Models\User;
-
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-
 use App\Models\File;
-
 use App\Http\Controllers\Controller;
 use App\Http\Controllers\api\Places;
-
+use App\Models\Favorite;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class PlaceController extends Controller
@@ -182,6 +180,19 @@ class PlaceController extends Controller
                 'message' => 'Error deleting file'
             ], 500);
         }
+    }
+    public function favorite(Place $place){
+        $favorite=Favorite::create([
+            'id_user'=>auth()->user()->id,
+            'id_place'=>$place->id,
+        ]);
+        return redirect()->back();
+        
+    }
+    public function unfavorite(Place $place)
+    {
+        DB::table('favorites')->where(['id_user'=>Auth::id(),'id_place'=>$place->id])->delete();
+        return redirect()->back();
     }
     public function update_post(Request $request, $id)
     {

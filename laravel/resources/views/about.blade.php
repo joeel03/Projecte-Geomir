@@ -15,7 +15,7 @@
       </div>
       <div id="about" class="about-prueba">
         <div id="div1" class="div-perfil">
-          <img id="foto1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" src="img/xavi-serio.jpg" class="about-imgL"></img>
+          <img id="foto1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="about-imgL" ></img><!--src="img/xavi-serio.jpg"-->
           <audio>
             <source src="img/jingel.mp3">
           </audio>
@@ -25,7 +25,7 @@
           </div>
         </div>
         <div class="div-perfil" id="div2">
-          <img id="foto2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="about-imgR" src="img/joel-serio.jpg"></img>
+          <img id="foto2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="about-imgR"></img><!--src="img/joel-serio.jpg"-->
           <audio>
             <source src="img/cancion.mp3">
           </audio>
@@ -53,7 +53,7 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <video width="100%" height="100%" autoplay muted>
+              <video width="100%" height="100%" autoplay muted controls >
                 <source src="img/Presentacion.mp4" type="video/mp4">
               </video>
             </div>
@@ -89,7 +89,7 @@
         <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <video width="100%" height="100%" autoplay muted>
+              <video width="100%" height="100%" autoplay muted controls>
                 <source src="img/messi.mp4" type="video/mp4">
               </video>
             </div>
@@ -168,16 +168,14 @@
 
 
   imgR.addEventListener("mouseover", function(event) {
-    imgR.src = "img/joel-feliz.jpg";
+    //imgR.src = "img/joel-feliz.jpg";
     audio1.play();
-
     document.querySelector("#text2").innerHTML = "Mecanico"
   });
 
   imgR.addEventListener("mouseout", function(event) {
-    imgR.src = "img/joel-serio.jpg";
+   // imgR.src = "img/joel-serio.jpg";
     audio1.pause();
-
     document.querySelector("#text2").innerHTML = "Programador d'elite"
 
   });

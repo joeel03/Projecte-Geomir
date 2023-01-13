@@ -311,13 +311,12 @@ main {
 }
 
 .about-imgR {
-    height: 70vh;
-    width: 60vh;
+    height: 452px;
+    width: 325px;
     align-items: center;
     vertical-align: middle;
-    padding-top: 5px;
-    padding-right: 10px;
     filter: grayscale(80);
+    background: url("/public/img/seriofeliz.png") 340px 0px;
 }
 
 .about-imgR:hover {
@@ -328,16 +327,19 @@ main {
     -webkit-border-radius: 50%;
     box-shadow: 0px 0px 15px 15px #0634ff;
     -webkit-box-shadow: 0px 0px 15px 15px #00fad9;
+    background: url("/public/img/seriofeliz.png") 340px 450px;
+
 }
 
 .about-imgL {
-    height: 70vh;
-    width: 60vh;
+    height: 452px;
+    width: 325px;
     align-items: center;
     vertical-align: middle;
-    padding-top: 5px;
     filter: grayscale(80);
     transition: 2s;
+    background: url("/public/img/seriofeliz.png") 0 0;
+
 }
 
 
@@ -348,6 +350,8 @@ main {
     -webkit-border-radius: 50%;
     box-shadow: 0px 0px 15px 15px #0634ff;
     -webkit-box-shadow: 0px 0px 15px 15px #00fad9;
+    background: url("/public/img/seriofeliz.png") 0px 450px;
+
 }
 
 #navlist {
