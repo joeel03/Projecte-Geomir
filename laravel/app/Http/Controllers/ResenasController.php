@@ -15,7 +15,6 @@ class ResenasController extends Controller
     public function index()
     {
         return view("resenas.index"
-            
         );
     }
 
