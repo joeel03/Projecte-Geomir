@@ -6,6 +6,8 @@ use App\Http\Controllers\Api\FileController;
 use App\Http\Controllers\Api\TokenController;
 use App\Http\Controllers\Api\PlaceController;
 use App\Http\Controllers\Api\PostController;
+use App\Http\Controllers\Api\ResenasController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -36,4 +38,6 @@ Route::delete('/places/{place}/favorites', [PlaceController::class,'unfavorite']
 Route::apiResource('post', PostController::class);
 Route::post('/post/{post}/likes',[PostController::class, 'addlikes']);
 Route::delete('/post/{post}/likes',[PostController::class, 'unlikes']);
+
+Route::apiResource('places.resenas', ResenasController::class);
 

@@ -50,8 +50,12 @@ Route::resource('likes', LikesController::class)
 Route::resource('places', PlaceController::class)
 ->middleware(['auth', 'permission:places']);
 
-Route::resource('resenas', ResenasController::class)
+Route::resource('places.resenas', ResenasController::class)
 ->middleware(['auth']);
+
+//Route::post('store', 'ResenasController@store')->name("resenas.store");
+//Route::delete('delete', 'ResenasController@delete')->name("resenas.delete");
+
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
 
@@ -61,7 +65,6 @@ Route::delete('/places/{place}/favorites', [App\Http\Controllers\PlaceController
 
 Route::post('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'addlikes'])->name('posts.likes');
 Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'unlikes'])->name('posts.unlikes');
-
 
 Route::get('about', function(){
     return view ('about');

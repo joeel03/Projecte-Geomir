@@ -1,7 +1,7 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-{{ __('Place') . " " . $place->id }}
+{{ __('resena') . " " . $resena->id }}
 @endsection
 
 <head>
@@ -18,23 +18,19 @@
                     <table class="table">
                         <tr>
                             <td><strong>ID<strong></td>
-                            <td>{{ $place->id }}</td>
+                            <td>{{ $resena->id }}</td>
                         </tr>
                         <tr>
-                            <td><strong>{{__('fields.Name')}}</strong></td>
-                            <td>{{ $place->name }}</td>
+                            <td><strong>{{__('fields.Title')}}</strong></td>
+                            <td>{{ $resena->title }}</td>
                         </tr>
                         <tr>
                             <td><strong>{{ __('fields.Description')}}</strong></td>
-                            <td>{{ $place->description }}</td>
+                            <td>{{ $resena->description }}</td>
                         </tr>
                         <tr>
-                            <td><strong>Lat</strong></td>
-                            <td>{{ $place->latitude }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Lng</strong></td>
-                            <td>{{ $place->longitude }}</td>
+                            <td><strong>{{ __('fields.Stars')}}</strong></td>
+                            <td>{{ $resena->stars }}</td>
                         </tr>
                         <tr>
                             <td><strong>{{__('fields.Author')}}</strong></td>
@@ -42,37 +38,37 @@
                         </tr>
                         <tr>
                             <td><strong>{{__('fields.Created')}}</strong></td>
-                            <td>{{ $place->created_at }}</td>
+                            <td>{{ $resena->created_at }}</td>
                         </tr>
                         <tr>
                             <td><strong>{{__('fields.Updated')}}</strong></td>
-                            <td>{{ $place->updated_at }}</td>
+                            <td>{{ $resena->updated_at }}</td>
                         </tr>
                         </tbody>
                     </table>
 
                     <!-- Buttons -->
                     <div class="container" style="margin-bottom:20px">
-                        <a class="btn btn-warning" href="{{ route('places.edit', $place) }}" role="button">📝 {{
+                        <a class="btn btn-warning" href="{{ route('resenas.edit', $resena) }}" role="button">📝 {{
                             __('Edit') }}</a>
-                        <form id="form" method="POST" action="{{ route('places.destroy', $place) }}"
+                        <form id="form" method="POST" action="{{ route('resenas.destroy', $resena) }}"
                             style="display: inline-block;">
                             @csrf
                             @method("DELETE")
                             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
                         </form>
-                        <a class="btn" href="{{ route('places.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
+                        <a class="btn" href="{{ route('resenas.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
 
-                        @if($place->comprovarfavorite())
+                        @if($resena->comprovarfavorite())
                         <form method="post" style="display: inline-block;"
-                            action="{{ route('places.favorite',$place) }}" enctype="multipart/form-data">
+                            action="{{ route('resenas.favorite',$resena) }}" enctype="multipart/form-data">
                             @csrf
                             <button id="quitar" type="submit"><i class="fa-regular fa-star"></i></button>
                         </form>
                         @else
                         <form method="post" style="display: inline-block;"
-                            action="{{ route('places.unfavorite',$place) }}" enctype="multipart/form-data">
+                            action="{{ route('resenas.unfavorite',$resena) }}" enctype="multipart/form-data">
                             @csrf
                             @method('DELETE')
                             <button class="btn btn-primary"><i class="fa-solid fa-star"></i></button>
@@ -93,7 +89,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>{{ __('You are gonna delete post ') . $place->id }}</p>
+                                    <p>{{ __('You are gonna delete post ') . $resena->id }}</p>
                                     <p>{{ __('This action cannot be undone!') }}</p>
                                 </div>
                                 <div class="modal-footer">
