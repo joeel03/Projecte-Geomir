@@ -99,7 +99,7 @@ class PostTest extends TestCase
         $name = "avatar.png";
         $size = 5000; /*KB*/
         $upload = UploadedFile::fake()->image($name)->size($size);
-        $body = 'efefwfew';
+        $body = 'Cos de text';
         $latitude = 44.14;
         $longitude = 33.33;
         $author_id = 1;
