@@ -64,14 +64,14 @@ class ResenasTest extends TestCase
 
     public function test_resenas_list()
     {
-        $response = $this->get('api/resenas');
+        $response = $this->get('/api/places/{place}/resenas');
         $response->assertStatus(200);
     }
     public function test_resenas_create()
     {
         Sanctum::actingAs(self::$testUser);
         // Upload fake file using API web service
-        $response = $this->postJson("/api/resenas", self::$validData);
+        $response = $this->postJson("/api/places/{place}/resenas", self::$validData);
         // Check OK response
         $this->_test_ok($response, 201);
         // Check validation errors
@@ -90,7 +90,7 @@ class ResenasTest extends TestCase
     {
         Sanctum::actingAs(self::$testUser);
         // Upload fake file using API web service
-        $response = $this->postJson("/api/resenas", self::$invalidData);
+        $response = $this->postJson("/api/places/{place}/resenas", self::$invalidData);
         // Check ERROR response
         $this->_test_error($response);
     }
@@ -100,7 +100,7 @@ class ResenasTest extends TestCase
     public function test_resenas_read(object $resenas)
     {
         // Read one file
-        $response = $this->getJson("/api/resenas/{$resenas->id}");
+        $response = $this->getJson("/api/places/{place}/resenas/{$resenas->id}");
         // Check OK response
         $this->_test_ok($response);
         $response->assertJsonPath(
@@ -111,7 +111,7 @@ class ResenasTest extends TestCase
     public function test_resenas_read_notfound()
     {
         $id = "not_exists";
-        $response = $this->getJson("/api/resenas/{$id}");
+        $response = $this->getJson("/api/places/{place}/resenas/{$id}");
         $this->_test_notfound($response);
     }
    
@@ -122,7 +122,7 @@ class ResenasTest extends TestCase
     {
         Sanctum::actingAs(self::$testUser);
         // Delete one file using API web service
-        $response = $this->deleteJson("/api/resenas/{$resena->id}");
+        $response = $this->deleteJson("/api/places/{place}/resenas/{$resena->id}");
         // Check OK response
         $this->_test_ok($response);
     }
@@ -131,7 +131,7 @@ class ResenasTest extends TestCase
     {
         Sanctum::actingAs(self::$testUser);
         $id = "not_exists";
-        $response = $this->deleteJson("/api/resenas/{$id}");
+        $response = $this->deleteJson("/api/places/{place}/resenas/{$id}");
         $this->_test_notfound($response);
     }
 

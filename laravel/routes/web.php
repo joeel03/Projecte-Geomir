@@ -54,7 +54,6 @@ Route::resource('places.resenas', ResenasController::class)
 ->middleware(['auth']);
 
 //Route::post('store', 'ResenasController@store')->name("resenas.store");
-//Route::delete('delete', 'ResenasController@delete')->name("resenas.delete");
 
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);

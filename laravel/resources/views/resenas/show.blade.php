@@ -49,32 +49,15 @@
 
                     <!-- Buttons -->
                     <div class="container" style="margin-bottom:20px">
-                        <a class="btn btn-warning" href="{{ route('resenas.edit', $resena) }}" role="button">📝 {{
-                            __('Edit') }}</a>
-                        <form id="form" method="POST" action="{{ route('resenas.destroy', $resena) }}"
+                        
+                        <form id="form" method="POST" action="{{ route('places.resenas.destroy', $resena) }}"
                             style="display: inline-block;">
                             @csrf
                             @method("DELETE")
                             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
                         </form>
-                        <a class="btn" href="{{ route('resenas.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
-
-                        @if($resena->comprovarfavorite())
-                        <form method="post" style="display: inline-block;"
-                            action="{{ route('resenas.favorite',$resena) }}" enctype="multipart/form-data">
-                            @csrf
-                            <button id="quitar" type="submit"><i class="fa-regular fa-star"></i></button>
-                        </form>
-                        @else
-                        <form method="post" style="display: inline-block;"
-                            action="{{ route('resenas.unfavorite',$resena) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-primary"><i class="fa-solid fa-star"></i></button>
-                        </form>
-                        @endif
-
+                        <a class="btn" href="{{ route('places.resenas.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
 
                     </div>
 

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Resenas;
 use App\Models\File;
-
+use App\Models\Place;
 
 class ResenasController extends Controller
 {
@@ -27,9 +27,11 @@ class ResenasController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Place $place)
     {
-        return view("resenas.create");
+        return view("resenas.create",[
+            "place"=>$place,
+        ]);
 
     }
 
@@ -39,7 +41,7 @@ class ResenasController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Place $place)
     {
          // Validar dades del formulari
          $validatedData = $request->validate([
@@ -61,7 +63,6 @@ class ResenasController extends Controller
 
         if ($fileOk) {
             // Desar dades a BD
-            Log::debug("Saving resena at DB...");
             $resena = Resenas::create([
                 'title'        => $title,
                 'description' => $description,
@@ -69,14 +70,12 @@ class ResenasController extends Controller
                 'stars'       => $stars,
                 'author_id'   => auth()->user()->id,
             ]);
-            Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
-            return redirect()->route('resenas.show', $resena)
+            return redirect()->route('places.resenas.show', $place, $resena)
                 ->with('success', __('resena successfully saved'));
         } else {
-            Log::debug("Disk storage FAILS");
             // Patró PRG amb missatge d'error
-            return redirect()->route("resenas.create")
+            return redirect()->route("places.resenas.create")
                 ->with('error', __('ERROR Uploading file'));
         }
     }
@@ -89,7 +88,7 @@ class ResenasController extends Controller
      */
     public function show(Resenas $resena)
     {
-        return view("resenas.show", [
+        return view("places.resenas.show", [
             'resena'  => $resena,
         ]);
 
@@ -131,7 +130,7 @@ class ResenasController extends Controller
         // Eliminar fitxer associat del disc i BD
         $resena->file->diskDelete();
         // Patró PRG amb missatge d'èxit
-        return redirect()->route("resenas.index")
+        return redirect()->route("places.resenas.index")
             ->with('success', 'Resena successfully deleted');
     }
 }

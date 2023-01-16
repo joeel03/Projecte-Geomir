@@ -14,7 +14,7 @@
                 <h1 class="text-center h2 fw-bold">Crear reseña</h1>
 
                 </div >
-                <form method="post" class="separar " action="{{ route('resenas.store') }}" enctype="multipart/form-data">
+                <form method="post" class="separar " action="{{ route('places.resenas.store', $place) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <label for="title">{{ __('Title') }}</label>

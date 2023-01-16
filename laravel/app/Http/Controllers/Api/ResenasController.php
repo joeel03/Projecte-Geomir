@@ -52,7 +52,6 @@ class ResenasController extends Controller
                 'stars' => $stars,
                 'author_id' => auth()->user()->id,
             ]);
-            Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
             return response()->json([
                 'success' => true,
