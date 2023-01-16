@@ -1,9 +1,11 @@
 <?php
 
 namespace App\Http\Controllers;
+
 use Illuminate\Http\Request;
 use App\Models\Comentarios;
 use App\Models\File;
+use App\Models\Post;
 use Illuminate\Support\Facades\Log;
 class ComentariosController extends Controller
 {
@@ -14,7 +16,8 @@ class ComentariosController extends Controller
      */
     public function index()
     {
-        return view("comentarios.index");
+        return view("comentarios.index",[
+            "comentarios" => Comentarios::all()]);
     }
     /**
      * Show the form for creating a new resource.
