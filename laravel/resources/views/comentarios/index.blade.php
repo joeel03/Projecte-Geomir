@@ -14,7 +14,7 @@
        <div class="col-md-8">
            <div class="card">
                <div class="card-header ">
-               <h1 class=" text-center fw-bold ">Sitios</h1>
+               <h1 class=" text-center fw-bold ">Comentarios</h1>
                     @foreach ($comentarios as $coments)
                     <div class="border separar-left ">
                          <a href="{{ route('comentarios.show', $coments) }}" class="fw-bold h3 " >{{ $coments->name }}</a><br>

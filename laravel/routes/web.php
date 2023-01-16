@@ -54,7 +54,7 @@ Route::resource('places', PlaceController::class)
 Route::resource('resenas', ResenasController::class)
 ->middleware(['auth']);
 
-Route::resource('/posts/{post}/comentarios', ComentariosController::class)
+Route::resource('comentarios', ComentariosController::class)
 ->middleware(['auth']);
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);

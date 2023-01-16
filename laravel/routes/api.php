@@ -37,3 +37,5 @@ Route::apiResource('post', PostController::class);
 Route::post('/post/{post}/likes',[PostController::class, 'addlikes']);
 Route::delete('/post/{post}/likes',[PostController::class, 'unlikes']);
 
+Route::apiResource('comentarios', ComentariosController::class);
+
