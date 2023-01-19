@@ -1,6 +1,7 @@
 <?php
 
 return [
+
    'name'=>'Nom',
    'description'=>'Descripció',
    'file_id'=>'Fitxer',
@@ -24,7 +25,8 @@ return [
    'Updated'=>'Actualitzat',
    "Created"=>"Creat",
    'Description'=>'Descripció',
-
-  
-
+   "Title"=>"Titol",
+   "title"=>"titol", 
+   "Stars" =>"Estrellas",
+   "stars" =>"estrellas",
 ];

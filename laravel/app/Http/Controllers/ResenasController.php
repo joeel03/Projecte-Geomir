@@ -7,6 +7,8 @@ use App\Models\Resenas;
 use App\Models\File;
 use App\Models\Place;
 
+
+
 class ResenasController extends Controller
 {
     /**
@@ -14,12 +16,14 @@ class ResenasController extends Controller
      
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Place $place)
     {
+        
         return view("resenas.index",[
         "resenas" => Resenas::all(),
-        "files" => File::all()]
-        );
+        "files" => File::all(),
+        "place"=>$place,
+        ]);
     }
 
     /**
@@ -69,13 +73,14 @@ class ResenasController extends Controller
                 'file_id'     => $file->id,
                 'stars'       => $stars,
                 'author_id'   => auth()->user()->id,
+                'place_id'    => $place->id,
             ]);
             // Patró PRG amb missatge d'èxit
-            return redirect()->route('places.resenas.show', $place, $resena)
+            return redirect()->route('places.resenas.show', [$place, $resena])
                 ->with('success', __('resena successfully saved'));
         } else {
             // Patró PRG amb missatge d'error
-            return redirect()->route("places.resenas.create")
+            return redirect()->route("places.resenas.create",$place)
                 ->with('error', __('ERROR Uploading file'));
         }
     }
@@ -86,10 +91,17 @@ class ResenasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(Resenas $resena)
+    public function show(Place $place,Resenas $resena)
     {
-        return view("places.resenas.show", [
+        $estrellas=$resena->stars;
+        $id = auth()->id();
+        return view("resenas.show", [
             'resena'  => $resena,
+            "place"=>$place,
+            'file'   => $resena->file,
+            'author' => $resena->user,
+            "estrellas"=>$estrellas,
+            "id"=>$id,
         ]);
 
     }
@@ -123,14 +135,20 @@ class ResenasController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Resenas $resena)
+    public function destroy(Place $place,Resenas $resena)
     {
-        // Eliminar place de BD
-        $resena->delete();
-        // Eliminar fitxer associat del disc i BD
-        $resena->file->diskDelete();
-        // Patró PRG amb missatge d'èxit
-        return redirect()->route("places.resenas.index")
-            ->with('success', 'Resena successfully deleted');
+        if($resena->author_id==auth()->id()){
+            // Eliminar place de BD
+            $resena->delete();
+            // Eliminar fitxer associat del disc i BD
+            $resena->file->diskDelete();
+            // Patró PRG amb missatge d'èxit
+            return redirect()->route("places.resenas.index",$place)
+                ->with('success', 'Resena successfully deleted');
+        }else{
+            return redirect()->route("places.resenas.show",[$place,$resena])
+            ->with('error', __('No ets el propietari de la reseña'));
+        }
+        
     }
 }

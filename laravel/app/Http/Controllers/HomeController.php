@@ -4,7 +4,10 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Resenas;
 use App\Models\File;
+use App\Models\Place;
+
 
 class HomeController extends Controller
 {
@@ -27,7 +30,9 @@ class HomeController extends Controller
     {
         return view('home',[
             "posts" => Post::all(),
-            "files" => File::all()
+            "files" => File::all(),
+            "resenas"=> Resenas::all(),
+            
         ]);
     }
 }
