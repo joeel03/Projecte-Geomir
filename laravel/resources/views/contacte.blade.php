@@ -4,6 +4,7 @@
 <head>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
   <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
+  <video src="video.mov"></video>
 </head>
 
 
@@ -13,9 +14,9 @@
       <div>
         <h1 class="about-titulo "> JOVIGAM TEAM </h1>
       </div>
-      <div class="about-prueba">
-        <div id="div1" class="div-perfil" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <img id="foto1"  type="button" data-bs-toggle="modal" data-bs-target="#exampleModal" src="img/xavi-serio.jpg" class="about-imgL" draggable="true" ondragstart="drag(event)" id="drag1"></img>
+      <div id="about" class="about-prueba">
+        <div id="div1" class="div-perfil">
+          <img id="foto1" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"  class="about-imgL" ></img><!--src="img/xavi-serio.jpg"-->
           <audio>
             <source src="img/jingel.mp3">
           </audio>
@@ -24,8 +25,8 @@
             <h1 id="text1" class="about-text2-imgL">Programador d'elite</h1>
           </div>
         </div>
-        <div class="div-perfil" id="div2" ondrop="drop(event)" ondragover="allowDrop(event)">
-          <img id="foto2"  draggable="true" data-bs-toggle="modal" data-bs-target="#exampleModal2" ondragstart="drag(event)" id="drag2" class="about-imgR" src="img/joel-serio.jpg"></img>
+        <div class="div-perfil" id="div2">
+          <img id="foto2" type="button" data-bs-toggle="modal" data-bs-target="#exampleModal2" class="about-imgR"></img><!--src="img/joel-serio.jpg"-->
           <audio>
             <source src="img/cancion.mp3">
           </audio>
@@ -53,7 +54,7 @@
         <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <video width="100%" height="100%" autoplay muted>
+              <video width="100%" height="100%" autoplay muted controls >
                 <source src="img/Presentacion.mp4" type="video/mp4">
               </video>
             </div>
@@ -63,13 +64,11 @@
               </video>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
-            data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -91,7 +90,7 @@
         <div id="carouselExampleControls2" class="carousel slide" data-bs-ride="carousel">
           <div class="carousel-inner">
             <div class="carousel-item active">
-              <video width="100%" height="100%" autoplay muted>
+              <video width="100%" height="100%" autoplay muted controls>
                 <source src="img/messi.mp4" type="video/mp4">
               </video>
             </div>
@@ -101,13 +100,11 @@
               </video>
             </div>
           </div>
-          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2"
-            data-bs-slide="prev">
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="prev">
             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Previous</span>
           </button>
-          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2"
-            data-bs-slide="next">
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls2" data-bs-slide="next">
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
@@ -118,8 +115,9 @@
 </div>
 
 
-
-<script type="text/javascript">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/dragula/3.7.3/dragula.min.js"></script>
+<script>
+  dragula([document.getElementById("about")]);
   let imgL = document.getElementById("foto1");
   let imgR = document.getElementById("foto2");
   var audio = document.getElementsByTagName("audio")[0];
@@ -134,7 +132,7 @@
   const max = videos.length
   console.log("🎬 Total videos: " + max)
 
-  const playVideos = function () {
+  const playVideos = function() {
     // Pause all videos
     for (v = 0; v < max; v++) {
       videos[v].pause();
@@ -144,61 +142,43 @@
     videos[cur].play()
   }
 
-  prevBtn.addEvent  Listener("click", function () {
+  prevBtn.addEventListener("click", function() {
     cur = (cur - 1 >= 0) ? cur - 1 : max
     playVideos()
   })
 
-  nextBtn.addEventListener("click", function () {
-    cur = (cur + 1 < max) ? c  ur + 1 : 0
+  nextBtn.addEventListener("click", function() {
+    cur = (cur + 1 < max) ? cur + 1 : 0
     playVideos()
   })
 
 
 
-  //DRAG AND DROP
-  function allowDrop(ev) {
-    ev.preventDefault();
-  }
 
-  function drag(ev) {
-    ev.dataTransfer.setData("text", ev.target.id);
-  }
-
-  function drop(ev) {
-    ev.preventDefault();
-    var data = ev.dataTransfer.getData("text");
-    ev.target.appendChild(document.getElementById(data));
-  }
-
-  imgL.addEventListener("mouseover", function (event) {
+  imgL.addEventListener("mouseover", function(event) {
     imgL.src = "img/xavi-feliz.jpg";
     audio.play();
     document.querySelector("#text1").innerHTML = "Culturista"
   });
 
-  imgL.addEventListener("mouseout", function (event) {
+  imgL.addEventListener("mouseout", function(event) {
     imgL.src = "img/xavi-serio.jpg";
     audio.pause();
     document.querySelector("#text1").innerHTML = "Programador d'elite"
   });
 
 
-  imgR.addEventListener("mouseover", function (event) {
-    imgR.src = "img/joel-feliz.jpg";
+  imgR.addEventListener("mouseover", function(event) {
+    //imgR.src = "img/joel-feliz.jpg";
     audio1.play();
-
-    document.querySelector("#text2").innerHTML="Mecanico"
+    document.querySelector("#text2").innerHTML = "Mecanico"
   });
 
-  imgR.addEventListener("mouseout", function (event) {
-    imgR.src = "img/joel-serio.jpg";
+  imgR.addEventListener("mouseout", function(event) {
+   // imgR.src = "img/joel-serio.jpg";
     audio1.pause();
+    document.querySelector("#text2").innerHTML = "Programador d'elite"
 
-    document.querySelector("#text2").innerHTML="Programador d'elite"
-  
   });
-
-
 </script>
 @endsection

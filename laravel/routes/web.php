@@ -66,6 +66,10 @@ Route::delete('/places/{place}/favorites', [App\Http\Controllers\PlaceController
 Route::post('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'addlikes'])->name('posts.likes');
 Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class, 'unlikes'])->name('posts.unlikes');
 
+Route::get('contacte', function(){
+    return view ('contacte');
+
+});
 
 Route::get('about', function(){
     return view ('about');
