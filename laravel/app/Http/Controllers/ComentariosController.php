@@ -24,9 +24,11 @@ class ComentariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create(Post $post)
     {
-        return view("comentarios.create");
+        return view("comentarios.create",[
+            "post"=>$post,
+        ]);
     }
     /**
      * Store a newly created resource in storage.
@@ -34,7 +36,7 @@ class ComentariosController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Post $post)
     {
         // Validar dades del formulari
         $validatedData = $request->validate([
@@ -43,6 +45,7 @@ class ComentariosController extends Controller
         
         // Obtenir dades del formulari
         $body = $request->get('body');
+        
         $upload = $request->file('upload');
 
         // Desar fitxer al disc i inserir dades a BD
@@ -54,16 +57,15 @@ class ComentariosController extends Controller
             Log::debug("Saving post at DB...");
             $comentarios = Comentarios::create([
                 'body'      => $body,
-                'file_id'   => $file->id,
                 'author_id' => auth()->user()->id,
             ]);
             Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
-            return redirect()->route('comentarios.show', $comentarios)
+            return redirect()->route('posts.comentarios.show',$post, $comentarios)
                 ->with('success', __('Coment successfully saved'));
         } else {
             // Patró PRG amb missatge d'error
-            return redirect()->route("comentarios.create")
+            return redirect()->route("posts.comentarios.create")
                 ->with('error', __('ERROR Uploading file'));
         }
     }
@@ -75,9 +77,8 @@ class ComentariosController extends Controller
      */
     public function show(Comentarios $comentarios)
     {
-        return view("comentarios.show", [
+        return view("posts.comentarios.show", [
             'comentarios'   => $comentarios,
-            'author' => $comentarios->user,
         ]);
     }
         /**
@@ -88,10 +89,7 @@ class ComentariosController extends Controller
      */
     public function edit(Comentarios $comentarios)
     {
-        return view("comentarios.edit", [
-            'comentarios'   => $comentarios,
-            'author' => $comentarios->user,
-        ]);
+        //
     }
         /**
      * Update the specified resource in storage.
@@ -102,35 +100,12 @@ class ComentariosController extends Controller
      */
     public function update(Request $request, Comentarios $comentarios)
     {
-        // Validar dades del formulari
-        $validatedData = $request->validate([
-            'body'      => 'required',
-        ]);
-
-        // Obtenir dades del formulari
-        $body      = $request->get('body');
-        $upload    = $request->file('upload');
-
-        // Desar fitxer (opcional)
-        if (is_null($upload) || $comentarios->file->diskSave($upload)) {
-            // Actualitzar dades a BD
-            Log::debug("Updating DB...");
-            $comentarios->body      = $body;
-            $comentarios->save();
-            Log::debug("DB storage OK");
-            // Patró PRG amb missatge d'èxit
-            return redirect()->route('comentarios.show', $comentarios)
-                ->with('success', __('Coments successfully saved'));
-        } else {
-            // Patró PRG amb missatge d'error
-            return redirect()->route("comentarios.edit")
-                ->with('error', __('ERROR Uploading file'));
-        }
+        //
     }
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Comentarios  $post
+     * @param  int $id
      * @return \Illuminate\Http\Response
      */
     public function destroy(Comentarios $comentarios)
@@ -140,7 +115,7 @@ class ComentariosController extends Controller
         // Eliminar fitxer associat del disc i BD
         $comentarios->file->diskDelete();
         // Patró PRG amb missatge d'èxit
-        return redirect()->route("comentarios.index")
+        return redirect()->route("posts.comentarios.index")
             ->with('success', __('Coments successfully deleted'));
     }
 }

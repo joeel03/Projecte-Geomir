@@ -73,5 +73,4 @@ Route::get('contacte', function(){
 
 Route::get('about', function(){
     return view ('about');
-
 });

@@ -17,11 +17,6 @@
                 <form method="post" class="separar " action="{{ route('comentarios.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
-                        <label for="name">{{ __('Name') }}</label>
-                        <input type="text" id="name" name="name" class="form-control" />
-                    </div>
-                    <div class="form-group">
-                        <label for="body">{{ __('fields.body') }}</label>
                         <textarea id="body" name="body" class="form-control"></textarea>
                     </div>
                     <button type="submit" class="btn btn-primary">{{ __('Create') }}</button>
