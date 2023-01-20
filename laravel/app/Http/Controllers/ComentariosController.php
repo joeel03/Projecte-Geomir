@@ -40,28 +40,24 @@ class ComentariosController extends Controller
     {
         // Validar dades del formulari
         $validatedData = $request->validate([
-            'body'      => 'required'
+            'body'      => 'required',
         ]);
         
         // Obtenir dades del formulari
         $body = $request->get('body');
+        $post_id = $post->id;
         
-        $upload = $request->file('upload');
-
-        // Desar fitxer al disc i inserir dades a BD
-        $file = new File();
-        $fileOk = $file->diskSave($upload);
-
-        if ($fileOk) {
+        if ($body) {
             // Desar dades a BD
             Log::debug("Saving post at DB...");
             $comentarios = Comentarios::create([
                 'body'      => $body,
+                'post_id' => $post_id,
                 'author_id' => auth()->user()->id,
             ]);
             Log::debug("DB storage OK");
             // Patró PRG amb missatge d'èxit
-            return redirect()->route('posts.comentarios.show',$post, $comentarios)
+            return redirect()->route('posts.comentarios.show',[$post, $comentarios])
                 ->with('success', __('Coment successfully saved'));
         } else {
             // Patró PRG amb missatge d'error
@@ -72,14 +68,14 @@ class ComentariosController extends Controller
         /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Comentarios  $comentarios
+     * @param  \App\Models\Comentarios  $comentario
+     * @param  \App\Models\Post  $post
+
      * @return \Illuminate\Http\Response
      */
-    public function show(Comentarios $comentarios)
+    public function show(Post $post, Comentarios $comentario )
     {
-        return view("posts.comentarios.show", [
-            'comentarios'   => $comentarios,
-        ]);
+        return view("comentarios.show", ['post'=>$post,'comentario'=> $comentario]);
     }
         /**
      * Show the form for editing the specified resource.

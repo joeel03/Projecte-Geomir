@@ -13,6 +13,7 @@ class Comentarios extends Model
     use HasFactory;
     protected $fillable = [
         'body',
+        'post_id',
         'author_id'
     ];
 

@@ -1,7 +1,7 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-{{ __('Comentarios') . " " . $comentarios->id }}
+{{ __('Comentario') . " " . $comentario->id }}
 @endsection
 
 @section('box-content')
@@ -12,23 +12,19 @@
                 <table class="table">
                     <tr>
                         <td><strong>ID<strong></td>
-                        <td>{{ $comentarios->id }}</td>
+                        <td>{{ $comentario->id }}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{ __('fields.body') }}</strong></td>
-                        <td>{{ $comentarios->body }}</td>
-                    </tr>
-                    <tr>
-                        <td><strong>{{ __('fields.Author') }}</strong></td>
-                        <td>{{ $author->name }}</td>
+                        <td><strong>{{ __('Comentarios') }}</strong></td>
+                        <td>{{ $comentario->body }}</td>
                     </tr>
                     <tr>
                         <td><strong>{{ __('fields.created_at') }}</strong></td>
-                        <td>{{ $comentarios->created_at }}</td>
+                        <td>{{ $comentario->created_at }}</td>
                     </tr>
                     <tr>
                         <td><strong>{{ __('fields.Updated') }}</strong></td>
-                        <td>{{ $comentarios->updated_at }}</td>
+                        <td>{{ $comentario->updated_at }}</td>
                     </tr>
                     </tbody>
                 </table>
@@ -36,12 +32,12 @@
     <!-- Buttons -->
     <div class="container" style="margin-bottom:20px">
 
-        <form id="form" method="POST" action="{{ route('posts.comentarios.destroy', $comentarios) }}" style="display: inline-block;">
+        <form id="form" method="POST" action="{{ route('posts.comentarios.destroy',[$post, $comentario]) }}" style="display: inline-block;">
             @csrf
             @method("DELETE")
             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
         </form>
-        <a class="btn" href="{{ route('posts.comentarios.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
+        <a class="btn" href="{{ route('posts.comentarios.index',$post) }}" role="button">⬅️ {{ __('Back to list') }}</a>
     </div>
 
     <!-- Modal -->
@@ -53,7 +49,7 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <p>{{ __('You are gonna delete coment ') . $comentarios->id }}</p>
+                    <p>{{ __('You are gonna delete coment ') . $comentario->id }}</p>
                     <p>{{ __('This action cannot be undone!') }}</p>
                 </div>
 
@@ -68,7 +64,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>{{ __('You are gonna delete comentarios ') . $comentarios->id }}</p>
+                                <p>{{ __('You are gonna delete comentario ') . $comentario->id }}</p>
                                 <p>{{ __('This action cannot be undone!') }}</p>
                             </div>
                             <div class="modal-footer">

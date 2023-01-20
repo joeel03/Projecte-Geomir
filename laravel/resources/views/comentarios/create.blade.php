@@ -1,7 +1,7 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-{{ __('Add coment') }}
+{{ __('Añadir Comentario') }}
 @endsection
 
 @section('box-content')
@@ -14,7 +14,7 @@
                 <h1 class="text-center h2 fw-bold">Añadir Comentario</h1>
 
                 </div >
-                <form method="post" class="separar " action="{{ route('comentarios.store') }}" enctype="multipart/form-data">
+                <form method="post" class="separar " action="{{ route('posts.comentarios.store',$post) }}" enctype="multipart/form-data">
                     @csrf
                     <div class="form-group">
                         <textarea id="body" name="body" class="form-control"></textarea>
