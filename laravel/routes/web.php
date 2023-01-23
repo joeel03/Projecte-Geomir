@@ -51,11 +51,13 @@ Route::resource('likes', LikesController::class)
 Route::resource('places', PlaceController::class)
 ->middleware(['auth', 'permission:places']);
 
-Route::resource('resenas', ResenasController::class)
+Route::resource('places.resenas', ResenasController::class)
 ->middleware(['auth']);
 
 Route::resource('posts.comentarios', ComentariosController::class)
 ->middleware(['auth']);
+//Route::post('store', 'ResenasController@store')->name("resenas.store");
+
 
 Route::get('/language/{locale}', [App\Http\Controllers\LanguageController::class, 'language']);
 

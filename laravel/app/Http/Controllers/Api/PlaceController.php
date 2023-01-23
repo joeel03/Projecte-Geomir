@@ -178,6 +178,8 @@ class PlaceController extends Controller
 
         if ($place) {
             $place->delete();
+            $file=File::find($place->file_id);
+            $file->diskDelete();
             return response()->json([
                 'success' => true,
                 'data'    => $place
