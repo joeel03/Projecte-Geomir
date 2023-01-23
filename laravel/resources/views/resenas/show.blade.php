@@ -1,7 +1,7 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-{{ __('Place') . " " . $place->id }}
+{{ __('resena') . " " . $resena->id }}
 @endsection
 
 <head>
@@ -14,74 +14,72 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview" width="300px" />
+
+                    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview"
+                        width="300px" />
+
                     <table class="table">
                         <tr>
                             <td><strong>ID<strong></td>
-                            <td>{{ $place->id }}</td>
+                            <td>{{ $resena->id }}</td>
                         </tr>
                         <tr>
-                            <td><strong>{{__('fields.Name')}}</strong></td>
-                            <td>{{ $place->name }}</td>
+                            <td><strong>{{__('fields.Title')}}</strong></td>
+                            <td>{{ $resena->title }}</td>
                         </tr>
                         <tr>
                             <td><strong>{{ __('fields.Description')}}</strong></td>
-                            <td>{{ $place->description }}</td>
+                            <td>{{ $resena->description }}</td>
                         </tr>
                         <tr>
-                            <td><strong>Lat</strong></td>
-                            <td>{{ $place->latitude }}</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Lng</strong></td>
-                            <td>{{ $place->longitude }}</td>
+                            <td><strong>{{ __('fields.Stars')}}</strong></td>
+
+                            <td><?php 
+                            for($i=0;$i<$estrellas;$i++){
+                                echo "&#11088";
+                            }?>   
+                               
+                            </td>
+                            <!-- <td>{{ $resena->stars }}</td> -->
                         </tr>
                         <tr>
                             <td><strong>{{__('fields.Author')}}</strong></td>
                             <td>{{ $author->name }}</td>
                         </tr>
                         <tr>
+                            <td><strong>{{__('Place')}}</strong></td>
+                            <td>{{ $place->name }}</td>
+                        </tr>
+                        <tr>
                             <td><strong>{{__('fields.Created')}}</strong></td>
-                            <td>{{ $place->created_at }}</td>
+                            <td>{{ $resena->created_at }}</td>
                         </tr>
                         <tr>
                             <td><strong>{{__('fields.Updated')}}</strong></td>
-                            <td>{{ $place->updated_at }}</td>
+                            <td>{{ $resena->updated_at }}</td>
                         </tr>
                         </tbody>
                     </table>
 
-                    <!-- Buttons -->
+                    <!-- Buttons -->        
+                    @if($resena->author_id==$id)
+                   
                     <div class="container" style="margin-bottom:20px">
-                        <a class="btn btn-warning" href="{{ route('places.edit', $place) }}" role="button">📝 {{
-                            __('Edit') }}</a>
-                        <form id="form" method="POST" action="{{ route('places.destroy', $place) }}"
+
+                        <form id="form" method="POST" action="{{ route('places.resenas.destroy',[$place,$resena]) }}"
                             style="display: inline-block;">
                             @csrf
                             @method("DELETE")
                             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
                         </form>
-                        <a class="btn" href="{{ route('places.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
-
-                        @if($place->comprovarfavorite())
-                        <form method="post" style="display: inline-block;"
-                            action="{{ route('places.favorite',$place) }}" enctype="multipart/form-data">
-                            @csrf
-                            <button id="quitar" type="submit"><i class="fa-regular fa-star"></i></button>
-                        </form>
-                        @else
-                        <form method="post" style="display: inline-block;"
-                            action="{{ route('places.unfavorite',$place) }}" enctype="multipart/form-data">
-                            @csrf
-                            @method('DELETE')
-                            <button class="btn btn-primary"><i class="fa-solid fa-star"></i></button>
-                        </form>
                         @endif
-                        <a class="btn btn-primary" href="{{ route('places.resenas.index', $place) }}" role="button">Reseñas</a>
 
+                        <a class="btn" href="{{ route('places.resenas.index',$place) }}" role="button">⬅️
+                            {{ __('Back to list') }}</a>
 
                     </div>
+                   
 
                     <!-- Modal -->
                     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -94,7 +92,7 @@
                                         aria-label="Close"></button>
                                 </div>
                                 <div class="modal-body">
-                                    <p>{{ __('You are gonna delete post ') . $place->id }}</p>
+                                    <p>{{ __('You are gonna delete post ') . $resena->id }}</p>
                                     <p>{{ __('This action cannot be undone!') }}</p>
                                 </div>
                                 <div class="modal-footer">
@@ -108,7 +106,7 @@
                     </div>
 
                     @env(['local','development'])
-                        @vite('resources/js/delete-modal.js')
+                    @vite('resources/js/delete-modal.js')
                     @endenv
                 </div>
             </div>

@@ -21,7 +21,7 @@
                             <div class="bajar ">
                                 <div  class=" izq lista-contactos "> 
                                 <div>
-                                    <a href="{{ route('posts.comentarios.show',[$post, $coment]) }}" class="boton-black" style="font-size:25px;"type="submit"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                                    <a href="{{ route('posts.comentarios.show',[$post, $coment]) }}" class="boton-black" style="font-size:15px;"type="submit">Accede a tu comentario</a>
                                 </div>
                                 <div> {{ $coment->created_at }} </div>
                                 </div>

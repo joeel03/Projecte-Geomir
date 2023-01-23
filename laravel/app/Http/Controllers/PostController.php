@@ -165,7 +165,7 @@ class PostController extends Controller
         // Eliminar fitxer associat del disc i BD
         $post->file->diskDelete();
         // Patró PRG amb missatge d'èxit
-        return redirect()->route("posts.index")
+        return redirect()->route("home")
             ->with('success', __('Post successfully deleted'));
     }
     public function addlikes (Post $post)

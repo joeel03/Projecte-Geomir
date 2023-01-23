@@ -25,6 +25,8 @@ return [
    'Updated'=>'Actualitzado',
    "Created"=>"Creado",   
    'Description'=>'Descripción',
-
-
+   "Title"=>"Titulo",
+   "title"=>"titulo", 
+   "Stars" =>"Estrellas",
+   "stars" =>"estrellas",
 ];

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Resenas extends Model
 {
@@ -11,8 +12,12 @@ class Resenas extends Model
     use HasFactory;
     
     protected $fillable = [
-        'id',
-        'name',
+        'title',
+        'description',
+        'file_id',
+        'stars',
+        'author_id',
+        'place_id',
         
     ];
 
@@ -29,5 +34,5 @@ class Resenas extends Model
     {
         return $this->belongsTo(User::class);
     }
- 
+    
 }

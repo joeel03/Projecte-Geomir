@@ -24,4 +24,8 @@ return [
     'Updated'=>'Updated',
     'Created'=>'Created',
     'Description'=>'Description',
+    "Title"=>"Title",
+    "title"=>"title", 
+    "Stars" =>"Stars",
+    "stars" =>"stars", 
 ];
