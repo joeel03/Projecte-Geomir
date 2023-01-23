@@ -32,7 +32,8 @@
                         <button class="btn btn-primary"><i class="fa-solid fa-heart"></i></button>                           
                     </form>
                 @endif
-                <a href="{{ route('posts.comentarios.create', $post) }}" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit">COMENTARIOS </a>
+                <a href="{{ route('posts.comentarios.index', $post) }}" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"> Comentarios </a>
+                <a href="{{ route('posts.comentarios.create', $post) }}" class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit">Añade Comentario </a>
                 <a class="btn btn-primary my-2 my-sm-0" style="font-size:25px;"type="submit"><i class="fa-solid fa-square-share-nodes"></i> </a>
                 </div>
             </div>

@@ -14,10 +14,11 @@ class ComentariosController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Post $post) 
     {
         return view("comentarios.index",[
-            "comentarios" => Comentarios::all()]);
+            "comentarios" => Comentarios::all(),
+            "post" => $post]);
     }
     /**
      * Show the form for creating a new resource.

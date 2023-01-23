@@ -1,7 +1,7 @@
 @extends('layouts.box-app')
 
 @section('box-title')
-{{ __('Comentarios') . " " . $coments->id }}
+{{ __('Comentarios') . " " . $post->id }}
 @endsection
 
 @section('box-content')
@@ -12,7 +12,7 @@
                 <table class="table">
                     <tr>
                         <td><strong>{{ __('fields.body') }}</strong></td>
-                        <td>{{ $coments->body }}</td>
+                        <td>{{ $post->body }}</td>
                     </tr>
                     <tr>
                         <td><strong>{{ __('fields.Author') }}</strong></td>
@@ -20,19 +20,19 @@
                     </tr>
                     <tr>
                         <td><strong>{{ __('fields.created_at') }}</strong></td>
-                        <td>{{ $coments->created_at }}</td>
+                        <td>{{ $post->created_at }}</td>
                     </tr>
                     <tr>
                         <td><strong>{{ __('fields.Updated') }}</strong></td>
-                        <td>{{ $coments->updated_at }}</td>
+                        <td>{{ $post->updated_at }}</td>
                     </tr>
                     </tbody>
                 </table>
 
     <!-- Buttons -->
     <div class="container" style="margin-bottom:20px">
-        <a class="btn btn-warning" href="{{ route('comentarios.edit', $coments) }}" role="button">📝 {{ __('Edit') }}</a>
-        <form id="form" method="POST" action="{{ route('comentarios.destroy', $coments) }}" style="display: inline-block;">
+        <a class="btn btn-warning" href="{{ route('comentarios.edit', $post) }}" role="button">📝 {{ __('Edit') }}</a>
+        <form id="form" method="POST" action="{{ route('comentarios.destroy', $post) }}" style="display: inline-block;">
             @csrf
             @method("DELETE")
             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
@@ -64,7 +64,7 @@
                                     aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
-                                <p>{{ __('You are gonna delete coment ') . $coments->id }}</p>
+                                <p>{{ __('You are gonna delete coment ') . $post->id }}</p>
                                 <p>{{ __('This action cannot be undone!') }}</p>
                             </div>
                             <div class="modal-footer">

@@ -11,11 +11,11 @@
             <div class="card">
                 <table class="table">
                     <tr>
-                        <td><strong>ID<strong></td>
-                        <td>{{ $comentario->id }}</td>
+                        <td><strong>{{ __('fields.Author') }}</strong></td>
+                        <td>{{ $comentario->user->name}}</td>
                     </tr>
                     <tr>
-                        <td><strong>{{ __('Comentarios') }}</strong></td>
+                        <td><strong>{{ __('Comentario') }}</strong></td>
                         <td>{{ $comentario->body }}</td>
                     </tr>
                     <tr>
@@ -68,7 +68,7 @@
                                 <p>{{ __('This action cannot be undone!') }}</p>
                             </div>
                             <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-secondary black"  data-bs-dismiss="modal">Close</button>
                                 <button id="confirm" type="button" class="btn btn-primary">{{ __('Confirm') }}</button>
                             </div>
                         </div>

@@ -12,26 +12,24 @@
 <div class="container">
    <div class="row justify-content-center">
        <div class="col-md-8">
-           <div class="card">
                <div class="card-header ">
                <h1 class=" text-center fw-bold ">Comentarios</h1>
                     @foreach ($comentarios as $coment)
-                    <div class="border separar-left ">
-                            <div class="border col-md-10  h3"><span class="text-decoration-underline fw-bold ">
+                            <div class="border col-md-100 h3"><span class="text-decoration-underline fw-bold ">
                             <div >{{ $coment->user->name }}</div>
                             </span>{{ $coment->body }}<div>
                             <div class="bajar ">
                                 <div  class=" izq lista-contactos "> 
-                                    <div >{{ $coment->created_at }}</div>
+                                <div>
+                                    <a href="{{ route('posts.comentarios.show',[$post, $coment]) }}" class="boton-black" style="font-size:25px;"type="submit"><i class="fa-solid fa-ellipsis-vertical"></i></a>
+                                </div>
+                                <div> {{ $coment->created_at }} </div>
                                 </div>
                             </div>    
-                    </div>
                     @endforeach
-                    <div>
-                    </div>
-                </div>
             </div>
         </div>
     </div>
 </div>
+
 @endsection
