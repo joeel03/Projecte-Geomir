@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Resenas;
 use App\Models\File;
+use App\Models\Place;
+use Illuminate\Support\Facades\Log;
 
 
 class ResenasController extends Controller
@@ -15,14 +17,24 @@ class ResenasController extends Controller
         $this->middleware('auth:sanctum')->only('store');
         $this->middleware('auth:sanctum')->only('destroy');
     }
+    /**
+     * Display a listing of the resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
     public function index()
     {
         return response()->json([
             'success' => true,
-            'data' => Resenas::all()
+            'data' => Resenas::all(),
         ], 200);
     }
-
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function store(Request $request)
     {
         // Validar dades del formulari
@@ -31,6 +43,7 @@ class ResenasController extends Controller
             'description' => 'required',
             'upload' => 'required|mimes:gif,jpeg,jpg,png,mp4|max:2048',
             'stars' => 'required',
+            'place_id' => 'required',
         ]);
 
         // Obtenir dades del formulari
@@ -38,7 +51,7 @@ class ResenasController extends Controller
         $description = $request->get('description');
         $upload = $request->file('upload');
         $stars = $request->get('stars');
-
+        $place_id =$request->get('place_id');
         // Desar fitxer al disc i inserir dades a BD
         $file = new File();
         $fileOk = $file->diskSave($upload);
@@ -51,6 +64,7 @@ class ResenasController extends Controller
                 'file_id' => $file->id,
                 'stars' => $stars,
                 'author_id' => auth()->user()->id,
+                'place_id'=>$place_id,
             ]);
             // Patró PRG amb missatge d'èxit
             return response()->json([
@@ -64,9 +78,17 @@ class ResenasController extends Controller
             ], 421);
         }
     }
+     /**
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function show($id)
     {
         $resena = Resenas::find($id);
+        Log::debug($id);
+        Log::debug($resena);
         if ($resena) {
             return response()->json([
                 'success' => true,
@@ -80,6 +102,12 @@ class ResenasController extends Controller
         }
 
     }
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
     public function destroy($id)
     {
         $resena = Resenas::find($id);

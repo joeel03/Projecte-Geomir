@@ -9,7 +9,7 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview" />
+                <img class="img-posts-show" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview" />
                 <form method="POST" action="{{ route('posts.update', $post) }}" enctype="multipart/form-data">
                     @csrf
                     @method("PUT")

@@ -17,6 +17,7 @@ class Resenas extends Model
         'file_id',
         'stars',
         'author_id',
+        'place_id',
         
     ];
 
@@ -33,5 +34,5 @@ class Resenas extends Model
     {
         return $this->belongsTo(User::class);
     }
- 
+    
 }

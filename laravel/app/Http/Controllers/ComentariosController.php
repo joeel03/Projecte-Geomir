@@ -105,14 +105,18 @@ class ComentariosController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Comentarios $comentarios)
+    public function destroy(Post $post, Comentarios $comentario )
     {
-        // Eliminar post de BD
-        $comentarios->delete();
-        // Eliminar fitxer associat del disc i BD
-        $comentarios->file->diskDelete();
-        // Patró PRG amb missatge d'èxit
-        return redirect()->route("posts.comentarios.index")
-            ->with('success', __('Coments successfully deleted'));
+        if($comentario->author_id==auth()->id()){
+            // Eliminar place de BD
+            $comentario->delete();
+            // Eliminar fitxer associat del disc i BD
+            // Patró PRG amb missatge d'èxit
+            return redirect()->route("posts.comentarios.index",$post)
+                ->with('success', 'Coment successfully deleted');
+        }else{
+            return redirect()->route("posts.comentarios.show",[$post,$comentario])
+            ->with('error', __('No eres el propietario del comentario'));
+        }    
     }
 }

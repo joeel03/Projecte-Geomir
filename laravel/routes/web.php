@@ -70,7 +70,6 @@ Route::delete('/posts/{post}/likes',[App\Http\Controllers\PostController::class,
 
 Route::get('contacte', function(){
     return view ('contacte');
-
 });
 
 Route::get('about', function(){

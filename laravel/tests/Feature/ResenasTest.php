@@ -8,6 +8,10 @@ use Tests\TestCase;
 use Illuminate\Http\UploadedFile;
 use Laravel\Sanctum\Sanctum;
 use App\Models\User;
+use App\Models\Place;
+use Illuminate\Support\Facades\Log;
+
+
 
 
 class ResenasTest extends TestCase
@@ -21,6 +25,8 @@ class ResenasTest extends TestCase
     public static User $testUser;
     public static array $validData = [];
     public static array $invalidData = [];
+    public static int $place_id=1;
+
 
     public static function setUpBeforeClass(): void
     {
@@ -33,6 +39,8 @@ class ResenasTest extends TestCase
             "password" => "12345678"
         ]);
         // Create fake file
+        
+        
         $name = "avatar.png";
         $size = 500; /*KB*/
         $upload = UploadedFile::fake()->image($name)->size($size);
@@ -42,6 +50,8 @@ class ResenasTest extends TestCase
             "description" => "descripcion de prueba",
             "upload" => $upload,
             "stars" => 5,
+            "author_id"=>1,
+            "place_id"=>self::$place_id,
         ];
         // TODO Omplir amb dades incorrectes
         self::$invalidData = [
@@ -49,7 +59,10 @@ class ResenasTest extends TestCase
             "description" => "descripcion de prueba",
             "upload" => $upload,
             "stars" => 5,
+            "author_id"=>1,
+            "place_id"=>self::$place_id,
         ];
+       
     }
 
     public function test_myresource_first()
@@ -64,14 +77,15 @@ class ResenasTest extends TestCase
 
     public function test_resenas_list()
     {
-        $response = $this->get('/api/places/{place}/resenas');
+        //Log::debug();
+        $response = $this->get("/api/places/". self::$place_id ."/resenas");
         $response->assertStatus(200);
     }
     public function test_resenas_create()
     {
         Sanctum::actingAs(self::$testUser);
         // Upload fake file using API web service
-        $response = $this->postJson("/api/places/{place}/resenas", self::$validData);
+        $response = $this->postJson("/api/places/". self::$place_id ."/resenas",self::$validData);
         // Check OK response
         $this->_test_ok($response, 201);
         // Check validation errors
@@ -90,28 +104,28 @@ class ResenasTest extends TestCase
     {
         Sanctum::actingAs(self::$testUser);
         // Upload fake file using API web service
-        $response = $this->postJson("/api/places/{place}/resenas", self::$invalidData);
+        $response = $this->postJson("/api/places/". self::$place_id ."/resenas", self::$invalidData);
         // Check ERROR response
         $this->_test_error($response);
     }
     /**
      * @depends test_resenas_create
      */
-    public function test_resenas_read(object $resenas)
+    public function test_resenas_read(object $resena)
     {
         // Read one file
-        $response = $this->getJson("/api/places/{place}/resenas/{$resenas->id}");
+        $response = $this->getJson("/api/places/". self::$place_id ."/resenas/{$resena->id}");
         // Check OK response
         $this->_test_ok($response);
         $response->assertJsonPath(
-            "data.name",
-            fn($name) => !empty($name)
+            "data.title",
+            fn($title) => !empty($title)
         );
     }
     public function test_resenas_read_notfound()
     {
         $id = "not_exists";
-        $response = $this->getJson("/api/places/{place}/resenas/{$id}");
+        $response = $this->getJson("/api/places/". self::$place_id ."/resenas/{$id}");
         $this->_test_notfound($response);
     }
    
@@ -122,7 +136,7 @@ class ResenasTest extends TestCase
     {
         Sanctum::actingAs(self::$testUser);
         // Delete one file using API web service
-        $response = $this->deleteJson("/api/places/{place}/resenas/{$resena->id}");
+        $response = $this->deleteJson("/api/places/". self::$place_id ."/resenas/{$resena->id}");
         // Check OK response
         $this->_test_ok($response);
     }
@@ -131,7 +145,7 @@ class ResenasTest extends TestCase
     {
         Sanctum::actingAs(self::$testUser);
         $id = "not_exists";
-        $response = $this->deleteJson("/api/places/{place}/resenas/{$id}");
+        $response = $this->deleteJson("/api/places/". self::$place_id ."/resenas/{$id}");
         $this->_test_notfound($response);
     }
 

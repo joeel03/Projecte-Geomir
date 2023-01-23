@@ -69,7 +69,7 @@
         <div class="row caja-text">
             <a class="border minicajas col-md-4 a " href="">Marcar com a favorit</a>
             <a class="border minicajas col-md-4 a" href="">Desar categoria</a>
-            <a class="border minicajas col-md-4 a" href="{{ url('/resenas') }}">Reseñas</a>
+             <a class="border minicajas col-md-4 a" href="">Reseñas</a><!--No puedo redirijir a reseñas porque le tengo q pasar la id de un place especifico -->
         </div>
         <div>
         </div>

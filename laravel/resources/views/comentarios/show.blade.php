@@ -40,18 +40,6 @@
         <a class="btn" href="{{ route('posts.comentarios.index',$post) }}" role="button">⬅️ {{ __('Back to list') }}</a>
     </div>
 
-    <!-- Modal -->
-    <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">{{ __('Are you sure?') }}</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <p>{{ __('You are gonna delete coment ') . $comentario->id }}</p>
-                    <p>{{ __('This action cannot be undone!') }}</p>
-                </div>
 
                 <!-- Modal -->
                 <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -66,10 +54,12 @@
                             <div class="modal-body">
                                 <p>{{ __('You are gonna delete comentario ') . $comentario->id }}</p>
                                 <p>{{ __('This action cannot be undone!') }}</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary black"  data-bs-dismiss="modal">Close</button>
-                                <button id="confirm" type="button" class="btn btn-primary">{{ __('Confirm') }}</button>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button id="confirm" type="button" class="btn btn-primary">{{ __('Confirm')
+                                        }}</button>
+                                </div>
                             </div>
                         </div>
                     </div>

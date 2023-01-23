@@ -14,7 +14,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview" />
+                    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview" width="300px" />
                     <table class="table">
                         <tr>
                             <td><strong>ID<strong></td>
@@ -78,6 +78,7 @@
                             <button class="btn btn-primary"><i class="fa-solid fa-star"></i></button>
                         </form>
                         @endif
+                        <a class="btn btn-primary" href="{{ route('places.resenas.index', $place) }}" role="button">Reseñas</a>
 
 
                     </div>

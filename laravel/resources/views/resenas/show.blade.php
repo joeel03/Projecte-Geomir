@@ -14,7 +14,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview" />
+
+                    <img class="img-fluid" src="{{ asset('storage/'.$file->filepath) }}" title="Image preview"
+                        width="300px" />
+
                     <table class="table">
                         <tr>
                             <td><strong>ID<strong></td>
@@ -30,11 +33,22 @@
                         </tr>
                         <tr>
                             <td><strong>{{ __('fields.Stars')}}</strong></td>
-                            <td>{{ $resena->stars }}</td>
+
+                            <td><?php 
+                            for($i=0;$i<$estrellas;$i++){
+                                echo "&#11088";
+                            }?>   
+                               
+                            </td>
+                            <!-- <td>{{ $resena->stars }}</td> -->
                         </tr>
                         <tr>
                             <td><strong>{{__('fields.Author')}}</strong></td>
                             <td>{{ $author->name }}</td>
+                        </tr>
+                        <tr>
+                            <td><strong>{{__('Place')}}</strong></td>
+                            <td>{{ $place->name }}</td>
                         </tr>
                         <tr>
                             <td><strong>{{__('fields.Created')}}</strong></td>
@@ -47,19 +61,25 @@
                         </tbody>
                     </table>
 
-                    <!-- Buttons -->
+                    <!-- Buttons -->        
+                    @if($resena->author_id==$id)
+                   
                     <div class="container" style="margin-bottom:20px">
-                        
-                        <form id="form" method="POST" action="{{ route('places.resenas.destroy', $resena) }}"
+
+                        <form id="form" method="POST" action="{{ route('places.resenas.destroy',[$place,$resena]) }}"
                             style="display: inline-block;">
                             @csrf
                             @method("DELETE")
                             <button id="destroy" type="submit" class="btn btn-danger" data-bs-toggle="modal"
                                 data-bs-target="#confirmModal">🗑️ {{ __('Delete') }}</button>
                         </form>
-                        <a class="btn" href="{{ route('places.resenas.index') }}" role="button">⬅️ {{ __('Back to list') }}</a>
+                        @endif
+
+                        <a class="btn" href="{{ route('places.resenas.index',$place) }}" role="button">⬅️
+                            {{ __('Back to list') }}</a>
 
                     </div>
+                   
 
                     <!-- Modal -->
                     <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel"
@@ -86,7 +106,7 @@
                     </div>
 
                     @env(['local','development'])
-                        @vite('resources/js/delete-modal.js')
+                    @vite('resources/js/delete-modal.js')
                     @endenv
                 </div>
             </div>
