@@ -17,7 +17,7 @@ class ComentariosController extends Controller
     public function index(Post $post) 
     {
         return view("comentarios.index",[
-            "comentarios" => Comentarios::all(),
+            "comentarios" => Comentarios::where('post_id',$post->id)->get(),
             "post" => $post]);
     }
     /**

@@ -44,5 +44,5 @@ class Post extends Model
     $id_like = DB::select($select);
     return empty($id_like);
 }
-   
+
 }

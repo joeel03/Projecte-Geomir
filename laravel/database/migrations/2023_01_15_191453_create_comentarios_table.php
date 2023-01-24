@@ -16,11 +16,11 @@ return new class extends Migration
     {
         Schema::create('comentarios', function (Blueprint $table) {
             $table->id();
-            $table->foreign('post_id')->references('id')->on('posts');
             $table->unsignedBigInteger('post_id');
-            $table->string('body', 255); 
+            $table->foreign('post_id')->references('id')->on('posts');
+            $table->string('body', 255);
+            $table->unsignedBigInteger('author_id'); 
             $table->foreign('author_id')->references('id')->on('users');
-            $table->unsignedBigInteger('author_id');
             $table->timestamps();
         });
     }
