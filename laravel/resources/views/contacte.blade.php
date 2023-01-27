@@ -1,11 +1,16 @@
 @extends('layouts.box-app')
 @section('box-content')
 <head>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"
-     integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="
-     crossorigin=""/>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"/>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="crossorigin=""/>
+	<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
+		integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
+		crossorigin="">
+	</script>
 </head>
+<style>
+	#map { height: 180px; }
+</style>
 <header>
 	<section class="showcase">
 			<div class="video-container">
@@ -22,7 +27,6 @@
 	<h1 class="h1-contacte-b">Vols visitar-nos?</h1>
 	<h3 class="h3-contacte-b">Ubica'ns al mapa</h3>
 	<div id="map"></div>
-
 </body>
 <footer>
 <section id="about">
@@ -36,8 +40,4 @@
 		</section>
 </footer>
 
- <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
-     integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="crossorigin="">
-	 var map = L.map('map').setView([41.231314215544984, 1.7283327616209139], 18);
-</script>
 @endsection
