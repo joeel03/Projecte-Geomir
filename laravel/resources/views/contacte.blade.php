@@ -9,7 +9,8 @@
 	</script>
 </head>
 <style>
-	#map { height: 180px; }
+	#map { height: 275px;
+			width:190vh; }
 </style>
 <header>
 	<section class="showcase">
@@ -27,6 +28,35 @@
 	<h1 class="h1-contacte-b">Vols visitar-nos?</h1>
 	<h3 class="h3-contacte-b">Ubica'ns al mapa</h3>
 	<div id="map"></div>
+	<a href="/popup" target="_blank" onClick="window.open(this.href, this.target, 'width=300,height=400'); return false;">
+	<button onclick="getLocation()">BOTON</button>
+	<script>
+		function getLocation() {
+		if (navigator.geolocation) {
+			navigator.geolocation.getCurrentPosition(showPosition);
+		} else { 
+			x.innerHTML = "Geolocation is not supported by this browser.";
+		}
+		}
+
+		function showPosition(position) {
+		x.innerHTML = "Latitude: " + position.coords.latitude + 
+		"<br>Longitude: " + position.coords.longitude;
+		}
+
+		var map = L.map('map').setView([41.23114477320315, 1.7281181849031044], 18);
+		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+		maxZoom: 18,
+		attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+		}).addTo(map);
+		var marker = L.marker([41.23114477320315, 1.7281181849031044]).addTo(map);
+
+		var marker = L.marker([41.23114477320315, 1.7281181849031044]).addTo(map);
+		
+		var marker1 = L.marker([function showPosition(position) {
+		x.innerHTML = position.coords.latitude},x.innerHTML = position.coords.longitude]).addTo(map);
+
+	</script>
 </body>
 <footer>
 <section id="about">

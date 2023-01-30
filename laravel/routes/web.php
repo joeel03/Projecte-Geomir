@@ -72,6 +72,10 @@ Route::get('contacte', function(){
     return view ('contacte');
 });
 
+Route::get('popup', function(){
+    return view ('popup');
+});
+
 Route::get('about', function(){
     return view ('about');
 });
