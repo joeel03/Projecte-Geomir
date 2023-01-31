@@ -6,44 +6,36 @@
 	<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
 		integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
 		crossorigin="">
+		var listener = new window.keypress.Listener();
+		listener.simple_combo("shift s", function(){
+		console.log("You pressed shift and s");
+		});
 	</script>
+
 </head>
 <style>
 	#map { height: 275px;
-			width:190vh; }
+			width:190vh; }	
 </style>
 <header>
 	<section class="showcase">
-			<div class="video-container">
+			<div class="showcase-video">
 				<video src="https://traversymedia.com/downloads/video.mov" autoplay muted loop></video>
 			</div>
-			<div class="content">
-				<h1 class="h1-contacte-h">Contacta'ns!</h1>
-				<h3 class="h3-contacte-h">Envia el teu missatge</h3>
-				<a class="boto-contacte" href="#about" >Read More</a>
+			<div class="showcase-content">
+				<h1 class="showcase-h1">Contacta'ns!</h1>
+				<h3 class="showcase-h3">Envia el teu missatge</h3>
+				<a class="showcase-boto" href="#about" >Read More</a>
 			</div>
 	</section>
 </header>
+
+
 <body class="body-contacte">
-	<h1 class="h1-contacte-b">Vols visitar-nos?</h1>
-	<h3 class="h3-contacte-b">Ubica'ns al mapa</h3>
+	<h1 class="body-h1">Vols visitar-nos?</h1>
+	<a href="#" onClick="getLocation()"><h3 class="body-h3">Ubica'ns al mapa</h3></a>
 	<div id="map"></div>
-	<a href="/popup" target="_blank" onClick="window.open(this.href, this.target, 'width=300,height=400'); return false;">
-	<button onclick="getLocation()">BOTON</button>
 	<script>
-		function getLocation() {
-		if (navigator.geolocation) {
-			navigator.geolocation.getCurrentPosition(showPosition);
-		} else { 
-			x.innerHTML = "Geolocation is not supported by this browser.";
-		}
-		}
-
-		function showPosition(position) {
-		x.innerHTML = "Latitude: " + position.coords.latitude + 
-		"<br>Longitude: " + position.coords.longitude;
-		}
-
 		var map = L.map('map').setView([41.23114477320315, 1.7281181849031044], 18);
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 18,
@@ -51,11 +43,21 @@
 		}).addTo(map);
 		var marker = L.marker([41.23114477320315, 1.7281181849031044]).addTo(map);
 
-		var marker = L.marker([41.23114477320315, 1.7281181849031044]).addTo(map);
-		
-		var marker1 = L.marker([function showPosition(position) {
-		x.innerHTML = position.coords.latitude},x.innerHTML = position.coords.longitude]).addTo(map);
+		function getLocation(e) {
+			if (navigator.geolocation) {
+				navigator.geolocation.getCurrentPosition(showPosition);
+			} else { 
+				x.innerHTML = "Geolocation is not supported by this browser.";
+			}
+			e.preventDefault()
+			return false
+		}
 
+		function showPosition(position) {
+			var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
+			var circle = L.circle([position.coords.latitude, position.coords.longitude],{color:'blue', fillColor: '#0000FF', fillOpacity: 0.5, radius: 30}).addTo(map);
+		}
+		navigator.getLocation.getCurrentPosition(showPosition);
 	</script>
 </body>
 <footer>
@@ -66,6 +68,7 @@
 				<a href="https://facebook.com/traversymedia" target="_blank"><i class="bi bi-facebook"></i></a>
 				<a href="https://twitter.com/traversymedia" target="_blank"><i class="bi bi-linkedin"></i></a>
 				<a href="https://www.linkedin.com/in/bradtraversy" target="_blank"><i class="bi bi-github"></i></a>
+				<a href="/home" accesskey="f">Menú Principal</a>
 			</div>
 		</section>
 </footer>
