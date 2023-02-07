@@ -355,7 +355,6 @@ main {
     box-shadow: 0px 0px 15px 15px #0634ff;
     -webkit-box-shadow: 0px 0px 15px 15px #00fad9;
     background: url("/public/img/seriofeliz.png") 340px 450px;
-
 }
 
 //Es similar al about-imgR pero para la foto de la izquierda, 
@@ -562,4 +561,8 @@ h1 {
     width: 100;
     height: 100;
 }
-#map { height: 180px; }
+
+#map { 
+    height: 24vh;
+    width:190vh; 
+}	

@@ -7,12 +7,7 @@
 		integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
 		crossorigin="">
 	</script>
-
 </head>
-<style>
-	#map { height: 275px;
-			width:190vh; }	
-</style>
 <header>
 	<section class="showcase">
 			<div class="showcase-video">
@@ -33,6 +28,7 @@
 	<div id="map"></div>
 
 	<script>
+
 		var map = L.map('map').setView([41.23114477320315, 1.7281181849031044], 18);
 		L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
 		maxZoom: 18,
@@ -56,13 +52,16 @@
 			var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
 			var circle = L.circle([position.coords.latitude, position.coords.longitude],{color:'blue', fillColor: '#0000FF', fillOpacity: 0.5, radius: 30}).addTo(map);
 		}
+		function prueba(){
+			console.log("hola")
+		}
 		navigator.getLocation.getCurrentPosition(showPosition);
-
-		var listener = new window.keypress.Listener();
-		listener.simple_combo("ctrl alt g", function(e) {
-		e.alert("ESTO");
-    	console.log("You pressed shift and s");
-		});
+// combinations
+Mousetrap.bind('command+shift+k', function(e) {
+    alert("klk");
+	console.log("yeha");
+    return false;
+});
 	</script>
 </body>
 <footer>
@@ -71,9 +70,9 @@
 			<div class="social">
 				<a href="https://github.com/bradtraversy" target="_blank"><i class="bi bi-twitter"></i></a>
 				<a href="https://facebook.com/traversymedia" target="_blank"><i class="bi bi-facebook"></i></a>
+				<a href="/home" accesskey="f">Menú Principal</a>
 				<a href="https://twitter.com/traversymedia" target="_blank"><i class="bi bi-linkedin"></i></a>
 				<a href="https://www.linkedin.com/in/bradtraversy" target="_blank"><i class="bi bi-github"></i></a>
-				<a href="/home" accesskey="f">Menú Principal</a>
 			</div>
 		</section>
 </footer>
