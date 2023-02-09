@@ -1,17 +1,22 @@
 @extends('layouts.box-app')
-@section('box-content')
-<head>
+
+@section('head')
 	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css"/>
 	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css"integrity="sha256-kLaT2GOSpHechhsozzB+flnD+zUyjE2LlfWPgU04xyI="crossorigin=""/>
+	<link rel="stylesheet" />
 	<script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"
 		integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
 		crossorigin="">
 	</script>
-</head>
+@endsection
+
+@vite(['resources/js/keypress.js', 'resources/js/contacte/keypress.js'])
+
+@section('box-content')
 <header>
 	<section class="showcase">
 			<div class="showcase-video">
-				<video src="https://traversymedia.com/downloads/video.mov" autoplay muted loop></video>
+				<video src="/img/video.mov" autoplay muted loop></video>
 			</div>
 			<div class="showcase-content">
 				<h1 class="showcase-h1">Contacta'ns!</h1>
@@ -52,16 +57,8 @@
 			var marker = L.marker([position.coords.latitude, position.coords.longitude]).addTo(map);
 			var circle = L.circle([position.coords.latitude, position.coords.longitude],{color:'blue', fillColor: '#0000FF', fillOpacity: 0.5, radius: 30}).addTo(map);
 		}
-		function prueba(){
-			console.log("hola")
-		}
-		navigator.getLocation.getCurrentPosition(showPosition);
-// combinations
-Mousetrap.bind('command+shift+k', function(e) {
-    alert("klk");
-	console.log("yeha");
-    return false;
-});
+
+		
 	</script>
 </body>
 <footer>
