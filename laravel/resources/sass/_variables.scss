@@ -388,45 +388,45 @@ main {
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&display=swap');
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css");
 
-:root {
-    --primary-color: #3a4052;
-}
-
+//Definir a todos los elementos un borde y márgenes
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
+//La clase body ponerle un estilo de letra y tamaño
 body {
     font-family: 'Open Sans', sans-serif;
     line-height: 1.5;
 }
 
+//Para tener un estilo por defecto en cada enlace, quitar el estilo por defecto de los links pero
+//distinto color
 a {
     text-decoration: none;
     color: var(--primary-color);
 }
 
-h1 {
-    font-weight: 300;
-    font-size: 60px;
-    line-height: 1.2;
-    margin-bottom: 15px;
-}
-
+//Para el contenido del showcase que seria el texto con video de fondo el titulo 1 dandole un tamaño
+// de texto 
 .showcase-h1 {
     font-weight: 30px;
     font-size: 70px;
     line-height: 1.2;
 }
 
+//Para el contendio del showcase que seria el texto con video de fondo el titulo 3 igual que el primero
+//pero con menos tamaño
 .showcase-h3 {
     font-weight: 30px;
     font-size: 35px;
     line-height: 1.2;
     padding-top: 0%;
 }
+
+//El boton del contenido del showcase definiendo sin espacios por la parte superior, con fondo de color 
+//color de texto y borde blanco sin esquinas con un opacidad
 .showcase-boto {
     padding-top: 0%;
     display: inline-block;
@@ -439,6 +439,8 @@ h1 {
     opacity: 0.7;
 }
 
+//En la sección de body tenemos el titulo 1 con un tamaño en concreto
+//y el texto justificado
 .body-h1 {
     font-weight: 30px;
     font-size: 50px;
@@ -447,6 +449,8 @@ h1 {
     display: flex;    
 }
 
+//En la sección de body tenemos el titulo 3 con un tamaño en concreto más pequeño que el 1
+//y el texto justificado
 .body-h3 {    
     font-weight: 30px;
     font-size: 35px;
@@ -457,6 +461,8 @@ h1 {
     display: flex
 }
 
+//En la sección de footer que seria la inferior definimos al texto un margen por la parte superior
+//con un fondo de color gris con espaciados en el interior y el texto justificado
 .footer-contacte{
     margin-top: 5vh;
     background-color: #3a4052;
@@ -467,6 +473,7 @@ h1 {
     justify-content: center;
 }
 
+//Esto seria la parte del fondo la estariamos centrando
 .showcase {
     height:0;
     display: flex;
@@ -476,6 +483,7 @@ h1 {
     color: #fff;
 }
 
+//Esto seria la parte del fondo la estariamos centrando
 .showcase-video {
     position: absolute;
     top: 0;
@@ -486,6 +494,8 @@ h1 {
 }
 
 
+
+//Para centrar el texto y dando el espacio horizontal al 100%
 .img-contacte {
     align-items: center;
     align-content: center;
@@ -495,6 +505,7 @@ h1 {
     width: 100%;
 }
 
+//Para agregar la posición en la parte del contacte centrando el texto
 .body-contacte{
     margin-top: 40vh;
     align-items: center;
@@ -503,6 +514,9 @@ h1 {
     display: flex;
     padding: 0%;
 }
+
+//Para ensanchar toda la pantalla la resolución del video tanto como vertical y horizontal aplicando
+//la posicion absoulte de esta manera no se moverá
 .video-container:after {
     content: '';
     z-index: 1;
@@ -514,12 +528,13 @@ h1 {
     position: absolute;
 }
 
+//Para dar espacios a la sección inferior
 .showcase-content {
     z-index: 2;
     margin-bottom: 60vh;
-
 }
-
+//Para dar formato a los botones de esta manera tendrán un fondo de color un color blanco y un borde blanco
+//con sus espacios y opacidad
 .btn {
     display: inline-block;
     padding: 10px 30px;
@@ -531,32 +546,39 @@ h1 {
     opacity: 0.7;
 }
 
+//De esta manera el boton disminuirá mientras pasemos el raton por encima
 .btn:hover {
     transform: scale(0.98);
 }
 
+//Esto seria para la parte inferior de esta manera centraremos el contendio y quitaremos los espacios
+//interiores
 #about {
     padding: 0%;
     text-align: center;
 }
 
+//Para darle un formato al texto con un tamaño en concreto y posicionandolo
 #about p {
     font-size: 1.2rem;
     max-width: 600px;
     margin: auto;
 }
 
+//Esto serian los titulos 2 un margen por la parte superior y color asignado
 #about h2 {
     margin-top: 2vh;
     color: var(--primary-color);
 }
 
+//En la parte social asignamos un margen a los enlaces y tamaños.
 .social a {
     margin-top:0% ;
-    width: 100;
-    height: 100;
+    width: 100%;
+    height: 100%;
 }
 
+//Con esto asigmnamos un tamaño vertical y horizontal elegidos para la web. 
 #map { 
     height: 24vh;
     width:190vh; 

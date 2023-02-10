@@ -8,6 +8,10 @@
 		integrity="sha256-WBkoXOwTeyKclOHuWtc+i2uENFpDZ9YPdf5Hf+D7ewM="
 		crossorigin="">
 	</script>
+	<link rel="stylesheet" href="https://unpkg.com/leaflet@1.2.0/dist/leaflet.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.css" />
+<script src="https://unpkg.com/leaflet@1.2.0/dist/leaflet.js"></script>
+<script src="https://unpkg.com/leaflet-routing-machine@latest/dist/leaflet-routing-machine.js"></script>
 @endsection
 
 @vite(['resources/js/keypress.js', 'resources/js/contacte/keypress.js'])
@@ -41,7 +45,12 @@
 		}).addTo(map);
 		var marker = L.marker([41.23114477320315, 1.7281181849031044]).addTo(map);
 		
-
+		L.Routing.control({
+		waypoints: [
+			L.latLng(41.23114477320315, 1.7281181849031044),
+			L.latLng(41.22317016641275, 1.7176998961503782)
+		]
+		}).addTo(map);
 
 		function getLocation(e) {
 			if (navigator.geolocation) {
