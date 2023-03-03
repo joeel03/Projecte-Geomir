@@ -23,7 +23,7 @@
 		<div class="showcase__content">
 			<h1 class="showcase__h1">Contacta'ns!</h1>
 			<h3 class="showcase__h3">Envia el teu missatge</h3>
-			<a class="showcase__boto" href="#about">Read More</a>
+			<a class="showcase__boto" href="/about">About-us</a>
 		</div>
 	</section>
 </header>
@@ -32,7 +32,7 @@
 <body class="body">
 	<h1 class="body__h1">Vols visitar-nos?</h1>
 	<a href="#" onClick="getLocation()">
-		<h3 class="body__h3">Ubica'ns al mapa</h3>
+		<h2 class="body__h3">Ubica'ns al mapa</h2>
 	</a>
 	<div id="map"></div>
 
@@ -76,9 +76,9 @@
 	<section id="about">
 		<h2>Segueix-nos a xarxes!</h2>
 		<div>
-			<a href="https://github.com/bradtraversy" target="_blank"><i class="bi bi-twitter"></i></a>
+			<a href="https://github.com/bradtraversy" target="_blank"><i class="bi bi-twitter"></i><span class="ocultar">f</span></a>
 			<a href="https://facebook.com/traversymedia" target="_blank"><i class="bi bi-facebook"></i></a>
-			<a href="/home" accesskey="f">Menú Principal</a>
+			<a href="/home" accesskey="f" class="about__a-link">Menú Principal</a>
 			<a href="https://twitter.com/traversymedia" target="_blank"><i class="bi bi-linkedin"></i></a>
 			<a href="https://www.linkedin.com/in/bradtraversy" target="_blank"><i class="bi bi-github"></i></a>
 		</div>

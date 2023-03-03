@@ -37,7 +37,7 @@
             <div class="container">
             
 
-                <img src="img/logo_notext.png" width="75px"></img>
+                <img src="img/logo_notext.png" width="75px" alt="logo de la pagina web"></img>
                 <a class="navbar-brand text-primary" href="{{ url('home') }}">
                     JOVIGAM
                 </a>
