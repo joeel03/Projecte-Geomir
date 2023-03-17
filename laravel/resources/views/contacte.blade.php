@@ -24,6 +24,9 @@
 			<h1 class="showcase__h1">Contacta'ns!</h1>
 			<h3 class="showcase__h3">Envia el teu missatge</h3>
 			<a class="showcase__boto" href="/about">About-us</a>
+			<button id="leerTexto">Leer texto</button>
+			<button id="leerParrafo">Leer Parrafo</button>
+		
 		</div>
 	</section>
 </header>
@@ -70,6 +73,35 @@
 				radius: 30
 			}).addTo(map);
 		}
+
+
+		var boton1 = document.getElementById("leerParrafo");
+
+		boton1.addEventListener('click', function() {
+			// Codi per obtenir el text de l'element i els seus fills
+			var elements = element.getElementsByClassName('showcase__h1');
+			var text = '';
+			for (var i = 0; i < elements.length; i++) {
+				text += elements[i].textContent + ' ';
+			}
+			var msg = new SpeechSynthesisUtterance(text);
+			speechSynthesis.speak(msg);
+		});
+
+		function leerTexto() {
+			// Obtener el texto del elemento HTML
+			var texto = document.getElementById("leerTexto").innerText;
+			// Crear una instancia de SpeechSynthesis
+			var synth = window.speechSynthesis;
+			// Crear un objeto de mensaje de voz
+			var msg = new SpeechSynthesisUtterance();
+			// Establecer el texto a leer
+			msg.text = texto;
+			// Habilitar la síntesis de voz
+			synth.speak(msg);
+		}
+		var boton = document.getElementById("leerTexto");
+		boton.addEventListener("click", leerTexto);
 	</script>
 </body>
 <footer>
