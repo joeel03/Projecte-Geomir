@@ -4,7 +4,7 @@
 <div class="container ">
     <div class="row justify-content-center ">
         <div class="col-sm-12 col-md-6">
-            <img src="img/img_login.png" width="100%"></img>
+            <img alt="imatge login" src="img/img_login.png" width="100%"></img>
         </div> 
         <div class="col-sm-12 col-md-6">
             <div class="row card">

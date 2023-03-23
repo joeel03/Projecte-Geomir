@@ -40,13 +40,13 @@
     <div class="border col-md-4 ">
         <h1 class="linea-inferior">Lista de contactos</h1>
         <div class="lista-contactos linea-inferior">
-            <img class="rounded-circle img" src="img/foto_hombre.jpg" width="20%"></img>
+            <img alt="Contacte Mario" class="rounded-circle img" src="img/foto_hombre.jpg" width="20%"></img>
             Mario Gomez
             <i class="fa-brands fa-whatsapp  border-emoji"></i>
             <i class="fa-solid fa-phone  border-emoji"></i>
         </div>
         <div class="lista-contactos linea-inferior">
-            <img class="rounded-circle img" src="img/foto_mujer.jpg" width="20%"></img>
+            <img alt="Contacte Andrea" class="rounded-circle img" src="img/foto_mujer.jpg" width="20%"></img>
             Andrea Perruna
             <i class="fa-brands fa-whatsapp  border-emoji"></i>
             <i class="fa-solid fa-phone  border-emoji"></i>

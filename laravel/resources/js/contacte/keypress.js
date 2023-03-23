@@ -3,6 +3,8 @@ function showPosition(position) {
         "\nLongitude: " + position.coords.longitude)
 }
 //Dreceres de teclat
+
+//<
 var listener = new window.keypress.Listener();
 listener.simple_combo("ctrl alt g", function getLocation() {
     if (navigator.geolocation) {

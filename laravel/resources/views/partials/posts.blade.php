@@ -12,7 +12,7 @@
                     @foreach ($files as $file)
                         @if($file->id == $post->file_id)
                             <div class="div-foto-post">
-                                    <img class="img-posts" src='{{ asset("storage/{$file->filepath}") }}'/>
+                                    <img alt ="Publicació d'usuari" class="img-posts" src='{{ asset("storage/{$file->filepath}") }}'/>
                             </div>
                         @endif
                     @endforeach

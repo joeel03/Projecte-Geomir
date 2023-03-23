@@ -78,7 +78,7 @@
 		<div>
 			<a href="https://github.com/bradtraversy" target="_blank"><i class="bi bi-twitter"></i></a>
 			<a href="https://facebook.com/traversymedia" target="_blank"><i class="bi bi-facebook"></i></a>
-			<a href="/home" accesskey="f">Menú Principal</a>
+			<a href="/home" accesskey="a">Menú Principal</a>
 			<a href="https://twitter.com/traversymedia" target="_blank"><i class="bi bi-linkedin"></i></a>
 			<a href="https://www.linkedin.com/in/bradtraversy" target="_blank"><i class="bi bi-github"></i></a>
 		</div>
