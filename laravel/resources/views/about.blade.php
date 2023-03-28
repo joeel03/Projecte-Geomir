@@ -44,6 +44,14 @@
       </div>
     </div>
   </div>
+
+  <!--Boton para activar reconocimiento de voz  -->
+  <button id="recvoz">Iniciar Reconocimiento de Voz</button>
+  <br>
+  <!--Boton para abortar reconocimiento de voz  -->
+  <button id="pausar">Pausar Reconocimiento de Voz</button>
+  <!--Imprimir voz a través de la lectura transcript  -->
+<div id="impvoz"></div>
 </div>
 
 <!--Crear modal para la imagen de la izquierda con id exampleModal  -->
@@ -112,56 +120,68 @@
             <span class="carousel-control-next-icon" aria-hidden="true"></span>
             <span class="visually-hidden">Next</span>
           </button>
+
         </div>
+        
       </div>
+
     </div>
   </div>
-  <!--Boton para activar reconocimiento de voz  -->
-  <button id="recvoz">Iniciar Reconocimiento de Voz</button>
-	<p id="desvoz"></p>
 
 </div>
 
 <script>
   //Constante de boton para reconocer a través de la id recvoz
-		const recvoz = document.getElementById("recvoz");
-		const desvoz = document.getElementById("desvoz");
-		const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+  const recvoz = document.getElementById("recvoz");
+  const impvoz = document.getElementById("impvoz");
+  const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
   //Constante que hay que definir para poder reconocer voz
-		const recognition = new SpeechRecognition();
-    
+  const recognition = new SpeechRecognition();
+  // establece interimResults en true para detener la escucha inmediatamente después de que el usuario termine de hablar
+  recognition.interimResults = true; 
+  // establece maxAlternatives en 1 para limitar el número de resultados alternativos a 1
+  recognition.maxAlternatives = 1; 
+  
     //Constante que indica que esta escuchando
-		recognition.onstart = function() {
-			recvoz.disabled = true;
-			recvoz.textContent = "Escuchando...";
-		}
+    recognition.onstart = function() {
+    recvoz.disabled = true;
+    recvoz.textContent = "Escuchando...";
+  };
 
-		recognition.onresult = function(event) {
-			const transcript = event.results[0][0].transcript.toLowerCase();
-			desvoz.textContent = transcript;
-			executeCommand(transcript);
-			recvoz.disabled = false;
-			recvoz.textContent = "Iniciar Reconocimiento de Voz";
-		}
+    // Funciones cuando esta sin ejecutar
+  recognition.onresult = function(event) {
+    const transcript = event.results[0][0].transcript.toLowerCase();
+    impvoz.textContent = transcript;
+    executeCommand(transcript);
+    recvoz.disabled = false;
+    recvoz.textContent = "Iniciar Reconocimiento de Voz";
+  };
+    // Funciones para ejecutar comandos con la voz a través del transcript que seria el reconocimiento
+    function executeCommand(transcript) {
+    if (transcript.includes("bajar")) {
+      window.scrollBy(0, 100);
+    } else if (transcript.includes("subir")) {
+      window.scrollBy(0, -100);
+    } else if (transcript.includes("ampliar")){
+      document.body.style.transform = `scale(${window.devicePixelRatio + 0.5})`;
+    } else if (transcript.includes("reducir")) {
+      document.body.style.transform = `scale(${window.devicePixelRatio - 0.1})`;
+    } else if (transcript.includes("reiniciar")) {
+      document.body.style.transform = `scale(${window.devicePixelRatio = 1})`;
+      window.scrollTo(0, 0);
+    }
+  }
+  //Boton para emepezar activar reconociento
+  const btn = document.getElementById("recvoz");
+  btn.addEventListener("click", function() {
+    recognition.start();
+  });
 
-		function executeCommand(command) {
-			if (command.includes("bajar") || command.includes("scroll hacia abajo")) {
-				window.scrollBy(0, 100);
-			} else if (command.includes("subir") || command.includes("scroll hacia arriba")) {
-				window.scrollBy(0, -100);
-			} else if (command.includes("ampliar") || command.includes("aumentar zoom")) {
-				document.body.style.zoom = parseFloat(document.body.style.zoom) + 0.1;
-			} else if (command.includes("reducir") || command.includes("disminuir zoom")) {
-				document.body.style.zoom = parseFloat(document.body.style.zoom) - 0.1;
-			} else if (command.includes("restaurar") || command.includes("volver al inicio")) {
-				document.body.style.zoom = 1;
-				window.scrollTo(0, 0);
-			}
-		}
-
-		btn.addEventListener("click", function() {
-			recognition.start();
-		});
+  //Boton para emepezar abortar reconociento
+  const btnPausar = document.getElementById("pausar");
+  btnPausar.addEventListener("click", function() {
+  recognition.abort();
+  });
 	</script>
 
   

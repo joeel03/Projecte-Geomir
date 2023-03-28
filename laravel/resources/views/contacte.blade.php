@@ -23,7 +23,11 @@
 		<div class="showcase__content">
 			<h1 class="showcase__h1">Contacta'ns!</h1>
 			<h3 class="showcase__h3">Envia el teu missatge</h3>
-			<a class="showcase__boto" href="#about">Read More</a>
+			<a class="showcase__boto" href="/about">About-us</a>
+			<!-- Botones para ejecutar la lectura de elementos -->
+			<button id="leerTexto">Leer texto</button>
+			<button id="leerParrafo">Leer Parrafo</button>
+		
 		</div>
 	</section>
 </header>
@@ -32,7 +36,7 @@
 <body class="body">
 	<h1 class="body__h1">Vols visitar-nos?</h1>
 	<a href="#" onClick="getLocation()">
-		<h3 class="body__h3">Ubica'ns al mapa</h3>
+		<h2 class="body__h3">Ubica'ns al mapa</h2>
 	</a>
 	<div id="map"></div>
 
@@ -70,15 +74,39 @@
 				radius: 30
 			}).addTo(map);
 		}
+
+		// Declarar boton para leer parrafo 
+		var boton1 = document.getElementById("leerParrafo");
+		// Funcion de que cuando haces clic coge los elementos de showcase_h1 y los concatena en una variable llamada text y seguidamente los lee.
+		boton1.addEventListener('click', function() {
+			var elements = element.getElementsByClassName('showcase__h1');
+			var text = '';
+			for (var i = 0; i < elements.length; i++) {
+				text += elements[i].textContent + ' ';
+			}
+			var msg = new SpeechSynthesisUtterance(text);
+			speechSynthesis.speak(msg);
+		});
+		// Coge el contenido de un elemento por la id y te lo lee
+		function leerTexto() {
+			var texto = document.getElementById("leerTexto").innerText;
+			var synth = window.speechSynthesis;
+			var msg = new SpeechSynthesisUtterance();
+			msg.text = texto;
+			synth.speak(msg);
+		}
+		// Definimos el boton y esperamos a que se haga el clic
+		var boton = document.getElementById("leerTexto");
+		boton.addEventListener("click", leerTexto);
 	</script>
 </body>
 <footer>
 	<section id="about">
 		<h2>Segueix-nos a xarxes!</h2>
 		<div>
-			<a href="https://github.com/bradtraversy" target="_blank"><i class="bi bi-twitter"></i></a>
+			<a href="https://github.com/bradtraversy" target="_blank"><i class="bi bi-twitter"></i><span class="ocultar">f</span></a>
 			<a href="https://facebook.com/traversymedia" target="_blank"><i class="bi bi-facebook"></i></a>
-			<a href="/home" accesskey="a">Menú Principal</a>
+			<a href="/home" accesskey="f" class="about__a-link">Menú Principal</a>
 			<a href="https://twitter.com/traversymedia" target="_blank"><i class="bi bi-linkedin"></i></a>
 			<a href="https://www.linkedin.com/in/bradtraversy" target="_blank"><i class="bi bi-github"></i></a>
 		</div>
