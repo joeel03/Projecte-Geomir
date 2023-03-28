@@ -15,7 +15,7 @@
 @vite(['resources/js/keypress.js', 'resources/js/contacte/keypress.js'])
 
 @section('box-content')
-<header class="header">
+<header class="header" id="header">
 	<section class="showcase__section">
 		<div class="showcase__video">
 			<video src="/img/video.mov" autoplay muted loop></video>
@@ -23,11 +23,15 @@
 		<div class="showcase__content">
 			<h1 class="showcase__h1">Contacta'ns!</h1>
 			<h3 class="showcase__h3">Envia el teu missatge</h3>
-			<a class="showcase__boto" href="/about">About-us</a>
 			<!-- Botones para ejecutar la lectura de elementos -->
+			<a class="showcase__boto" href="/about">About-us</a><br>
 			<button id="leerTexto">Leer texto</button>
-			<button id="leerParrafo">Leer Parrafo</button>
-		
+			<br>
+			<a href="https://www.w3.org/WAI/WCAG2AA-Conformance"
+			title="Explanation of WCAG 2 Level AA conformance">
+			<img height="32" width="88" src="https://www.w3.org/WAI/WCAG21/wcag2.1AA-v" alt="Level AA conformance,
+            W3C WAI Web Content Accessibility Guidelines 2.1">
+			</a>
 		</div>
 	</section>
 </header>
@@ -74,19 +78,29 @@
 				radius: 30
 			}).addTo(map);
 		}
-
-		// Declarar boton para leer parrafo 
-		var boton1 = document.getElementById("leerParrafo");
-		// Funcion de que cuando haces clic coge los elementos de showcase_h1 y los concatena en una variable llamada text y seguidamente los lee.
-		boton1.addEventListener('click', function() {
-			var elements = element.getElementsByClassName('showcase__h1');
+		// Funcion que coge el texto de toda la pagina y lo lee.
+		function leerPagina() {
+			var texto = document.body.innerText;
+			var mensaje = new SpeechSynthesisUtterance(texto);
+			window.speechSynthesis.speak(mensaje);
+		}
+		// Declarar boton para leer elementos con id header 
+		// var boton1 = document.getElementById("header");
+				
+		// Funcion de que cuando haces clic coge los elementos de showcase_section y los concatena en una variable llamada text y seguidamente los lee.
+		function leerParrafo() {
+			// Codi per obtenir el text de l'element i els seus fills
+			var elements = document.getElementsByClassName('showcase__section');
 			var text = '';
 			for (var i = 0; i < elements.length; i++) {
 				text += elements[i].textContent + ' ';
 			}
 			var msg = new SpeechSynthesisUtterance(text);
 			speechSynthesis.speak(msg);
-		});
+		};
+		// Declarar boton para leer parrafo 
+		boton1.addEventListener("dblclick", leerParrafo);
+
 		// Coge el contenido de un elemento por la id y te lo lee
 		function leerTexto() {
 			var texto = document.getElementById("leerTexto").innerText;

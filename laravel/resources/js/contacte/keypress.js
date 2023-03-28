@@ -30,3 +30,9 @@ listener2.simple_combo("ctrl alt c", function () {
      marker = L.marker([41.23114477320315, 1.7281181849031044]).addTo(map);
     
 })
+// Declaramos una nueva variable que espera un atajo para ejecutar la funcion declarada en la pagina de contacte leerPagina(). 
+var listener3 = new window.keypress.Listener();
+listener3.simple_combo("ctrl b", function () {
+    leerPagina()
+    
+})
