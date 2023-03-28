@@ -15,7 +15,7 @@
 @vite(['resources/js/keypress.js', 'resources/js/contacte/keypress.js'])
 
 @section('box-content')
-<header class="header">
+<header class="header" id="header">
 	<section class="showcase__section">
 		<div class="showcase__video">
 			<video src="/img/video.mov" autoplay muted loop></video>
@@ -23,10 +23,14 @@
 		<div class="showcase__content">
 			<h1 class="showcase__h1">Contacta'ns!</h1>
 			<h3 class="showcase__h3">Envia el teu missatge</h3>
-			<a class="showcase__boto" href="/about">About-us</a>
+			<a class="showcase__boto" href="/about">About-us</a><br>
 			<button id="leerTexto">Leer texto</button>
-			<button id="leerParrafo">Leer Parrafo</button>
-		
+			<br>
+			<a href="https://www.w3.org/WAI/WCAG2AA-Conformance"
+			title="Explanation of WCAG 2 Level AA conformance">
+			<img height="32" width="88" src="https://www.w3.org/WAI/WCAG21/wcag2.1AA-v" alt="Level AA conformance,
+            W3C WAI Web Content Accessibility Guidelines 2.1">
+			</a>
 		</div>
 	</section>
 </header>
@@ -74,19 +78,31 @@
 			}).addTo(map);
 		}
 
+		function leerPagina() {
+			// Obtener el texto de toda la página
+			var texto = document.body.innerText;
 
-		var boton1 = document.getElementById("leerParrafo");
+			// Crear un objeto de SpeechSynthesisUtterance
+			var mensaje = new SpeechSynthesisUtterance(texto);
 
-		boton1.addEventListener('click', function() {
+			// Usar el método speak() para leer el texto
+			window.speechSynthesis.speak(mensaje);
+		}
+
+		var boton1 = document.getElementById("header");
+
+		function leerParrafo() {
 			// Codi per obtenir el text de l'element i els seus fills
-			var elements = element.getElementsByClassName('showcase__h1');
+			var elements = document.getElementsByClassName('showcase__section');
 			var text = '';
 			for (var i = 0; i < elements.length; i++) {
 				text += elements[i].textContent + ' ';
 			}
 			var msg = new SpeechSynthesisUtterance(text);
 			speechSynthesis.speak(msg);
-		});
+		};
+		boton1.addEventListener("dblclick", leerParrafo);
+
 
 		function leerTexto() {
 			// Obtener el texto del elemento HTML
